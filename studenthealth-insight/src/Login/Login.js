@@ -38,7 +38,7 @@ const Login = ({ isOpen, handleClose }) => {
           />
         </div>
         <br />
-        <div className={"inputContainer"}>
+        <div className={"buttonContainer"}>
           <input
             className={"inputButton"}
             type="button"
@@ -46,7 +46,7 @@ const Login = ({ isOpen, handleClose }) => {
             value={"Log in"}
           />
         </div>
-        <div className={"inputContainer"}>
+        <div className={"buttonContainer"}>
           <input
             className={"inputButton"}
             type="button"
