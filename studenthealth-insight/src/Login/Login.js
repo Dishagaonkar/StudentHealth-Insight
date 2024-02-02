@@ -19,7 +19,7 @@ const Login = ({ isOpen, handleClose }) => {
         <button className="close-btn" onClick={handleClose}>
           X
         </button>
-        <p>Login pop-up (under construction)</p>
+        <p className="wording">Login</p>
         <div className={"inputContainer"}>
           <input
             value={email}
