@@ -1,0 +1,28 @@
+//sources referenced: https://www.youtube.com/watch?v=aK1XbxIbo2Q&list=PL8p2I9GklV45ihqIep4n3_VijItAkcibN&index=30
+
+const express = require('express');
+const cors = require('cors');
+const runDB = require("./mongoLogistics");
+
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+
+app.get('/message', (req, res) => {
+  res.json({ message: "Hello from server!" });
+});
+
+app.listen(8000, () => {
+  console.log(`Server is running on port 8000.`);
+});
+
+
+const main=async()=>{
+  await runDB();
+}
+main()
+
+
+
+
