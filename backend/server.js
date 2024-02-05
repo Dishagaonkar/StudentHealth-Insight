@@ -1,4 +1,5 @@
-//sources referenced: https://www.youtube.com/watch?v=aK1XbxIbo2Q&list=PL8p2I9GklV45ihqIep4n3_VijItAkcibN&index=30
+//sources referenced: https://www.youtube.com/watch?v=aK1XbxIbo2Q&list=PL8p2I9GklV45ihqIep4n3_VijItAkcibN&index=30 
+//& https://codedamn.com/news/reactjs/how-to-connect-react-with-node-js 
 
 const express = require('express');
 const cors = require('cors');
