@@ -21,6 +21,7 @@ const Login = ({ isOpen, handleClose }) => {
   }, []);
 
   const navigate = useNavigate();
+  
 
   const LoginClick = async(ev) => {
     // do functionality later
@@ -33,9 +34,15 @@ const Login = ({ isOpen, handleClose }) => {
     catch(e){
       console.log(e);
     }
+    
 
 
   };
+
+  const onButtonClick = async(ev) => {
+  }
+  
+
 
   return (
     <div className={`popup ${isOpen ? "open" : ""}`}>
