@@ -8,13 +8,36 @@ const client = new MongoClient(uri);
 
 
 async function runDB() {
-  
+
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
     // Send a ping to confirm a successful connection
     await client.db(name).command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
 
-    
+    const mongoose = require("mongoose");
+    mongoose.connect("mongodb://localhost:27017/loginInfo")
+        .then(() => {
+            console.log("connected to database");
+        })
+        .catch(() => {
+            console.log("connection failed");
+        })
+
+    const newSchema = new mongoose.Schema({
+        email: {
+            type: String,
+            required: true
+        },
+        password: {
+            type: String,
+            required: true
+        }
+    });
+
+    const collection = mongoose.model("collection", newSchema);
+    module.exports = collection;
+
+
 }
-module.exports=runDB;
+module.exports = runDB;
