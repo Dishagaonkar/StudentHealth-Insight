@@ -1,16 +1,40 @@
-import React, { useState } from "react";
+//source referenced : https://www.youtube.com/watch?v=KZB6gtKQ9_I&t=511s
+import React, { useEffect,useState } from "react";
 import "../popup.css";
 import "../Login/Login.css";
 import { useNavigate } from "react-router-dom";
+import axios from "axios"
 
 const Login = ({ isOpen, handleClose }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  useEffect(() => {
+    try {
+      fetch("http://localhost:8000/message")
+        .then((res) => res.json())
+        .then((data) => setEmail(data.email))
+        .catch((error) => console.error("Error fetching data:", error));
+    } catch (error) {
+      console.error("Error in useEffect:", error);
+    }
+  }, []);
+
   const navigate = useNavigate();
 
-  const onButtonClick = () => {
+  const LoginClick = async(ev) => {
     // do functionality later
+
+    ev.preventDefault()
+    try{
+      await axios.post("http://localhost:8000/",{
+        email,password})
+    }
+    catch(e){
+      console.log(e);
+    }
+
+
   };
 
   return (
@@ -42,7 +66,7 @@ const Login = ({ isOpen, handleClose }) => {
           <input
             className={"inputButton"}
             type="button"
-            onClick={onButtonClick}
+            onClick={LoginClick}
             value={"Log in"}
           />
         </div>
