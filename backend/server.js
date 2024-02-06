@@ -13,11 +13,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-/*
-app.get("./Login", cors(), (req, res) => {
-  
-});
-*/
 
 app.post("/logins", async (req, res) => {
   console.log("hello");

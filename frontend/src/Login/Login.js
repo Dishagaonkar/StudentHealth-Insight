@@ -58,7 +58,7 @@ const Login = ({ isOpen, handleClose }) => {
             <input
               className={"inputButton"}
               type="submit"
-              value={"Log in"}
+              value={"Sign Up"}
             />
           </div>
         </form>
