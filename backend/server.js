@@ -11,21 +11,23 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
+/*
 app.get("./Login", cors(), (req, res) => {
   
 });
+*/
 
-app.post("./Login", async (req, res) => {
-  const { email, password } = req.body;
+app.post("/logins", async (req, res) => {
+  console.log("hello");
 
   const data = {
-    email: email,
-    password: password
+    email:req.body.email,
+    password:req.body.password
   }
 
   try {
-    const collection = require("./mongoLogistics"); // Import collection from the module
-    await collection.insertMany([data]);
+    let loginCollection = await runDB();
+    await loginCollection.create([data]);
     res.status(200).json({ message: "Data inserted successfully!" });
   } catch (error) {
     console.error("Error inserting data:", error);
@@ -41,10 +43,6 @@ app.listen(8000, () => {
   console.log(`Server is running on port 8000.`);
 });
 
-const main = async () => {
-  await runDB();
-}
-main();
 
 
 

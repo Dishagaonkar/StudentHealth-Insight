@@ -1,14 +1,14 @@
-<<<<<<< HEAD
-# StudentHealth-Insight
-Senior Project
-
-Karina's Test of Pushing to GitHub
-=======
 # StudentHealth-Insight (Senior Project)
 
 ## To run this project:
-clone repository then go to terminal and enter the following commands:
+Open 2 different terminals:
+In 1st Terminal
 1. cd studenthealth-insight
-2. npm install
-3. npm start
->>>>>>> e278cd8e1cfd200fd83b945ccf58e568acd35808
+2. cd backend 
+3. npm install
+4. npm run start
+In 2nd Terminal
+1. cd studenthealth-insight
+2. cd frontend 
+3. npm install
+4. npm run start
