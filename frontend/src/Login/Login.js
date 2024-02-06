@@ -1,4 +1,5 @@
 //source referenced : https://www.youtube.com/watch?v=KZB6gtKQ9_I&t=511s & https://codedamn.com/news/reactjs/how-to-connect-react-with-node-js
+//https://blog.logrocket.com/how-to-use-axios-post-requests/ 
 import React, { useEffect,useState } from "react";
 import "../popup.css";
 import "../Login/Login.css";
@@ -9,28 +10,21 @@ const Login = ({ isOpen, handleClose }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  useEffect(() => {
-    try {
-      fetch("http://localhost:8000/message")
-        .then((res) => res.json())
-        .then((data) => setEmail(data.email))
-        .catch((error) => console.error("Error fetching data:", error));
-    } catch (error) {
-      console.error("Error in useEffect:", error);
-    }
-  }, []);
 
   const navigate = useNavigate();
 
   const LoginClick = async (ev) => {
     ev.preventDefault();
+  
     try {
-      await axios.post("http://localhost:8000", { email, password });
-      navigate('/dashboard'); 
+      await axios.post("http://localhost:8000/logins", {
+      email: email,
+      password: password
+    });
     } catch (error) {
       console.log(error);
-    
     }
+    
   };
 
   return (
@@ -64,7 +58,7 @@ const Login = ({ isOpen, handleClose }) => {
             <input
               className={"inputButton"}
               type="submit"
-              value={"Log in"}
+              value={"Sign Up"}
             />
           </div>
         </form>
