@@ -21,28 +21,17 @@ const Login = ({ isOpen, handleClose }) => {
   }, []);
 
   const navigate = useNavigate();
-  
 
-  const LoginClick = async(ev) => {
-    // do functionality later
-
-    ev.preventDefault()
-    try{
-      await axios.post("http://localhost:8000/",{
-        email,password})
-    }
-    catch(ev){
-      console.log(ev);
-    }
+  const LoginClick = async (ev) => {
+    ev.preventDefault();
+    try {
+      await axios.post("http://localhost:8000/Login", { email, password });
+      navigate('/dashboard'); 
+    } catch (error) {
+      console.log(error);
     
-
-
+    }
   };
-
-  const onButtonClick = async(ev) => {
-  }
-  
-
 
   return (
     <div className={`popup ${isOpen ? "open" : ""}`}>
@@ -51,41 +40,33 @@ const Login = ({ isOpen, handleClose }) => {
           X
         </button>
         <p className="wording">Login</p>
-        <form action="Post">
-        <div className={"inputContainer"}>
-          <input
-            value={email}
-            placeholder="Enter your email here"
-            onChange={(ev) => setEmail(ev.target.value)}
-            className={"inputBox"}
-          />
-        </div>
-        <br />
-        <div className={"inputContainer"}>
-          <input
-            value={password}
-            placeholder="Enter your password here"
-            onChange={(ev) => setPassword(ev.target.value)}
-            className={"inputBox"}
-          />
-        </div>
-        <br />
-        <div className={"buttonContainer"}>
-          <input
-            className={"inputButton"}
-            type="button"
-            onClick={LoginClick}
-            value={"Log in"}
-          />
-        </div>
-        <div className={"buttonContainer"}>
-          <input
-            className={"inputButton"}
-            type="button"
-            onClick={onButtonClick}
-            value={"Sign Up"}
-          />
-        </div>
+        <form onSubmit={LoginClick}>
+          <div className={"inputContainer"}>
+            <input
+              value={email}
+              placeholder="Enter your email here"
+              onChange={(ev) => setEmail(ev.target.value)}
+              className={"inputBox"}
+            />
+          </div>
+          <br />
+          <div className={"inputContainer"}>
+            <input
+              value={password}
+              placeholder="Enter your password here"
+              onChange={(ev) => setPassword(ev.target.value)}
+              className={"inputBox"}
+              type="password"
+            />
+          </div>
+          <br />
+          <div className={"buttonContainer"}>
+            <input
+              className={"inputButton"}
+              type="submit"
+              value={"Log in"}
+            />
+          </div>
         </form>
       </div>
     </div>
