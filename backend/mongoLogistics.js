@@ -16,7 +16,7 @@ async function runDB() {
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
 
     const mongoose = require("mongoose");
-    mongoose.connect("mongodb://localhost:27017/admin")
+    mongoose.connect("mongodb://localhost:27017/loginInfo")
         .then(() => {
             console.log("connected to database");
         })
