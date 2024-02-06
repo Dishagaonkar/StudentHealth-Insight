@@ -4,7 +4,7 @@
 const express = require('express');
 const cors = require('cors');
 const runDB = require("./mongoLogistics");
-const collection=require("./mongo");
+const collection=require("./mongodb");
 
 const app = express();
 
