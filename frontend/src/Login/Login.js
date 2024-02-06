@@ -31,8 +31,8 @@ const Login = ({ isOpen, handleClose }) => {
       await axios.post("http://localhost:8000/",{
         email,password})
     }
-    catch(e){
-      console.log(e);
+    catch(ev){
+      console.log(ev);
     }
     
 
@@ -51,6 +51,7 @@ const Login = ({ isOpen, handleClose }) => {
           X
         </button>
         <p className="wording">Login</p>
+        <form action="Post">
         <div className={"inputContainer"}>
           <input
             value={email}
@@ -85,6 +86,7 @@ const Login = ({ isOpen, handleClose }) => {
             value={"Sign Up"}
           />
         </div>
+        </form>
       </div>
     </div>
   );
