@@ -1,5 +1,7 @@
 //sources referenced: https://www.youtube.com/watch?v=aK1XbxIbo2Q&list=PL8p2I9GklV45ihqIep4n3_VijItAkcibN&index=30 
 //& https://codedamn.com/news/reactjs/how-to-connect-react-with-node-js 
+//https://www.youtube.com/watch?v=p4ouSQqP3L0&list=PL8p2I9GklV45ihqIep4n3_VijItAkcibN&index=31
+//https://www.javatpoint.com/expressjs-post
 
 const express = require('express');
 const cors = require('cors');
