@@ -4,11 +4,29 @@
 const express = require('express');
 const cors = require('cors');
 const runDB = require("./mongoLogistics");
+const collection=require("./mongo");
 
 const app = express();
 
-app.use(cors());
 app.use(express.json());
+
+app.use(express.urlencoded({ extended: true }));
+app.use(cors());
+
+app.get("/Login", cors(),(req, res) => {
+
+})
+
+app.post("/Login", async(req, res) => {
+  const{email, password}=req.body
+
+  const data = {
+    email:email,
+    password:password
+  }
+
+  await collection.insetMany([data]);
+});
 
 app.get('/message', (req, res) => {
   res.json({ message: "Hello from server!" });
