@@ -11,11 +11,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-app.get("/Login", cors(), (req, res) => {
+app.get("./Login", cors(), (req, res) => {
   // Add your login logic here
 });
 
-app.post("/Login", async (req, res) => {
+app.post("./Login", async (req, res) => {
   const { email, password } = req.body;
 
   const data = {
