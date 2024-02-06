@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 app.get("./Login", cors(), (req, res) => {
-  // Add your login logic here
+  
 });
 
 app.post("./Login", async (req, res) => {
