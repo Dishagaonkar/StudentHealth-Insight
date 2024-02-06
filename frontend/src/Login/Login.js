@@ -25,7 +25,7 @@ const Login = ({ isOpen, handleClose }) => {
   const LoginClick = async (ev) => {
     ev.preventDefault();
     try {
-      await axios.post("http://localhost:8000/Login", { email, password });
+      await axios.post("http://localhost:8000", { email, password });
       navigate('/dashboard'); 
     } catch (error) {
       console.log(error);
