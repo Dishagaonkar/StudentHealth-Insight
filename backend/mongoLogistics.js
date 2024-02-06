@@ -16,7 +16,7 @@ async function runDB() {
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
 
     const mongoose = require("mongoose");
-    mongoose.connect("mongodb://localhost:27017/loginInfo")
+    mongoose.connect("mongodb+srv://StudentHealth:Gators24!@studenthealthinsight.gbgld4q.mongodb.net/?retryWrites=true&w=majority")
         .then(() => {
             console.log("connected to database");
         })
