@@ -8,23 +8,29 @@ const runDB = require("./mongoLogistics");
 const app = express();
 
 app.use(express.json());
-
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-app.get("/Login", cors(),(req, res) => {
+app.get("/Login", cors(), (req, res) => {
+  // Add your login logic here
+});
 
-})
-
-app.post("/Login", async(req, res) => {
-  const{email, password}=req.body
+app.post("/Login", async (req, res) => {
+  const { email, password } = req.body;
 
   const data = {
-    email:email,
-    password:password
+    email: email,
+    password: password
   }
 
-  await collection.insetMany([data]);
+  try {
+    const collection = require("./mongoLogistics"); // Import collection from the module
+    await collection.insertMany([data]);
+    res.status(200).json({ message: "Data inserted successfully!" });
+  } catch (error) {
+    console.error("Error inserting data:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 });
 
 app.get('/message', (req, res) => {
@@ -35,11 +41,11 @@ app.listen(8000, () => {
   console.log(`Server is running on port 8000.`);
 });
 
-
-const main=async()=>{
+const main = async () => {
   await runDB();
 }
-main()
+main();
+
 
 
 
