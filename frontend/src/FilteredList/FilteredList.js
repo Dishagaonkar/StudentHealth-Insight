@@ -3,7 +3,19 @@ import React, { useState } from 'react';
 const FilteredList = ({ data }) => {
   const [selectedFilter, setSelectedFilter] = useState('');
   const [selectedFilter2, setSelectedFilter2] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
   const [filteredData, setFilteredData] = useState(data);
+
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+    const filterValue = e.target.value;
+
+    const updatedData = filterValue
+      ? data.filter(item => item.name && item.name.toLowerCase().includes(filterValue.toLowerCase()))
+      : data;
+  
+    setFilteredData(updatedData);
+  };
 
   const handleFilterChange = (e) => {
     const filterValue = e.target.value;
@@ -19,7 +31,7 @@ const FilteredList = ({ data }) => {
 
   const handleFilterChange2 = (e) => {
     const filterValue = e.target.value;
-    setSelectedFilter(filterValue);
+    setSelectedFilter2(filterValue);
   
     // Filter the data based on the selected filter
     const updatedData = filterValue
@@ -49,6 +61,14 @@ const FilteredList = ({ data }) => {
         <option value="skin irritation">Skin Irritation</option>
         {/* Add more options as needed */}
       </select>
+
+      {/* Search bar */}
+    <input
+      type="text"
+      placeholder="Search by name"
+      value={searchTerm}
+      onChange={handleSearchChange}
+    />
   
       {/* Display filtered list */}
       <ul>

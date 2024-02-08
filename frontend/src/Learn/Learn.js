@@ -15,13 +15,13 @@ const Learn = () => {
       name: 'Illness 1',
       type: 'Respitory',
       symptoms: ['congestion','fever'],
-      description: '...',
+      description: 'This ...',
     },
     {
       name: 'Illness 2',
       type: 'Sexually Transmitted Disease',
       symptoms: ['congestion','skin irritation'],
-      description: '...',
+      description: 'This ...',
     }
   ];
 
