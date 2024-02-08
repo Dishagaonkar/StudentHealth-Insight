@@ -7,17 +7,14 @@ const FilteredList = ({ items }) => {
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
-    const filterValue = e.target.value;
   };
 
   const handleFilterChange = (e) => {
-    const filterValue = e.target.value;
-    setSelectedFilter(filterValue);
+    setSelectedFilter(e.target.value);
   };
 
   const handleFilterChange2 = (e) => {
-    const filterValue = e.target.value;
-    setSelectedFilter2(filterValue);
+    setSelectedFilter2(e.target.value);
   };
 
   const filteredItems = items.filter(item => {
