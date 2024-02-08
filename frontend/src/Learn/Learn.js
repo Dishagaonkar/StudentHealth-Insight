@@ -28,7 +28,7 @@ const Learn = () => {
   return (
     <div>
       <h1>Common Illnesses</h1>
-      <FilteredList data={data} />
+      <FilteredList items={data} />
     </div>
   )
 };
