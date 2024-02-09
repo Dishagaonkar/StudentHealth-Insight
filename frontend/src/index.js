@@ -1,15 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import Dashboard from './Dashboard/Dashboard';
-import { createBrowserRouter } from 'react-router-dom'
-import Profile from './Profile';
-import Learn from './Learn';
-import Nearby from './Nearby';
-import Evaluate from './Evaluate';
-import Login from './Login';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import Dashboard from "./Dashboard/Dashboard";
+import { createBrowserRouter } from "react-router-dom";
+import Profile from "./Profile";
+import Learn from "./Learn";
+import Nearby from "./Nearby";
+import Evaluate from "./Evaluate";
+import Login from "./Login";
+import SignUp from "./SignUp";
 
 const router = createBrowserRouter([
   {
@@ -18,31 +19,35 @@ const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <Dashboard/>,
+    element: <Dashboard />,
   },
   {
     path: "profile",
-    element: <Profile/>,
+    element: <Profile />,
   },
   {
     path: "learn",
-    element: <Learn/>,
+    element: <Learn />,
   },
   {
     path: "nearby",
-    element: <Nearby/>,
+    element: <Nearby />,
   },
   {
     path: "evaluate",
-    element: <Evaluate/>,
+    element: <Evaluate />,
   },
   {
     path: "login",
-    element: <Login/>,
+    element: <Login />,
   },
-])
+  {
+    path: "SignUp",
+    element: <SignUp />,
+  },
+]);
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <App />
