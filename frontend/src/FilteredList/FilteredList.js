@@ -1,10 +1,22 @@
 import React, { useState } from 'react';
+import './FilteredList.css';
 
 const FilteredList = ({ items }) => {
   const [selectedFilter, setSelectedFilter] = useState('All Types');
   const [selectedFilter2, setSelectedFilter2] = useState('All Symptoms');
   const [searchTerm, setSearchTerm] = useState('');
+  const [popupVisible, setPopupVisible] = useState(null);
 
+  const showPopup = (itemId) => {
+    console.log('Show popup for item:', itemId);
+    setPopupVisible(itemId);
+  };
+
+  const hidePopup = () => {
+    console.log('Hide popup');
+    setPopupVisible(null);
+  };
+  
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
   };
@@ -26,6 +38,7 @@ const FilteredList = ({ items }) => {
     return optionFilter && optionFilter2 && searchFilter;
   });
 
+  console.log('Popup visible:', popupVisible);
   return (
     <div>
       {/* Drop-down filter */}
@@ -57,17 +70,28 @@ const FilteredList = ({ items }) => {
   
       {/* Display filtered list */}
       <ul>
-        {filteredItems.map((item, index) => (
-          <li key={index}>
-            <h3>{item.name}</h3>
-            <p>Type: {item.type}</p>
-            <p>Symptoms: {item.symptoms.map((i, index2) => (
-              <li key={index2}>{i}; </li>
-            ))}</p>
-            <p>{item.description}</p>
+        {filteredItems.map((item) => (
+          <li key={item.id} onClick={() => showPopup(item.id)}>
+            <h2>{item.name}</h2>
           </li>
         ))}
       </ul>
+
+      {/* Make Popups */}
+      {popupVisible !== null && (
+      <div className={`popup ${popupVisible !== null ? 'visible' : ''}`}>
+        <div className="popup-content">
+          <h1>{items.find((item) => item.id === popupVisible).name}</h1>
+          <p>Type: {items.find((item) => item.id === popupVisible).type}</p>
+          <p>Symptoms: {items.find((item) => item.id === popupVisible).symptoms.map((i, index2) => (
+              <li key={index2}>{i}; </li>
+            ))}</p>
+          <p>{items.find((item) => item.id === popupVisible).description}</p>
+          <button onClick={hidePopup}>Go Back</button>
+        </div>
+      </div>
+    )}
+
     </div>
   );
 };
