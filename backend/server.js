@@ -19,19 +19,11 @@ app.use(cors());
 app.post("/signup", async (req, res) => {
   console.log("hello");
 
-  const data = {
-    firstName:req.body.firstName,
-    lastName:req.body.lastName,
-    email:req.body.email,
-    password:req.body.password
-  }
-
   const emailFound = findDB(data.email);
 
   try {
     if(emailFound == false){
-      let loginCollection = await createDB();
-      await loginCollection.create([data]);
+      insertDocument(req.body.firstName, req.body.lastName, req.body.email, req.body.password);
       res.status(200).json({ message: "Data inserted successfully!" });
     }else{
     res.status(400).json({ message: "Email already exists!" });

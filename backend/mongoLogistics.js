@@ -6,6 +6,8 @@ const mongoose = require("mongoose");
 const uri = "mongodb+srv://StudentHealth:Gators24!@studenthealthinsight.gbgld4q.mongodb.net/student-health-user";
 const name = 'StudentHealthInsight';
 
+//const User = mongoose.model('logins', {firstName: String, lastName: String, email: String, password: String});
+
 //const client = new MongoClient(uri);
 
 async function connectDB() {
@@ -48,11 +50,10 @@ module.exports = createDB;
 //always connect before calling this function
 async function findDB(email_) {
   connectDB();
-  const User = mongoose.model('logins', {firstName: String, lastName: String, email: String, password: String});
   let userFound = false;
 
   try {
-    await User.find({email: email_}).exec();
+    await createDB().find({email: email_}).exec();
     userFound = true;
   } catch(error) {
     userFound = false;
@@ -62,3 +63,18 @@ async function findDB(email_) {
 }
 
 module.exports = findDB; 
+
+async function insertDocument(firstName_, lastName_, email_, password_) {
+  const data = {
+    firstName:firstName_,
+    lastName:lastName_,
+    email:email_,
+    password:password_
+  }
+
+  await createDB().create([data]);
+
+  console.log("Document inserted");
+}
+
+module.exports = insertDocument;
