@@ -20,11 +20,11 @@ app.post("/signup", async (req, res) => {
   console.log("hello");
 
   const emailFound = findDB(req.body.email);
-  console.log("made it!");
+  console.log("made i");
 
   try {
     if(emailFound == false){
-      insertDocument(req);
+      insertDocument(req.body);
       res.status(200).json({ message: "Data inserted successfully!" });
     }else{
     res.status(400).json({ message: "Email already exists!" });
