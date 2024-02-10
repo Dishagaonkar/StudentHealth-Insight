@@ -76,5 +76,5 @@ module.exports = {
   connectDB,
   createDB,
   findDB,
-  insertDocument,
+  insertDocument
 };
