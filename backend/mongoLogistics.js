@@ -65,7 +65,7 @@ async function findDB(email_) {
 module.exports = findDB; 
 
 async function insertDocument(data) {
-  const model = await createDB();
+  let model = await createDB();
 
   model.create(data);
 
