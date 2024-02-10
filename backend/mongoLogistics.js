@@ -72,7 +72,7 @@ async function insertDocument(firstName_, lastName_, email_, password_) {
     password:password_
   }
 
-  await createDB().create([data]);
+  await createDB().insertDocument([data]);
 
   console.log("Document inserted");
 }
