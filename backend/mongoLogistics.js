@@ -12,6 +12,7 @@ async function connectDB() {
   await mongoose.connect(uri , { useNewUrlParser: true, useUnifiedTopology: true });
   console.log("Connected to the database");
 }
+module.exports = connectDB;
 
 async function createDB() {
   try {
@@ -43,6 +44,7 @@ async function createDB() {
   }
 }
 
+module.exports = createDB;
 //always connect before calling this function
 async function findDB(email_) {
 const User = mongoose.model('logins', {firstName: String, lastName: String, email: String, password: String});
@@ -54,5 +56,5 @@ User.find({email: email_}, function(err, users){
 
 }
 
-module.exports = runDB;
+module.exports = findDB;
 
