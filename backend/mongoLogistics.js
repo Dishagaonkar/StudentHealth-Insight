@@ -65,7 +65,7 @@ async function findDB(email_) {
 module.exports = findDB; 
 
 async function insertDocument(firstName_, lastName_, email_, password_) {
-  var model = createDB();
+  const model = await createDB();
   const data = {
     firstName:firstName_,
     lastName:lastName_,
@@ -73,7 +73,7 @@ async function insertDocument(firstName_, lastName_, email_, password_) {
     password:password_
   }
 
-  await model.create(data);
+  model.create(data);
 
   console.log("Document inserted");
 }
