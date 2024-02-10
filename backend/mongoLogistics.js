@@ -46,7 +46,7 @@ async function createDB() {
 
 module.exports = createDB;
 //always connect before calling this function
-async function findDB(email_) {
+/* async function findDB(email_) {
 const User = mongoose.model('logins', {firstName: String, lastName: String, email: String, password: String});
 
 User.find({email: email_}, function(err, users){
@@ -56,5 +56,5 @@ User.find({email: email_}, function(err, users){
 
 }
 
-module.exports = findDB;
+module.exports = findDB; */
 
