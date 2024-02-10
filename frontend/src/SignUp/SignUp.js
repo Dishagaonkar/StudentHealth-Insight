@@ -14,11 +14,13 @@ const SignUp = ({ isOpen, handleClose }) => {
 
   const navigate = useNavigate();
 
-  const LoginClick = async (ev) => {
+  const SignUpClick = async (ev) => {
     ev.preventDefault();
 
     try {
-      await axios.post("http://localhost:8000/logins", {
+      await axios.post("http://localhost:8000/signup", {
+        firstName: firstName,
+        lastName: lastName,
         email: email,
         password: password,
       });
@@ -34,7 +36,7 @@ const SignUp = ({ isOpen, handleClose }) => {
           X
         </button>
         <p className="wording">Sign Up</p>
-        <form onSubmit={LoginClick}>
+        <form onSubmit={SignUpClick}>
           <div className={"inputContainer"}>
             <input
               value={firstName}
