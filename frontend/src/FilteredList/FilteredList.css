@@ -18,3 +18,16 @@
 .popup.visible {
   display: block;
 }
+
+.filtered-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: block;
+}
+
+.filtered-list li {
+  display: block;
+  margin-bottom: 10px; /* Add spacing between list items */
+  cursor: pointer;
+}
