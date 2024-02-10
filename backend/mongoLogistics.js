@@ -65,6 +65,7 @@ async function findDB(email_) {
 module.exports = findDB; 
 
 async function insertDocument(firstName_, lastName_, email_, password_) {
+  connectDB();
   const data = {
     firstName:firstName_,
     lastName:lastName_,
