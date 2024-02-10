@@ -15,6 +15,8 @@ async function connectDB() {
 module.exports = connectDB;
 
 async function createDB() {
+  connectDB();
+  
   try {
     const newSchema = new mongoose.Schema({
       firstName: {
