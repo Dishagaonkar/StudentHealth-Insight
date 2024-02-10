@@ -46,8 +46,8 @@ const FilteredList = ({ items }) => {
         <option value="All Types">All Types</option>
         {/* Add your filter options dynamically based on your data */}
         <option value="Respitory">Respitory</option>
-        <option value="Virus">Virus</option>
         <option value="Sexually Transmitted Disease">Sexually Transmitted Disease</option>
+        <option value="Virus">Virus</option>
         {/* Add more options as needed */}
       </select>
 
@@ -55,9 +55,9 @@ const FilteredList = ({ items }) => {
       <select value={selectedFilter2} onChange={handleFilterChange2}>
         <option value="All Symptoms">All Symptoms</option>
         {/* Add your filter options dynamically based on your data */}
-        <option value="congestion">Congestion</option>
-        <option value="fever">Fever</option>
-        <option value="skin irritation">Skin Irritation</option>
+        <option value="Congestion">Congestion</option>
+        <option value="Fever">Fever</option>
+        <option value="Skin Irritation">Skin Irritation</option>
         {/* Add more options as needed */}
       </select>
 
