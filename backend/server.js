@@ -27,8 +27,6 @@ app.post("/signup", async (req, res) => {
   }
 
   try {
-    await connectDB();
-    console.log("Connected to DB");
     //if(await findDB(data.email) == null){
       let loginCollection = await createDB();
       await loginCollection.create([data]);
