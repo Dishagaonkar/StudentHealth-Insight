@@ -26,10 +26,10 @@ app.post("/signup", async (req, res) => {
     password:req.body.password
   }
 
-  findDB(data.email)
+  const emailFound = findDB(data.email);
 
-  /* try {
-    if(await findDB(data.email) == null){
+  try {
+    if(emailFound == false){
       let loginCollection = await createDB();
       await loginCollection.create([data]);
       res.status(200).json({ message: "Data inserted successfully!" });
@@ -39,7 +39,7 @@ app.post("/signup", async (req, res) => {
   } catch (error) {
     console.error("Error inserting data:", error);
     res.status(500).json({ error: "Internal Server Error" });
-  } */
+  } 
 });
 
 
