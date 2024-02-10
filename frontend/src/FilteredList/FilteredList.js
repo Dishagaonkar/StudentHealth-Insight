@@ -69,7 +69,7 @@ const FilteredList = ({ items }) => {
     />
   
       {/* Display filtered list */}
-      <ul>
+      <ul className="filtered-list">
         {filteredItems.map((item) => (
           <li key={item.id} onClick={() => showPopup(item.id)}>
             <h2>{item.name}</h2>

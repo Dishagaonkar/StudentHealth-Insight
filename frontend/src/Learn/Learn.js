@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import FilteredList from '../FilteredList';
 
 const Learn = () => {
@@ -24,7 +24,7 @@ const Learn = () => {
       type: 'Sexually Transmitted Disease',
       symptoms: ['congestion','skin irritation'],
       description: 'This ...',
-    }
+    },
   ];
 
   return (

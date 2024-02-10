@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import NavBar from './NavBar';
 import './navbarStyle.css';
@@ -7,7 +7,6 @@ import Profile from './Profile';
 import Learn from './Learn';
 import Nearby from './Nearby';
 import Evaluate from './Evaluate';
-import Login from './Login';
 
 const App = () => {
   return (

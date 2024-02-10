@@ -8,6 +8,7 @@ const NavBar = () => {
   const [isSignUpPopUpOpen, setSignUpPopUpOpen] = useState(false);
 
   const handleOpenPopUp = () => {
+    console.log("clicked");
     setPopUpOpen(true);
   };
 
