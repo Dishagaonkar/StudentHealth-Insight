@@ -14,16 +14,16 @@ const Login = ({ isOpen, handleClose }) => {
   const navigate = useNavigate();
 
   const LoginClick = async (ev) => {
-    ev.preventDefault();
+    // ev.preventDefault();
   
-    try {
-      await axios.post("http://localhost:8000/logins", {
-      email: email,
-      password: password
-    });
-    } catch (error) {
-      console.log(error);
-    }
+    // try {
+    //   await axios.post("http://localhost:8000/logins", {
+    //   email: email,
+    //   password: password
+    // });
+    // } catch (error) {
+    //   console.log(error);
+    // }
     
   };
 

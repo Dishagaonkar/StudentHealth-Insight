@@ -5,7 +5,9 @@
 
 const express = require('express');
 const cors = require('cors');
-const runDB = require("./mongoLogistics");
+const connectDB = require("./mongoLogistics");
+//const createDB = require("./mongoLogistics");
+const findDB = require("./mongoLogistics");
 
 const app = express();
 
@@ -14,27 +16,32 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 
-app.post("/logins", async (req, res) => {
+app.post("/signup", async (req, res) => {
   console.log("hello");
 
   const data = {
+    firstName:req.body.firstName,
+    lastName:req.body.lastName,
     email:req.body.email,
     password:req.body.password
   }
 
+  const emailFound = findDB(req.body.email);
+  console.log("made it");
+
   try {
-    let loginCollection = await runDB();
-    await loginCollection.create([data]);
-    res.status(200).json({ message: "Data inserted successfully!" });
+    if(emailFound == false){
+      insertDocument(data);
+      res.status(200).json({ message: "Data inserted successfully!" });
+    }else{
+    res.status(400).json({ message: "Email already exists!" });
+    }
   } catch (error) {
     console.error("Error inserting data:", error);
     res.status(500).json({ error: "Internal Server Error" });
-  }
+  } 
 });
 
-app.get('/message', (req, res) => {
-  res.json({ message: "Hello from server!" });
-});
 
 app.listen(8000, () => {
   console.log(`Server is running on port 8000.`);

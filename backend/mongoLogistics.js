@@ -6,15 +6,27 @@ const mongoose = require("mongoose");
 const uri = "mongodb+srv://StudentHealth:Gators24!@studenthealthinsight.gbgld4q.mongodb.net/student-health-user";
 const name = 'StudentHealthInsight';
 
-const client = new MongoClient(uri);
+const User = mongoose.model('logins', {firstName: String, lastName: String, email: String, password: String});
 
-async function runDB() {
+//const client = new MongoClient(uri);
+
+async function connectDB() {
+  await mongoose.connect(uri , { useNewUrlParser: true, useUnifiedTopology: true });
+  console.log("Connected to the database");
+}
+module.exports = connectDB;
+
+/* async function createDB() {
   try {
-
-    await mongoose.connect(uri , { useNewUrlParser: true, useUnifiedTopology: true });
-    console.log("Connected to the database");
-
     const newSchema = new mongoose.Schema({
+      firstName: {
+        type: String,
+        required: true
+      },
+      lastName: {
+        type: String,
+        required: true
+      },
       email: {
         type: String,
         required: true
@@ -32,7 +44,37 @@ async function runDB() {
     console.error("Error connecting to the database:", error);
     throw error; // Throw the error to handle it in the calling module
   }
+} 
+
+module.exports = createDB; */
+
+async function findDB(email_) {
+  connectDB();
+  let userFound = false;
+
+  try {
+    const content = await User.find({email: email_}).exec();
+    if (content.length == 0) {
+      userFound = false;
+    }else{
+      userFound = true;
+    }
+    console.log("User found");
+  } catch(error) {
+    console.log(error);
+}
+return userFound;
+
 }
 
-module.exports = runDB;
+module.exports = findDB; 
 
+async function insertDocument(data) {
+  //let model = await createDB();
+
+  User.create(data);
+
+  console.log("Document inserted");
+}
+
+module.exports = insertDocument;
