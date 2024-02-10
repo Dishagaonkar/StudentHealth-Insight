@@ -16,7 +16,7 @@ module.exports = connectDB;
 
 async function createDB() {
   connectDB();
-  
+
   try {
     const newSchema = new mongoose.Schema({
       firstName: {
@@ -48,15 +48,18 @@ async function createDB() {
 
 module.exports = createDB;
 //always connect before calling this function
-/* async function findDB(email_) {
+async function findDB(email_) {
+  connectDB();
 const User = mongoose.model('logins', {firstName: String, lastName: String, email: String, password: String});
 
-User.find({email: email_}, function(err, users){
-  if(err) return console.error(err);
-  console.log(users);
-});
+try{
+  await User.find({email: email_}).exec();
+  console.log('User found');
+}catch(error){
+  console.error("Error finding user:", error);
+  throw error;
+}
 
 }
 
-module.exports = findDB; */
-
+module.exports = findDB; 
