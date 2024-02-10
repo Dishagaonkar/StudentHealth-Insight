@@ -20,6 +20,7 @@ app.post("/signup", async (req, res) => {
   console.log("hello");
 
   const emailFound = findDB(req.body.email);
+  console.log("made it!");
 
   try {
     if(emailFound == false){

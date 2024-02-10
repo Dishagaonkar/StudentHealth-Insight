@@ -14,6 +14,7 @@ async function connectDB() {
   await mongoose.connect(uri , { useNewUrlParser: true, useUnifiedTopology: true });
   console.log("Connected to the database");
 }
+module.exports = connectDB;
 
 async function createDB() {
   try {
@@ -45,6 +46,8 @@ async function createDB() {
   }
 }
 
+module.exports = createDB;
+//always connect before calling this function
 async function findDB(email_) {
   connectDB();
   let userFound = false;
@@ -59,6 +62,8 @@ async function findDB(email_) {
   return userFound;
 }
 
+module.exports = findDB; 
+
 async function insertDocument(firstName_, lastName_, email_, password_) {
   const data = {
     firstName:firstName_,
@@ -72,9 +77,4 @@ async function insertDocument(firstName_, lastName_, email_, password_) {
   console.log("Document inserted");
 }
 
-module.exports = {
-  connectDB,
-  createDB,
-  findDB,
-  insertDocument
-};
+module.exports = insertDocument;
