@@ -14,6 +14,7 @@ const Login = ({ isOpen, handleClose }) => {
   const navigate = useNavigate();
 
   const LoginClick = async (ev) => {
+    /*
     ev.preventDefault();
   
     try {
@@ -24,6 +25,7 @@ const Login = ({ isOpen, handleClose }) => {
     } catch (error) {
       console.log(error);
     }
+    */
     
   };
 
