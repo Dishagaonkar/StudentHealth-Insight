@@ -7,7 +7,7 @@ const express = require('express');
 const cors = require('cors');
 const connectDB = require("./mongoLogistics");
 const createDB = require("./mongoLogistics");
-const findDB = require("./mongoLogistics");
+//const findDB = require("./mongoLogistics");
 
 const app = express();
 
@@ -29,13 +29,13 @@ app.post("/signup", async (req, res) => {
   try {
     await connectDB();
     console.log("Connected to DB");
-    if(await findDB(data.email) == null){
+    //if(await findDB(data.email) == null){
       let loginCollection = await createDB();
       await loginCollection.create([data]);
       res.status(200).json({ message: "Data inserted successfully!" });
-    }else{
+    /*}else{
     res.status(400).json({ message: "Email already exists!" });
-    }
+    } */
   } catch (error) {
     console.error("Error inserting data:", error);
     res.status(500).json({ error: "Internal Server Error" });
