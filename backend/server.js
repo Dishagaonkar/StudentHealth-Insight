@@ -5,7 +5,9 @@
 
 const express = require('express');
 const cors = require('cors');
-const runDB = require("./mongoLogistics");
+const connectDB = require("./mongoLogistics");
+const createDB = require("./mongoLogistics");
+const findDB = require("./mongoLogistics");
 
 const app = express();
 
