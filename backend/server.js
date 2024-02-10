@@ -25,9 +25,14 @@ app.post("/signup", async (req, res) => {
   }
 
   try {
-    let loginCollection = await runDB();
-    await loginCollection.create([data]);
-    res.status(200).json({ message: "Data inserted successfully!" });
+    await connectDB();
+    if(await findDB(data.email) == null){
+      let loginCollection = await createDB();
+      await loginCollection.create([data]);
+      res.status(200).json({ message: "Data inserted successfully!" });
+    }else{
+    res.status(400).json({ message: "Email already exists!" });
+    }
   } catch (error) {
     console.error("Error inserting data:", error);
     res.status(500).json({ error: "Internal Server Error" });
