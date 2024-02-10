@@ -53,14 +53,18 @@ async function findDB(email_) {
   let userFound = false;
 
   try {
-    await User.find({email: email_}).exec();
-    userFound = true;
+    const content = await User.find({email: email_}).exec();
+    if (content.length == 0) {
+      userFound = false;
+    }else{
+      userFound = true;
+    }
     console.log("User found");
   } catch(error) {
-    userFound = false;
-  }
+    console.log(error);
+}
+return userFound;
 
-  return userFound;
 }
 
 module.exports = findDB; 
