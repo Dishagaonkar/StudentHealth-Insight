@@ -55,6 +55,7 @@ async function findDB(email_) {
   try {
     await createDB().find({email: email_}).exec();
     userFound = true;
+    console.log("User found");
   } catch(error) {
     userFound = false;
   }
