@@ -24,7 +24,7 @@ app.post("/signup", async (req, res) => {
 
   try {
     if(emailFound == false){
-      insertDocument(req.body.firstName, req.body.lastName, req.body.email, req.body.password);
+      insertDocument(req);
       res.status(200).json({ message: "Data inserted successfully!" });
     }else{
     res.status(400).json({ message: "Email already exists!" });

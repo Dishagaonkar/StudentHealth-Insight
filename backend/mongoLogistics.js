@@ -64,13 +64,13 @@ async function findDB(email_) {
 
 module.exports = findDB; 
 
-async function insertDocument(firstName_, lastName_, email_, password_) {
+async function insertDocument(req) {
   const model = await createDB();
   const data = {
-    firstName:firstName_,
-    lastName:lastName_,
-    email:email_,
-    password:password_
+    firstName:req.body.firstName,
+    lastName:req.body.lastName,
+    email:req.body.email,
+    password:req.body.password
   }
 
   model.create(data);
