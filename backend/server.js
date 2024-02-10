@@ -19,7 +19,7 @@ app.use(cors());
 app.post("/signup", async (req, res) => {
   console.log("hello");
 
-  const emailFound = findDB(data.email);
+  const emailFound = findDB(req.body.email);
 
   try {
     if(emailFound == false){
