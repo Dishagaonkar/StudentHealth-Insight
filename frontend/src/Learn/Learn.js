@@ -14,14 +14,14 @@ const Learn = () => {
     {
       id: 0,
       name: 'Illness 1',
-      type: 'Respitory',
+      type: ['Respitory', 'Virus'],
       symptoms: ['congestion','fever'],
       description: 'This ...',
     },
     {
       id: 1,
       name: 'Illness 2',
-      type: 'Sexually Transmitted Disease',
+      type: ['Sexually Transmitted Disease', 'Virus'],
       symptoms: ['congestion','skin irritation'],
       description: 'This ...',
     },

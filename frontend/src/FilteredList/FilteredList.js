@@ -30,7 +30,7 @@ const FilteredList = ({ items }) => {
   };
 
   const filteredItems = items.filter(item => {
-    const optionFilter = selectedFilter === 'All Types' || item.type === selectedFilter;
+    const optionFilter = selectedFilter === 'All Types' || item.type.includes(selectedFilter);
     const optionFilter2 = selectedFilter2 === 'All Symptoms' || item.symptoms.includes(selectedFilter2);
     const searchFilter = item.name.toLowerCase().includes(searchTerm.toLowerCase());
 
@@ -46,6 +46,7 @@ const FilteredList = ({ items }) => {
         <option value="All Types">All Types</option>
         {/* Add your filter options dynamically based on your data */}
         <option value="Respitory">Respitory</option>
+        <option value="Virus">Virus</option>
         <option value="Sexually Transmitted Disease">Sexually Transmitted Disease</option>
         {/* Add more options as needed */}
       </select>
