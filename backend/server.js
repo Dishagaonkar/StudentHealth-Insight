@@ -14,10 +14,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 
-app.post("/logins", async (req, res) => {
+app.post("/signup", async (req, res) => {
   console.log("hello");
 
   const data = {
+    firstName:req.body.firstName,
+    lastName:req.body.lastName,
     email:req.body.email,
     password:req.body.password
   }
@@ -32,9 +34,6 @@ app.post("/logins", async (req, res) => {
   }
 });
 
-app.get('/message', (req, res) => {
-  res.json({ message: "Hello from server!" });
-});
 
 app.listen(8000, () => {
   console.log(`Server is running on port 8000.`);
