@@ -32,6 +32,10 @@ app.post("/signup", async (req, res) => {
   
 });
 
+app.get("/emailexists", (req, res) => {
+  res.json({ message: "This email already exists!" });
+});
+
 
 
 app.listen(8000, () => {

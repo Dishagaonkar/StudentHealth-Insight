@@ -29,6 +29,16 @@ const SignUp = ({ isOpen, handleClose }) => {
     }
   };
 
+  useEffect(() => {
+    try {
+      fetch("http://localhost:8000/message")
+        .then((res) => res.json())
+        .then((data) => setEmail(data.email))
+    } catch (error) {
+      console.error("Error in useEffect:", error);
+    }
+  }, []);
+
   return (
     <div className={`popup ${isOpen ? "open" : ""}`}>
       <div className="popup-content">

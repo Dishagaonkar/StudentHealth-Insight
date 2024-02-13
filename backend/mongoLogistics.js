@@ -2,7 +2,8 @@
 //https://www.youtube.com/watch?v=p4ouSQqP3L0&list=PL8p2I9GklV45ihqIep4n3_VijItAkcibN&index=31
 const { MongoClient } = require('mongodb');
 const mongoose = require("mongoose");
-
+const express = require('express');
+const cors = require('cors');
 const uri = "mongodb+srv://StudentHealth:Gators24!@studenthealthinsight.gbgld4q.mongodb.net/student-health-user";
 const name = 'StudentHealthInsight';
 
