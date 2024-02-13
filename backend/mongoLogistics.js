@@ -1,5 +1,6 @@
 //sources referenced: mongodb website && https://www.youtube.com/watch?v=aK1XbxIbo2Q&list=PL8p2I9GklV45ihqIep4n3_VijItAkcibN&index=30
 //https://www.youtube.com/watch?v=p4ouSQqP3L0&list=PL8p2I9GklV45ihqIep4n3_VijItAkcibN&index=31
+//https://stackoverflow.com/questions/33627238/mongoose-find-with-multiple-conditions
 const { MongoClient } = require('mongodb');
 const mongoose = require("mongoose");
 const express = require('express');
@@ -68,7 +69,7 @@ module.exports = insertDocument;
 async function validateLogin(data, res){
 
   let emailFound = await findDB(data.email);
-  
+
   try{
     if(!emailFound){
       res.status(400).json({ message: "This email is not in our records!" });
