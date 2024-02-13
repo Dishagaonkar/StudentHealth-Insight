@@ -9,6 +9,7 @@ const connectDB = require("./mongoLogistics");
 const createDB = require("./mongoLogistics");
 const findDB = require("./mongoLogistics");
 const insertDocument = require("./mongoLogistics");
+const validateLogin = require("./mongoLogistics");
 
 const app = express();
 
@@ -30,6 +31,16 @@ app.post("/signup", async (req, res) => {
   insertDocument(data, res);
     
   
+});
+
+app.post("/login", async(req, res) => {
+  const data = {
+    email:req.body.email,
+    password:req.body.password
+  }
+
+  validateLogin(data, res);
+
 });
 
 app.get("/emailexists", (req, res) => {
