@@ -17,6 +17,7 @@ async function connectDB() {
 module.exports = connectDB;
 
 async function findDB(email_) {
+  //finds user
   await connectDB();
 
   let userFound = false;
@@ -63,3 +64,28 @@ async function insertDocument(data, res) {
 }
 
 module.exports = insertDocument;
+
+async function validateLogin(data, res){
+
+  let emailFound = await findDB(data.email);
+  
+  try{
+    if(!emailFound){
+      res.status(400).json({ message: "This email is not in our records!" });
+      return;
+    }
+    const content = await User.find({email: data.email, password: data.password}).exec();
+    if (content.length == 0) {
+      res.status(400).json({ message: "This password is incorrect!" });
+    
+    }else{
+      res.status(200).json({ message: "You are successfully signed in!" });
+    }
+    
+  } catch(error) {
+    console.log(error);
+
+  }
+
+}
+module.exports = validateLogin;
