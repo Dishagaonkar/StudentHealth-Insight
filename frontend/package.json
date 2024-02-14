@@ -9,6 +9,7 @@
     "axios": "^1.6.7",
     "mongoose": "^8.1.1",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.10.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.21.3",
     "react-scripts": "5.0.1",
