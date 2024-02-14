@@ -35,6 +35,11 @@ const backgroundColor = {
   padding: '20px', // Additional styles if needed
 }
 
+const cardColor = {
+  backgroundColor: '#367EB6', // Set your desired background color
+  padding: '20px', // Additional styles if needed
+}
+
 const tabColor = {
   backgroundColor: '#A9CCE3', // Set your desired background color
   padding: '20px', // Additional styles if needed
@@ -67,20 +72,20 @@ function HeaderAndFooterExample() {
   );
 }
 
-function Card1() {
-  return (
-    <Card style={{ width: '18rem' }}>
-      <Card.Body style={tabColor}>
-        <Card.Title >Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
-      </Card.Body>
-    </Card>
-  );
-}
+// function Card1() {
+//   return (
+//     <Card style={{ width: '18rem' }}>
+//       <Card.Body style={cardColor}>
+//         <Card.Title >Card Title</Card.Title>
+//         <Card.Text>
+//           Some quick example text to build on the card title and make up the
+//           bulk of the card's content.
+//         </Card.Text>
+//         <Button variant="primary">Go somewhere</Button>
+//       </Card.Body>
+//     </Card>
+//   );
+// }
 
 function Info() {
   return (
@@ -88,37 +93,24 @@ function Info() {
       <Accordion.Item eventKey="0">
         <Accordion.Header>What is StudentHealth-Insight?</Accordion.Header>
         <Accordion.Body>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
+        StudentHealth-Insight is a web application that educates college 
+        students about common illnesses and injuries. A questionnaire will be present 
+        where students can discuss their symptoms, and they will receive suggestions 
+        about possible diagnoses and solutions. Although our application will not provide
+        an official diagnosis, it serves to provide students a quick synopsis and guide 
+        them in the right direction on how to efficiently treat the illness/injury.
         </Accordion.Body>
       </Accordion.Item>
       <Accordion.Item eventKey="1">
         <Accordion.Header>How to Get Started</Accordion.Header>
         <Accordion.Body>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
+          To save your information and evaluations, start by making an account.
         </Accordion.Body>
       </Accordion.Item>
       <Accordion.Item eventKey="2">
-        <Accordion.Header>About Us</Accordion.Header>
+        <Accordion.Header>Profile Section</Accordion.Header>
         <Accordion.Body>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
+          
         </Accordion.Body>
       </Accordion.Item>
     </Accordion>
@@ -148,6 +140,45 @@ const TopAlert = () => {
     
 };
 
+function Card1() {
+  return (
+    <Card className="text-center" style={cardColor}>
+      <Card.Body>
+        <Card.Title style={{color: 'white'}}>LEARN</Card.Title>
+        <Card.Text style={{color: 'white'}}>
+          Learn about different common illness
+        </Card.Text>
+      </Card.Body>
+    </Card>
+  );
+}
+
+function Card2() {
+  return (
+    <Card className="text-center" style={cardColor}>
+      <Card.Body>
+        <Card.Title style={{color: 'white'}}>NEARBY HELP</Card.Title>
+        <Card.Text style={{color: 'white'}}>
+          Easy locate medical establishments near you
+        </Card.Text>
+      </Card.Body>
+    </Card>
+  );
+}
+
+function Card3() {
+  return (
+    <Card className="text-center" style={cardColor}>
+      <Card.Body>
+        <Card.Title style={{color: 'white'}}>EVALUATE</Card.Title>
+        <Card.Text style={{color: 'white'}}>
+          Take a survey to see what illness you may have
+        </Card.Text>
+      </Card.Body>
+    </Card>
+  );
+}
+
 function Disclaimer() {
   return (
     <Card style={disclaimerStyle}>
@@ -160,6 +191,7 @@ function Disclaimer() {
     </Card>
   );
 }
+
 
 const Dashboard = () => {
   return (
@@ -177,11 +209,10 @@ const Dashboard = () => {
       <div className="side">
       <Card1 />
       <div className="space" />
-      <Card1 />
+      <Card2 />
       <div className="space" />
-      <Card1 />
-      <div className="space" />
-      <Card1 />
+      <Card3 />
+      
     </div>
     <p >
     <Disclaimer/>
