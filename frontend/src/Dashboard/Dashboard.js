@@ -202,7 +202,7 @@ const Dashboard = () => {
         Welcome to StudentHealth-Insight!
       </p> 
       <p style={messageStyle}>
-        An application that helps college students take care of thier health!
+        A web application that helps college students take care of thier health!
       </p>
       <Info />
       <div className="side">
