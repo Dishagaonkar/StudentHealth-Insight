@@ -105,9 +105,20 @@ function Info() {
       <Accordion.Item eventKey="1">
         <Accordion.Header>How to Get Started</Accordion.Header>
         <Accordion.Body>
-          How to create account/login
-          Benefits of logging in
-          To save your information and evaluations, start by making an account.
+          Login or create an account 
+          <br />
+          - If you are a new user, click the sign up button and enter your information
+          <br />
+          - Already signed up? Log in into your account
+          <br />
+          <br />
+          Why is it important to log in?
+          <br />
+          - It allows you to save your information and evaluations to access later
+          <br />
+          <br />
+          Explore each tab to see how you can take care of your health!
+          
         </Accordion.Body>
       </Accordion.Item>
     
