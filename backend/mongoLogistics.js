@@ -78,4 +78,4 @@ async function validateLogin(data, res) {
     console.log(error);
   }
 }
-module.exports = validateLogin;
+module.exports = { connectDB, findDB, insertDocument, validateLogin };
