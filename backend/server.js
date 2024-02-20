@@ -5,11 +5,7 @@
 
 const express = require('express');
 const cors = require('cors');
-const connectDB = require("./mongoLogistics");
-const createDB = require("./mongoLogistics");
-const findDB = require("./mongoLogistics");
-const insertDocument = require("./mongoLogistics");
-const validateLogin = require("./mongoLogistics");
+const { connectDB, findDB, insertDocument, validateLogin } = require("./mongoLogistics");
 
 const app = express();
 

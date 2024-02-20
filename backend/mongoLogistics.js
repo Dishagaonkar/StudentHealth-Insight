@@ -14,6 +14,7 @@ const User = mongoose.model('logins', {firstName: String, lastName: String, emai
 async function connectDB() {
   mongoose.connect(uri , { useNewUrlParser: true, useUnifiedTopology: true });
   console.log("Connected to the database");
+  return;
 }
 
 
