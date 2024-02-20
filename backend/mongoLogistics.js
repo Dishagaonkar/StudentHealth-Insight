@@ -14,9 +14,8 @@ const User = mongoose.model('logins', {firstName: String, lastName: String, emai
 async function connectDB() {
   mongoose.connect(uri , { useNewUrlParser: true, useUnifiedTopology: true });
   console.log("Connected to the database");
-  return;
 }
-
+module.exports = connectDB;
 
 async function findDB(email_) {
   //finds user
@@ -40,6 +39,7 @@ return userFound;
 
 }
 
+module.exports = findDB; 
 
 
 
@@ -64,6 +64,7 @@ async function insertDocument(data, res) {
 
 }
 
+module.exports = insertDocument;
 
 async function validateLogin(data, res){
 
@@ -88,4 +89,4 @@ async function validateLogin(data, res){
   }
 
 }
-module.exports = { connectDB, findDB, insertDocument, validateLogin };
+module.exports = validateLogin;
