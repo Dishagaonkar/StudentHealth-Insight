@@ -30,7 +30,7 @@ const FilteredList = ({ items }) => {
   };
 
   const filteredItems = items.filter(item => {
-    const optionFilter = selectedFilter === 'All Types' || item.type === selectedFilter;
+    const optionFilter = selectedFilter === 'All Types' || item.type.includes(selectedFilter);
     const optionFilter2 = selectedFilter2 === 'All Symptoms' || item.symptoms.includes(selectedFilter2);
     const searchFilter = item.name.toLowerCase().includes(searchTerm.toLowerCase());
 
@@ -47,6 +47,7 @@ const FilteredList = ({ items }) => {
         {/* Add your filter options dynamically based on your data */}
         <option value="Respitory">Respitory</option>
         <option value="Sexually Transmitted Disease">Sexually Transmitted Disease</option>
+        <option value="Virus">Virus</option>
         {/* Add more options as needed */}
       </select>
 
@@ -54,9 +55,9 @@ const FilteredList = ({ items }) => {
       <select value={selectedFilter2} onChange={handleFilterChange2}>
         <option value="All Symptoms">All Symptoms</option>
         {/* Add your filter options dynamically based on your data */}
-        <option value="congestion">Congestion</option>
-        <option value="fever">Fever</option>
-        <option value="skin irritation">Skin Irritation</option>
+        <option value="Congestion">Congestion</option>
+        <option value="Fever">Fever</option>
+        <option value="Skin Irritation">Skin Irritation</option>
         {/* Add more options as needed */}
       </select>
 
@@ -82,11 +83,14 @@ const FilteredList = ({ items }) => {
       <div className={`popup ${popupVisible !== null ? 'visible' : ''}`}>
         <div className="popup-content">
           <h1>{items.find((item) => item.id === popupVisible).name}</h1>
-          <p>Type: {items.find((item) => item.id === popupVisible).type}</p>
+          <p>Type: {items.find((item) => item.id === popupVisible).type.map((i, index) => (
+            <li key={index}>{i}; </li>
+          ))}</p>
           <p>Symptoms: {items.find((item) => item.id === popupVisible).symptoms.map((i, index2) => (
               <li key={index2}>{i}; </li>
             ))}</p>
           <p>{items.find((item) => item.id === popupVisible).description}</p>
+            <h2>Please seek medical care if any symptom is persistent, servere, or concerning.</h2>
           <button onClick={hidePopup}>Go Back</button>
         </div>
       </div>

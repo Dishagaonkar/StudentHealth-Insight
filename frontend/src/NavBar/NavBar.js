@@ -29,19 +29,19 @@ const NavBar = () => {
       <nav>
         <ul>
           <li>
-            <Link to="profile">Profile</Link>
+            <Link to="profile" style={{ color: 'white', textDecoration: 'none' }}>Profile</Link>
           </li>
           <li>
-            <Link to="/">Dashboard</Link>
+            <Link to="/" style={{ color: 'white', textDecoration: 'none' }}>Dashboard</Link>
           </li>
           <li>
-            <Link to="learn">Learn</Link>
+            <Link to="learn" style={{ color: 'white', textDecoration: 'none' }}>Learn</Link>
           </li>
           <li>
-            <Link to="nearby">Nearby Help</Link>
+            <Link to="nearby" style={{ color: 'white', textDecoration: 'none' }}>Nearby Help</Link>
           </li>
           <li>
-            <Link to="evaluate">Evaluate</Link>
+            <Link to="evaluate" style={{ color: 'white', textDecoration: 'none' }}>Evaluate</Link>
           </li>
           <li>
             <button onClick={handleOpenPopUp}>Login</button>
