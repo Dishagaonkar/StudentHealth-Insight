@@ -19,8 +19,8 @@ const User = mongoose.model("logins", {
 async function connectDB() {
   mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
   console.log("Connected to the database");
+  return;
 }
-module.exports = connectDB;
 
 async function findDB(email_) {
   //finds user
@@ -41,8 +41,6 @@ async function findDB(email_) {
   return userFound;
 }
 
-module.exports = findDB;
-
 async function insertDocument(data, res) {
   let emailFound = await findDB(data.email);
 
@@ -58,8 +56,6 @@ async function insertDocument(data, res) {
     res.status(500).json({ error: "Internal Server Error" });
   }
 }
-
-module.exports = insertDocument;
 
 async function validateLogin(data, res) {
   let emailFound = await findDB(data.email);
@@ -83,20 +79,3 @@ async function validateLogin(data, res) {
   }
 }
 module.exports = validateLogin;
-
-async function illnessData() {
-  try {
-    const dataset = await client
-      .db("student-health-user")
-      .collection("IllnessData")
-      .find()
-      .toArray();
-
-    return JSON.stringify(dataset);
-  } catch {
-    console.log("db closed");
-    await client.close();
-  }
-}
-
-module.exports = { illnessData };
