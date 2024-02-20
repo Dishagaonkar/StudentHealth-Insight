@@ -12,49 +12,45 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
-const mainStyle = { // CHANGE
-  backgroundColor: '#4fa5a0', // Set your desired background color
-  padding: '20px', // Additional styles if needed
-  fontFamily: 'Arial', // Set your desired font family
-  fontSize: '35px', // Set your desired font size
-  textAlign: 'center', // Set text alignment
-  marginTop: '20px', // Adjust top margin
-  color: '#FFFFFF', // Set text color
+const mainStyle = { 
+  backgroundColor: '#4fa5a0', 
+  padding: '20px', 
+  fontFamily: 'Arial', 
+  fontSize: '35px', 
+  textAlign: 'center', 
+  marginTop: '20px', 
+  color: '#FFFFFF', 
 };
 
 const messageStyle = { 
-  padding: '10px', // Additional styles if needed
-  fontFamily: 'Arial', // Set your desired font family
-  fontSize: '17px', // Set your desired font size
-  textAlign: 'center', // Set text alignment
-  color: '#000000', // Set text color
+  padding: '10px', 
+  fontFamily: 'Arial', 
+  fontSize: '17px', 
+  textAlign: 'center', 
+  color: '#000000', 
 };
 
 const backgroundColor = {
-  backgroundColor: '#eeeeee', // Set your desired background color
-  padding: '20px', // Additional styles if needed
+  backgroundColor: '#eeeeee',
+  padding: '20px', 
 }
 
 const cardColor = {
-  backgroundColor: '#367EB6', // Set your desired background color
-  padding: '20px', // Additional styles if needed
+  backgroundColor: '#367EB6', 
+  padding: '20px', 
 }
 
 const tabColor = {
-  backgroundColor: '#A9CCE3', // Set your desired background color
-  padding: '20px', // Additional styles if needed
+  backgroundColor: '#A9CCE3', 
+  padding: '20px', 
 }
 
 const disclaimerStyle = { 
-  padding: '10px', // Additional styles if needed
-  marginTop: '20px', // Adjust top margin
+  padding: '10px', 
+  marginTop: '20px', 
   backgroundColor: '#A2D9CE'
 
 };
-
-// padding: '20px', // Additional styles if needed
-
-// <Card.Img variant="top" src="holder.js/100px180" />
 
 function HeaderAndFooterExample() {
   return (
@@ -105,9 +101,20 @@ function Info() {
       <Accordion.Item eventKey="1">
         <Accordion.Header>How to Get Started</Accordion.Header>
         <Accordion.Body>
-          How to create account/login
-          Benefits of logging in
-          To save your information and evaluations, start by making an account.
+          Login or create an account 
+          <br />
+          - If you are a new user, click the sign up button and enter your information
+          <br />
+          - Already signed up? Log in into your account
+          <br />
+          <br />
+          Why is it important to log in?
+          <br />
+          - It allows you to save your information and evaluations to access later
+          <br />
+          <br />
+          Explore each tab to see how you can take care of your health!
+          
         </Accordion.Body>
       </Accordion.Item>
     
@@ -202,7 +209,7 @@ const Dashboard = () => {
         Welcome to StudentHealth-Insight!
       </p> 
       <p style={messageStyle}>
-        An application that helps college students take care of thier health!
+        A web application that helps college students take care of thier health!
       </p>
       <Info />
       <div className="side">
