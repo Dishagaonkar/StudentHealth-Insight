@@ -40,10 +40,10 @@ const editButton = {
 
 const PastEvalCard = {
   margin: '10px',
-  backgroundColor: '#3091B0', textAlign:'center', 
-  textcolor:'#FFFFF', 
+  backgroundColor: '#3091B0', 
+  textAlign:'center', 
+  color:'white', 
   fontSize: '20px', 
-  
 }
 
 const cardContainerStyle2 = {
@@ -53,7 +53,15 @@ const cardContainerStyle2 = {
 function ProfileButton() {
   return (
     <>
-      <Button variant="secondary" style={editButton}>Edit</Button>{' '}
+      <Button variant="secondary" style={editButton}>Logout</Button>{' '}
+    </>
+  );
+}
+
+function LogOutButton() {
+  return (
+    <>
+      <Button variant="secondary">Edit</Button>{' '}
     </>
   );
 }
@@ -80,6 +88,7 @@ function ProfileCard() {
       <Card.Header style={cardHeader}>
         Profile
         <ProfileButton/>
+        <LogOutButton/>
         </Card.Header >
       <Card.Body style={cardColor}>
         <Card.Title>Special title treatment</Card.Title>
