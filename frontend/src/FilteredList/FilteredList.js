@@ -90,6 +90,7 @@ const FilteredList = ({ items }) => {
               <li key={index2}>{i}; </li>
             ))}</p>
           <p>{items.find((item) => item.id === popupVisible).description}</p>
+            <h2>Please seek medical care if any symptom is persistent, servere, or concerning.</h2>
           <button onClick={hidePopup}>Go Back</button>
         </div>
       </div>
