@@ -11,6 +11,7 @@ const SignUp = ({ isOpen, handleClose }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
+  const [emailMessage, setEmailMessage] = useState("");
 
   const navigate = useNavigate();
 
@@ -25,6 +26,7 @@ const SignUp = ({ isOpen, handleClose }) => {
         password: password,
       });
     } catch (error) {
+      //put message stuff in here
       console.log(error);
     }
   };
@@ -33,7 +35,7 @@ const SignUp = ({ isOpen, handleClose }) => {
     try {
       fetch("http://localhost:8000/message")
         .then((res) => res.json())
-        .then((data) => setEmail(data.email))
+        .then((data) => setEmailMessage(data.email))
     } catch (error) {
       console.error("Error in useEffect:", error);
     }
