@@ -18,8 +18,9 @@ const Learn = () => {
   const data = [
     /*
     {
+      id: ,
       name: '',
-      type: '',
+      type: ['',''],
       symptoms: ['',''],
       description: '',
     },
@@ -46,8 +47,8 @@ const Learn = () => {
         <Card.Body style={cardStyle}>
         <h1>Common Illnesses</h1>
         <h2>This is not a complete list. If your are experiencing symptoms, please SEE A MEDICAL PROFESSIONAL for more information!</h2>
-        <h2>See our Nearby Help page to find medical professionals near you :)</h2>
-        <p>Click on an illness for more information!</p>
+        <h2>See our Nearby Help page to find medical professionals near you!</h2>
+        <p>Click on an illness for more information</p>
         <FilteredList items={data} />
         </Card.Body>
       </Card>
