@@ -8,7 +8,7 @@ const backgroundStyle = {
 };
 
 const cardStyle = {
-  backgroundColor: '#3091B0', 
+  backgroundColor: '#A2D9CE', 
   margin: '10px'
 
 }
