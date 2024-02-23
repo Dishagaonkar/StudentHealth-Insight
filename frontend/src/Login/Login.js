@@ -9,6 +9,8 @@ import axios from "axios"
 const Login = ({ isOpen, handleClose }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [emailError, setEmailError] = useState("");
+
 
 
   const navigate = useNavigate();
@@ -17,15 +19,44 @@ const Login = ({ isOpen, handleClose }) => {
      ev.preventDefault();
   
      try {
-       await axios.post("http://localhost:8000/login", {
+      const response = await axios.post("http://localhost:8000/login", {
        email: email,
        password: password
      });
+
+      //show message for valid login
+      if (response.status === 200) {
+        setEmailError(response.data.message);
+      }
+
      } catch (error) {
-       console.log(error);
+      //show message for invalid login
+      console.log(error.response.data);
+      setEmailError(error.response.data.message);
      }
     
   };
+
+  // Check if the user has entered a valid email
+  const onButtonClick = () => {
+    // Set initial error values to empty
+    setEmailError("");
+    //console.log(validEmail); //FIXME
+
+    // Check if the user has entered both fields correctly
+    if ("" === email) {
+      setEmailError("Please enter your email");
+      return;
+    }
+
+    if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+      setEmailError("Please enter a valid email");
+      return;
+    }
+    
+  };
+
+
 
   return (
     <div className={`popup ${isOpen ? "open" : ""}`}>
@@ -57,9 +88,11 @@ const Login = ({ isOpen, handleClose }) => {
           <div className={"buttonContainer"}>
             <input
               className={"inputButton"}
+              onClick={onButtonClick}
               type="submit"
               value={"Login"}
             />
+            <label className="errorLabel">{emailError}</label>
           </div>
         </form>
       </div>

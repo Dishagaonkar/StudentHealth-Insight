@@ -23,16 +23,18 @@ const SignUp = ({ isOpen, handleClose }) => {
         email: email,
         password: password,
       });
+      //show message for valid login
       if (response.status === 200) {
         setEmailError(response.data.message);
       }
-      setEmailError(response.data.message);
     } catch (error) {
+      //show message for invalid login
       console.log(error.response.data);
       setEmailError(error.response.data.message);
     }
   };
 
+  // Check if the user has entered a valid email
   const onButtonClick = () => {
     // Set initial error values to empty
     setEmailError("");
