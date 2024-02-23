@@ -17,7 +17,6 @@ async function connectDB() {
   return;
 }
 
-
 async function findDB(email_) {
   //finds user
   await connectDB();
@@ -42,7 +41,6 @@ return userFound;
 
 
 
-
 async function insertDocument(data, res) {
 
   let emailFound = await findDB(data.email);
@@ -63,7 +61,6 @@ async function insertDocument(data, res) {
 
 
 }
-
 
 async function validateLogin(data, res){
 

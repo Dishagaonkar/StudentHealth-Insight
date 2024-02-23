@@ -11,8 +11,8 @@ const SignUp = ({ isOpen, handleClose }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
-
-  const navigate = useNavigate();
+  const [emailError, setEmailError] = useState("");
+  const [validEmail, setValidEmail] = useState("");
 
   const SignUpClick = async (ev) => {
     ev.preventDefault();
@@ -33,11 +33,28 @@ const SignUp = ({ isOpen, handleClose }) => {
     try {
       fetch("http://localhost:8000/message")
         .then((res) => res.json())
-        .then((data) => setEmail(data.email))
+        .then((data) => setValidEmail(data.email));
     } catch (error) {
       console.error("Error in useEffect:", error);
     }
   }, []);
+
+  const onButtonClick = () => {
+    // Set initial error values to empty
+    setEmailError("");
+    //console.log(validEmail); //FIXME
+
+    // Check if the user has entered both fields correctly
+    if ("" === email) {
+      setEmailError("Please enter your email");
+      return;
+    }
+
+    if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+      setEmailError("Please enter a valid email");
+      return;
+    }
+  };
 
   return (
     <div className={`popup ${isOpen ? "open" : ""}`}>
@@ -85,7 +102,13 @@ const SignUp = ({ isOpen, handleClose }) => {
           </div>
           <br />
           <div className={"buttonContainer"}>
-            <input className={"inputButton"} type="submit" value={"Sign Up"} />
+            <input
+              className={"inputButton"}
+              onClick={onButtonClick}
+              type="submit"
+              value={"Sign Up"}
+            />
+            <label className="errorLabel">{emailError}</label>
           </div>
         </form>
       </div>
