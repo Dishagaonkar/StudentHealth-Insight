@@ -12,32 +12,26 @@ const SignUp = ({ isOpen, handleClose }) => {
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
-  const [validEmail, setValidEmail] = useState("");
 
   const SignUpClick = async (ev) => {
     ev.preventDefault();
 
     try {
-      await axios.post("http://localhost:8000/signup", {
+      const response = await axios.post("http://localhost:8000/signup", {
         firstName: firstName,
         lastName: lastName,
         email: email,
         password: password,
       });
+      if (response.status === 200) {
+        setEmailError(response.data.message);
+      }
+      setEmailError(response.data.message);
     } catch (error) {
-      console.log(error);
+      console.log(error.response.data);
+      setEmailError(error.response.data.message);
     }
   };
-
-  useEffect(() => {
-    try {
-      fetch("http://localhost:8000/message")
-        .then((res) => res.json())
-        .then((data) => setValidEmail(data.email));
-    } catch (error) {
-      console.error("Error in useEffect:", error);
-    }
-  }, []);
 
   const onButtonClick = () => {
     // Set initial error values to empty
@@ -54,6 +48,7 @@ const SignUp = ({ isOpen, handleClose }) => {
       setEmailError("Please enter a valid email");
       return;
     }
+    
   };
 
   return (
