@@ -48,7 +48,7 @@ async function insertDocument(data, res) {
   try {
     if(!emailFound){
       User.create(data);
-      res.status(200).json({ message: "Data inserted successfully!" });
+      res.status(200).json({ message: "Profile inserted successfully!" });
     }
     else if(emailFound){
     res.status(400).json({ message: "Email already exists!" });
