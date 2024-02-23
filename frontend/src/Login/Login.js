@@ -53,6 +53,11 @@ const Login = ({ isOpen, handleClose }) => {
       setEmailError("Please enter a valid email");
       return;
     }
+
+    if ("" === password) {
+      setEmailError("Please enter your password");
+      return;
+    }
     
   };
 
