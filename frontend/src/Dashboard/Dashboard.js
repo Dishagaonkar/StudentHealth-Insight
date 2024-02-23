@@ -85,7 +85,7 @@ function HeaderAndFooterExample() {
 
 function Info() {
   return (
-    <Accordion defaultActiveKey="0" flush>
+    <Accordion flush>
       <Accordion.Item eventKey="0">
         <Accordion.Header>What is StudentHealth-Insight?</Accordion.Header>
         <Accordion.Body>
@@ -101,23 +101,48 @@ function Info() {
       <Accordion.Item eventKey="1">
         <Accordion.Header>How to Get Started</Accordion.Header>
         <Accordion.Body>
-          Login or create an account 
+          <h3>Login or Signup:</h3> 
+          - If you are a new user, click the sign up button and enter your information!
           <br />
-          - If you are a new user, click the sign up button and enter your information
-          <br />
-          - Already signed up? Log in into your account
+          - Already signed up? Click the login button and Log in into your account!
           <br />
           <br />
-          Why is it important to log in?
+          <h3>Why create an account?</h3>
+          - Write notes to help manage your health!
           <br />
-          - It allows you to save your information and evaluations to access later
+          - Save past evaluations for access to them later!
           <br />
           <br />
           Explore each tab to see how you can take care of your health!
-          
         </Accordion.Body>
       </Accordion.Item>
-    
+      <Accordion.Item eventKey="2">
+        <Accordion.Header>Basic Health & Hygiene Practices</Accordion.Header>
+        <Accordion.Body>
+          - Wash hands thouroughly with soap and water (at least 20 sec), especially before eating or preparing food and after coughing, sneezing, or using the bathroom
+          <br />
+          - Take regular showers/baths
+          <br /> 
+          - Brush teeth at least twice a day & floss daily
+          <br />     
+          - Maintain regular doctors visits, including the dentist
+          <br />
+          - Cover your mouth and nose when choughing or sneezing
+          <br />
+          - Maintain a regular sleep schedule
+          <br />
+          - Stay physically active
+          <br />
+          - Find ways to appropriately manage stress
+          <br />
+          - Use safe sex practices (protection & regular reproductive check-ups)
+          <br />
+          - Drink plenty of water
+          <br />
+          - Stay up-to-date with vaccinations and medications (take medications responsibly)
+          <br />
+        </Accordion.Body>
+      </Accordion.Item>
     </Accordion>
   );
 }
