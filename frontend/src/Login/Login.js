@@ -17,47 +17,43 @@ const Login = ({ isOpen, handleClose }) => {
 
   const LoginClick = async (ev) => {
      ev.preventDefault();
+
+     // Set initial error values to empty
+      setEmailError("");
+      //console.log(validEmail); //FIXME
+
+      // Check if the user has entered both fields correctly
+      if ("" === email) {
+        setEmailError("Please enter your email");
+        return;
+
+      }else if ("" === password) {
+        setEmailError("Please enter your password");
+        return;
+
+      }else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+        setEmailError("Please enter a valid email");
+        return;
+
+      }else{
   
-     try {
-      const response = await axios.post("http://localhost:8000/login", {
-       email: email,
-       password: password
-     });
+        try {
+          const response = await axios.post("http://localhost:8000/login", {
+          email: email,
+          password: password
+        });
 
-      //show message for valid login
-      if (response.status === 200) {
-        setEmailError(response.data.message);
+          //show message for valid login
+          if (response.status === 200) {
+            setEmailError(response.data.message);
+          }
+
+        } catch (error) {
+          //show message for invalid login
+          console.log(error.response.data);
+          setEmailError(error.response.data.message);
+        }
       }
-
-     } catch (error) {
-      //show message for invalid login
-      console.log(error.response.data);
-      setEmailError(error.response.data.message);
-     }
-    
-  };
-
-  // Check if the user has entered a valid email
-  const onButtonClick = () => {
-    // Set initial error values to empty
-    setEmailError("");
-    //console.log(validEmail); //FIXME
-
-    // Check if the user has entered both fields correctly
-    if ("" === email) {
-      setEmailError("Please enter your email");
-      return;
-    }
-
-    if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
-      setEmailError("Please enter a valid email");
-      return;
-    }
-
-    if ("" === password) {
-      setEmailError("Please enter your password");
-      return;
-    }
     
   };
 
@@ -93,7 +89,7 @@ const Login = ({ isOpen, handleClose }) => {
           <div className={"buttonContainer"}>
             <input
               className={"inputButton"}
-              onClick={onButtonClick}
+              onClick={LoginClick}
               type="submit"
               value={"Login"}
             />

@@ -20,20 +20,27 @@ const SignUp = ({ isOpen, handleClose }) => {
     setEmailError("");
     //console.log(validEmail); //FIXME
 
-    // Check if the user has entered both fields correctly
-    if ("" === email) {
+    // Check if the user has entered fields correctly
+    if("" === firstName){
+      setEmailError("Please enter your first name");
+      return;
+
+    }else if("" === lastName){
+      setEmailError("Please enter your last name");
+      return;
+    
+    }else if ("" === email) {
       setEmailError("Please enter your email");
       return;
-      
-    }else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
-      setEmailError("Please enter a valid email");
-      return;
-      
+
     }else if ("" === password) {
       setEmailError("Please enter your password");
       return;
+    
+    }else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+      setEmailError("Please enter a valid email");
+      return;
 
-      // Check if the user has entered a valid email
     }else{
       try {
         const response = await axios.post("http://localhost:8000/signup", {
@@ -54,34 +61,6 @@ const SignUp = ({ isOpen, handleClose }) => {
 
     }
   };
-
-
-  /*
-  // Check if the user has entered a valid email
-  const onButtonClick = () => {
-    // Set initial error values to empty
-    setEmailError("");
-    //console.log(validEmail); //FIXME
-
-    // Check if the user has entered both fields correctly
-    if ("" === email) {
-      setEmailError("Please enter your email");
-      return;
-    }
-
-    if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
-      setEmailError("Please enter a valid email");
-      return;
-    }
-
-    if ("" === password) {
-      setEmailError("Please enter your password");
-      return;
-    }
-    
-  };
-
-  */
 
   return (
     <div className={`popup ${isOpen ? "open" : ""}`}>
