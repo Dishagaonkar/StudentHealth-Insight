@@ -80,8 +80,10 @@ const FilteredList = ({ items }) => {
 
       {/* Make Popups */}
       {popupVisible !== null && (
-      <div className={`popup ${popupVisible !== null ? 'visible' : ''}`}>
-        <div className="popup-content">
+      <div className={`popupFiltered ${popupVisible !== null ? 'visible' : ''}`}>
+        <div className="popup-content-Filtered">
+        <button onClick={hidePopup}>Go Back</button>
+        <br/><br/>
           <h1>{items.find((item) => item.id === popupVisible).name}</h1>
           <h3>Type:</h3> {items.find((item) => item.id === popupVisible).type.map((i, index) => (
             <li key={index}>- {i}<br /></li>
@@ -92,7 +94,6 @@ const FilteredList = ({ items }) => {
             <h3>More Info:</h3>
           <p>{items.find((item) => item.id === popupVisible).description}</p>
             <h1>Please seek medical care if any symptom is persistent, servere, or concerning.</h1>
-          <button onClick={hidePopup}>Go Back</button>
         </div>
       </div>
     )}
