@@ -213,10 +213,11 @@ function Disclaimer() {
   return (
     <Card style={disclaimerStyle}>
       <Card.Body>
-        <Card.Title>DISCLAIMER</Card.Title>
+        <Card.Title><h1>DISCLAIMER</h1></Card.Title>
         <Card.Text>
-        We cannot provide an official diagnosis. If your are experiencing 
+        <h3>We cannot provide an official diagnosis. If your are experiencing 
         symptoms, please SEE A MEDICAL PROFESSIONAL for more information!
+        </h3>
         </Card.Text>
       </Card.Body>
     </Card>
@@ -234,7 +235,7 @@ const Dashboard = () => {
         Welcome to StudentHealth-Insight!
       </p> 
       <p style={messageStyle}>
-        A web application that helps college students take care of their health!
+        A web application to help college students maintain their health!
       </p>
       <Info />
       <div className="side">
