@@ -1,7 +1,11 @@
+// Source for clicking:
+// https://medium.com/@zahidbashirkhan/implementing-double-click-to-edit-text-in-react-2e1d4bcb2493#:~:text=Inside%20the%20EditableText%20component%2C%20create,the%20text%20to%20be%20edited.
+
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Nav from 'react-bootstrap/Nav';
+import { useState} from 'react';
 
 
 const cardContainerStyle = {
@@ -24,7 +28,7 @@ const cardHeader = {
 
 const cardColor = {
   textAlign: 'left', 
-  backgroundColor: '#4FA5A0', 
+  backgroundColor: '#A2D9CE', 
   width: '618px',  
   height: '400px',
 }
@@ -82,18 +86,64 @@ function EvalsButton() {
   );
 }
 
+const EditableText = ({ initialText }) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [text, setText] = useState(initialText);
+
+  const handleClick = () => {
+    setIsEditing(true);
+  };
+
+  const handleSaveClick = () => {
+    setIsEditing(false);
+  };
+
+  const handleChange = (event) => {
+    setText(event.target.value);
+  };
+
+  const handleBlur = () => {
+    setIsEditing(false);
+  };
+
+  return (
+    <div>
+      {isEditing ? (
+        <div>
+        <input
+          type="text"
+          value={text}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
+        <br/>
+        <Button variant="secondary" onClick={handleSaveClick}>Save</Button>
+        </div>
+      ) : (
+        <div>
+        <p>{text}</p>
+        <Button variant="secondary" onClick={handleClick}>Edit</Button>{' '}
+      </div>
+      )}
+    </div>
+  );
+};
+
 function ProfileCard() {
   return (
     <Card className="text-center" >
       <Card.Header style={cardHeader}>
         Profile
         <ProfileButton/>
-        <LogOutButton/>
         </Card.Header >
-      <Card.Body style={cardColor}>
-        <Card.Title>Special title treatment</Card.Title>
+      <Card.Body style={cardColor} >
+        <Card.Title></Card.Title>
         <Card.Text>
-          With supporting text below as a natural lead-in to additional content.
+          Name: <EditableText initialText="Tej Dud"/>
+          <br/>
+          School: <EditableText initialText="University of Florida"/>
+          <br/>
+          Email: <EditableText initialText="123456@ufl.edu"/>
         </Card.Text>
       </Card.Body>
     </Card>
@@ -143,6 +193,7 @@ const Profile = () => {
       <PastEvaluations/>
       </div>
     </div>
+   
   
   );
 
