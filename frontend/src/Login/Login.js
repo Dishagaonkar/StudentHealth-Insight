@@ -17,6 +17,8 @@ export const Login = ({ isOpen, handleClose }) => {
   
   const navigate = useNavigate();
 
+  console.log(res, "without login click");
+
   const LoginClick = async (ev) => {
      ev.preventDefault();
 
@@ -52,7 +54,7 @@ export const Login = ({ isOpen, handleClose }) => {
 
           res = response.data.content;
     
-          
+          console.log(res, "after login click");
 
           /*
           try{

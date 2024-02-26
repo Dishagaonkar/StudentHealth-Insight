@@ -19,7 +19,7 @@ const NavBar = () => {
 
   const handleClosePopUp = () => {
     setPopUpOpen(false);
-    console.log(res);
+    console.log(res, "from navbar");
   };
 
   const handleSignUpOpenPopUp = () => {
