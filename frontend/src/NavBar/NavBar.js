@@ -4,9 +4,13 @@ import Login from "../Login";
 import SignUp from "../SignUp";
 import { res } from "../Login";
 
+
+let user = "";
+
 const NavBar = () => {
   const [isPopUpOpen, setPopUpOpen] = useState(false);
   const [isSignUpPopUpOpen, setSignUpPopUpOpen] = useState(false);
+  user = res;
 
   const handleOpenPopUp = () => {
     console.log("clicked");
