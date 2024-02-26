@@ -238,6 +238,7 @@ const Dashboard = () => {
         A web application to help college students maintain their health!
       </p>
       <Info />
+      <br/>
       <div className="side">
       <Card1 />
       <div className="space" />
