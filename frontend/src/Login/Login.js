@@ -123,3 +123,4 @@ export const Login = ({ isOpen, handleClose }) => {
 
 
 export default Login;
+export {res};
