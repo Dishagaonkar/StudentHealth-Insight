@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Login from "../Login";
 import SignUp from "../SignUp";
+import {res} from "../Login";
 
 const NavBar = () => {
   const [isPopUpOpen, setPopUpOpen] = useState(false);
@@ -14,6 +15,7 @@ const NavBar = () => {
 
   const handleClosePopUp = () => {
     setPopUpOpen(false);
+    console.log(res);
   };
 
   const handleSignUpOpenPopUp = () => {

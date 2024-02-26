@@ -44,16 +44,14 @@ export const Login = ({ isOpen, handleClose }) => {
           password: password
         })
         
-  
+           //show message for valid login
           if (response.status === 200) {
             setEmailError(response.data.message);
           }
 
           let res = response.data.content;
-          module.exports = {res};
-      
-
-          //show message for valid login
+          export {res};
+    
           
 
           /*
