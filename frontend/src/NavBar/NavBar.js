@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Login from "../Login";
+import Login, { res } from "../Login";
 import SignUp from "../SignUp";
-import {res} from "../Login";
 
 const NavBar = () => {
   const [isPopUpOpen, setPopUpOpen] = useState(false);
