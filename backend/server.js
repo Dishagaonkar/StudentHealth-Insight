@@ -39,10 +39,23 @@ app.post("/login", async(req, res) => {
 
 });
 
+
 /*
-app.get("/emailexists", (req, res) => {
-  res.json({ message: "This email already exists!" });
-});*/
+
+app.get("/userInfo", (req, res) => {
+  try{
+    const user = users.find({email: req.email, password: req.password});
+    console.log(user);
+    res.json(user);
+
+  }
+  catch(error){
+    return res.status(404).json({ message: "Couldn't find user!" });
+
+  }
+});
+*/
+
 
 
 
