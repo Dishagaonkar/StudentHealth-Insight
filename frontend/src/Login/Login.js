@@ -6,7 +6,8 @@ import "../Login/Login.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-
+// create res outside of component
+let res;
 
 export const Login = ({ isOpen, handleClose }) => {
   const [email, setEmail] = useState("");
@@ -49,7 +50,7 @@ export const Login = ({ isOpen, handleClose }) => {
             setEmailError(response.data.message);
           }
 
-          let res = response.data.content;
+          res = response.data.content;
     
           
 
@@ -77,10 +78,6 @@ export const Login = ({ isOpen, handleClose }) => {
         }
       }
   };
-  
-  export {res};
-
-
 
   return (
     <div className={`popup ${isOpen ? "open" : ""}`}>
@@ -126,4 +123,3 @@ export const Login = ({ isOpen, handleClose }) => {
 
 
 export default Login;
-
