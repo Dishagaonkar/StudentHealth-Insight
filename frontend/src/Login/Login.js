@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 // create res outside of component
-let res;
+let res = "empty";
 
 export const Login = ({ isOpen, handleClose }) => {
   const [email, setEmail] = useState("");
