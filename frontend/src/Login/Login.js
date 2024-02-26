@@ -4,15 +4,16 @@ import React, { useEffect,useState } from "react";
 import "../popup.css";
 import "../Login/Login.css";
 import { useNavigate } from "react-router-dom";
-import axios from "axios"
+import axios from "axios";
 
-const Login = ({ isOpen, handleClose }) => {
+
+
+export const Login = ({ isOpen, handleClose }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
-
-
-
+  const [userData, setUserData] = useState("");
+  
   const navigate = useNavigate();
 
   const LoginClick = async (ev) => {
@@ -41,12 +42,36 @@ const Login = ({ isOpen, handleClose }) => {
           const response = await axios.post("http://localhost:8000/login", {
           email: email,
           password: password
-        });
-
-          //show message for valid login
+        })
+        
+  
           if (response.status === 200) {
             setEmailError(response.data.message);
           }
+
+          let res = response.data.content;
+          module.exports = {res};
+      
+
+          //show message for valid login
+          
+
+          /*
+          try{
+            
+            await axios.post('userInfo', {
+              email: email,
+              password: password })
+              .then(response => {
+                setUser(response.data);
+              });
+              //how to interchange between login and profile page 
+          }
+          catch(error){
+            console.log('Error fetching user data:', error);
+
+          }
+          */
 
         } catch (error) {
           //show message for invalid login
@@ -54,8 +79,9 @@ const Login = ({ isOpen, handleClose }) => {
           setEmailError(error.response.data.message);
         }
       }
-    
   };
+  
+  
 
 
 
@@ -101,4 +127,6 @@ const Login = ({ isOpen, handleClose }) => {
   );
 };
 
+
 export default Login;
+
