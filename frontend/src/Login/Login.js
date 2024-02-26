@@ -50,7 +50,6 @@ export const Login = ({ isOpen, handleClose }) => {
           }
 
           let res = response.data.content;
-          export {res};
     
           
 
@@ -79,7 +78,7 @@ export const Login = ({ isOpen, handleClose }) => {
       }
   };
   
-  
+  export {res};
 
 
 
