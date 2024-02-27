@@ -20,6 +20,13 @@ const disclaimer2Style = {
 
 };
 
+const footerStyle = {
+  backgroundColor: '#333',
+  color: '#fff',
+  padding: '10px',
+  textAlign: 'center',
+}
+
 function Disclaimer2() {
   return (
     <Card style={disclaimer2Style}>
@@ -30,6 +37,17 @@ function Disclaimer2() {
         symptoms, please SEE A MEDICAL PROFESSIONAL for more information!
         </h3>
         </Card.Text>
+      </Card.Body>
+    </Card>
+  );
+}
+
+function Footer() {
+  return (
+    <Card style={footerStyle}>
+      <Card.Body>
+        <Card.Title style={{color: 'white'}}>Resources</Card.Title>
+        <Card.Text style={{color: 'white'}}>...</Card.Text>
       </Card.Body>
     </Card>
   );
@@ -80,6 +98,8 @@ const Learn = () => {
         <Disclaimer2/>
         <br/>
         <Card1/>
+        <br/>
+        <Footer/>
       </div>
     </div>
   )
