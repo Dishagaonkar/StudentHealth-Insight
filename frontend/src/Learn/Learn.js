@@ -66,7 +66,8 @@ const Learn = () => {
     return (
       <Card>
         <Card.Body style={cardStyle}>
-        <h3>Click on an illness for more information!</h3>
+        <h3>Click on an illness for more information, and use the filters to get more specific!</h3>
+        <br/>
         <FilteredList items={data} />
         </Card.Body>
       </Card>
@@ -77,6 +78,7 @@ const Learn = () => {
     <div style={backgroundStyle}>
       <div>
         <Disclaimer2/>
+        <br/>
         <Card1/>
       </div>
     </div>

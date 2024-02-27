@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './FilteredList.css';
+import {Dropdown, DropdownButton, Form, Button} from 'react-bootstrap';
 
 const FilteredList = ({ items }) => {
   const [selectedFilter, setSelectedFilter] = useState('All Types');
@@ -42,7 +43,13 @@ const FilteredList = ({ items }) => {
   return (
     <div>
       {/* Drop-down filter */}
-      <select value={selectedFilter} onChange={handleFilterChange}>
+      <select value={selectedFilter} onChange={handleFilterChange} style={{
+        padding: '5px',
+        fontSize: '16px',
+        borderRadius: '10px',
+        border: '1px solid #ccc',
+        marginRight: '10px',
+      }}>
         <option value="All Types">All Types</option>
         {/* Add your filter options dynamically based on your data */}
         <option value="Respitory">Respitory</option>
@@ -52,7 +59,13 @@ const FilteredList = ({ items }) => {
       </select>
 
       {/* Drop-down filter */}
-      <select value={selectedFilter2} onChange={handleFilterChange2}>
+      <select value={selectedFilter2} onChange={handleFilterChange2} style={{
+        padding: '5px',
+        fontSize: '16px',
+        borderRadius: '10px',
+        border: '1px solid #ccc',
+        marginRight: '10px',
+      }}>
         <option value="All Symptoms">All Symptoms</option>
         {/* Add your filter options dynamically based on your data */}
         <option value="Congestion">Congestion</option>
@@ -66,11 +79,19 @@ const FilteredList = ({ items }) => {
       type="text"
       placeholder="Search by name"
       value={searchTerm}
-      onChange={handleSearchChange}
+      onChange={handleSearchChange} style={{
+        padding: '5px',
+        fontSize: '16px',
+        borderRadius: '10px',
+        border: '1px solid #ccc',
+        marginRight: '10px',
+        width: '400px',
+      }}
     />
   
       {/* Display filtered list */}
       <ul className="filtered-list">
+        <br/>
         {filteredItems.map((item) => (
           <li key={item.id} onClick={() => showPopup(item.id)}>
             <h2>{item.name}</h2>
