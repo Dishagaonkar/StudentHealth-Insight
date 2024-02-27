@@ -2,15 +2,19 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Login from "../Login";
 import SignUp from "../SignUp";
+import { LoginClick, res } from "../Login";
 
 
 let user = "empty";
 
 const NavBar = () => {
-  import { res } from "../Login";
   const [isPopUpOpen, setPopUpOpen] = useState(false);
   const [isSignUpPopUpOpen, setSignUpPopUpOpen] = useState(false);
-  user = res;
+
+  const waitingForLogin = async () => {
+    await LoginClick();
+    console.log(res, "from navbar");
+  }
 
   const handleOpenPopUp = () => {
     console.log("clicked");
@@ -19,7 +23,6 @@ const NavBar = () => {
 
   const handleClosePopUp = () => {
     setPopUpOpen(false);
-    console.log(user, "from navbar");
   };
 
   const handleSignUpOpenPopUp = () => {
