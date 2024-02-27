@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Login from "../Login";
 import SignUp from "../SignUp";
-import { LoginClick, res } from "../Login";
+import { res } from "../Login";
 
 
 let user = "empty";
@@ -10,14 +10,6 @@ let user = "empty";
 const NavBar = () => {
   const [isPopUpOpen, setPopUpOpen] = useState(false);
   const [isSignUpPopUpOpen, setSignUpPopUpOpen] = useState(false);
-
-  const waitingForLogin = async () => {
-    if (LoginClick() === true) {
-    console.log(res, "from navbar");
-    }else{
-      console.log("not logged in");
-    }
-  }
 
   const handleOpenPopUp = () => {
     console.log("clicked");
