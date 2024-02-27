@@ -9,6 +9,7 @@ const NavBar = () => {
   const [res, setRes] = useState("empty");
 
   const updateRes = (newRes) => { setRes(newRes); };
+  console.log(res, "in navbar");
 
   const handleOpenPopUp = () => {
     console.log("clicked");
