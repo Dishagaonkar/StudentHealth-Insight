@@ -7,9 +7,9 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 // create res outside of component
-let res = "empty";
+//let res = "empty";
 
-export const Login = ({ isOpen, handleClose }) => {
+export const Login = ({ isOpen, handleClose, updateRes }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -50,6 +50,7 @@ export const Login = ({ isOpen, handleClose }) => {
            //show message for valid login
           if (response.status === 200) {
             setEmailError(response.data.message);
+            updateRes(response.data.content);
           }
 
           res = response.data.content;
@@ -123,5 +124,4 @@ export const Login = ({ isOpen, handleClose }) => {
   );
 };
 
-export { res };
 export default Login;

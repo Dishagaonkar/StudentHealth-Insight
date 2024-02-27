@@ -2,22 +2,24 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Login from "../Login";
 import SignUp from "../SignUp";
-import { res } from "../Login";
-
-
-let user = "empty";
+//import { res } from "../Login";
 
 const NavBar = () => {
   const [isPopUpOpen, setPopUpOpen] = useState(false);
   const [isSignUpPopUpOpen, setSignUpPopUpOpen] = useState(false);
+  const [res, setRes] = useState("empty");
+
+  const updateRes = (newRes) => { setRes(newRes); };
 
   const handleOpenPopUp = () => {
     console.log("clicked");
+    console.log(res);
     setPopUpOpen(true);
   };
 
   const handleClosePopUp = () => {
     setPopUpOpen(false);
+    console.log(res);
   };
 
   const handleSignUpOpenPopUp = () => {
@@ -55,7 +57,7 @@ const NavBar = () => {
           </li>
         </ul>
       </nav>
-      <Login isOpen={isPopUpOpen} handleClose={handleClosePopUp} />
+      <Login isOpen={isPopUpOpen} handleClose={handleClosePopUp} updateRes={updateRes} />
       <SignUp isOpen={isSignUpPopUpOpen} handleClose={handleSignUpClosePopUp} />
     </div>
   );
