@@ -7,7 +7,7 @@ import Profile from './Profile';
 import Learn from './Learn';
 import Nearby from './Nearby';
 import Evaluate from './Evaluate';
-import Login from "../Login";
+import Login from "./Login";
 
 const App = () => {
   const [res, setRes] = useState("empty");
