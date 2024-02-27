@@ -13,11 +13,9 @@ export const Login = ({ isOpen, handleClose, updateRes }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
-  const [userData, setUserData] = useState("");
   
   const navigate = useNavigate();
 
-  console.log(res, "without login click");
 
   const LoginClick = async (ev) => {
      ev.preventDefault();
@@ -50,29 +48,10 @@ export const Login = ({ isOpen, handleClose, updateRes }) => {
            //show message for valid login
           if (response.status === 200) {
             setEmailError(response.data.message);
-            updateRes(response.data.content);
+            res = response.data.content[0];
+            updateRes(res);
           }
 
-          res = response.data.content;
-    
-          console.log(res, "after login click");
-
-          /*
-          try{
-            
-            await axios.post('userInfo', {
-              email: email,
-              password: password })
-              .then(response => {
-                setUser(response.data);
-              });
-              //how to interchange between login and profile page 
-          }
-          catch(error){
-            console.log('Error fetching user data:', error);
-
-          }
-          */
 
         } catch (error) {
           //show message for invalid login
