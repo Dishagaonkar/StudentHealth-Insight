@@ -12,8 +12,11 @@ const NavBar = () => {
   const [isSignUpPopUpOpen, setSignUpPopUpOpen] = useState(false);
 
   const waitingForLogin = async () => {
-    await LoginClick();
+    if (LoginClick() === true) {
     console.log(res, "from navbar");
+    }else{
+      console.log("not logged in");
+    }
   }
 
   const handleOpenPopUp = () => {

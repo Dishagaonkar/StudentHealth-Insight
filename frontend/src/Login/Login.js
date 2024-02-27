@@ -8,6 +8,7 @@ import axios from "axios";
 
 // create res outside of component
 let res = "empty";
+loginClicked = false;
 
 export const Login = ({ isOpen, handleClose }) => {
   const [email, setEmail] = useState("");
@@ -29,15 +30,15 @@ export const Login = ({ isOpen, handleClose }) => {
       // Check if the user has entered both fields correctly
       if ("" === email) {
         setEmailError("Please enter your email");
-        return;
+        return loginClicked;
 
       }else if ("" === password) {
         setEmailError("Please enter your password");
-        return;
+        return loginClicked;
 
       }else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
         setEmailError("Please enter a valid email");
-        return;
+        return loginClicked;
 
       }else{
   
@@ -50,6 +51,7 @@ export const Login = ({ isOpen, handleClose }) => {
            //show message for valid login
           if (response.status === 200) {
             setEmailError(response.data.message);
+            loginClicked = true;
           }
 
           res = response.data.content;
@@ -79,6 +81,7 @@ export const Login = ({ isOpen, handleClose }) => {
           setEmailError(error.response.data.message);
         }
       }
+      return loginClicked;
   };
 
   return (
