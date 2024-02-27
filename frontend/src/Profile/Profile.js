@@ -4,10 +4,8 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import Nav from 'react-bootstrap/Nav';
 import { useLocation } from 'react-router-dom'
 import { useState} from 'react';
-import Login from "../Login";
 
 
 const cardContainerStyle = {
