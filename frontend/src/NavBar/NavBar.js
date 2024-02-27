@@ -33,7 +33,7 @@ const NavBar = () => {
       <nav>
         <ul>
           <li>
-            <Link to="profile" style={{ color: 'white', textDecoration: 'none' }} disabled = {res === "empty"}>Profile</Link>
+            <Link to="profile" style={{ color: 'white', textDecoration: 'none' }}>Profile</Link>
           </li>
           <li>
             <Link to="/" style={{ color: 'white', textDecoration: 'none' }}>Dashboard</Link>
