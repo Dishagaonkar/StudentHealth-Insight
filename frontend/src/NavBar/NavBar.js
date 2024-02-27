@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Login from "../Login";
 import SignUp from "../SignUp";
-import { res } from "../Login";
 
 
-let user = "";
+let user = "empty";
 
 const NavBar = () => {
+  import { res } from "../Login";
   const [isPopUpOpen, setPopUpOpen] = useState(false);
   const [isSignUpPopUpOpen, setSignUpPopUpOpen] = useState(false);
   user = res;
@@ -19,7 +19,7 @@ const NavBar = () => {
 
   const handleClosePopUp = () => {
     setPopUpOpen(false);
-    console.log(res, "from navbar");
+    console.log(user, "from navbar");
   };
 
   const handleSignUpOpenPopUp = () => {
