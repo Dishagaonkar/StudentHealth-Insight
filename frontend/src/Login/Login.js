@@ -127,4 +127,4 @@ export const Login = ({ isOpen, handleClose }) => {
 };
 
 export { res };
-export {Login}
+export {Login};
