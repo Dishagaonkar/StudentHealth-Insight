@@ -127,4 +127,4 @@ export const Login = ({ isOpen, handleClose }) => {
 };
 
 export { res };
-export default Login;
+export {Login}
