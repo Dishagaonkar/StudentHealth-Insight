@@ -8,7 +8,7 @@ import axios from "axios";
 
 // create res outside of component
 let res = "empty";
-loginClicked = false;
+let loginClicked = false;
 
 export const Login = ({ isOpen, handleClose }) => {
   const [email, setEmail] = useState("");
