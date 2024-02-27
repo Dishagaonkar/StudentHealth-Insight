@@ -6,6 +6,10 @@ import SignUp from "../SignUp";
 const NavBar = () => {
   const [isPopUpOpen, setPopUpOpen] = useState(false);
   const [isSignUpPopUpOpen, setSignUpPopUpOpen] = useState(false);
+  const [res, setRes] = useState("empty");
+
+  const updateRes = (newRes) => { setRes(newRes); };
+  console.log(res, "in navbar");
 
   const handleOpenPopUp = () => {
     console.log("clicked");
@@ -51,7 +55,7 @@ const NavBar = () => {
           </li>
         </ul>
       </nav>
-      <Login isOpen={isPopUpOpen} handleClose={handleClosePopUp} />
+      <Login isOpen={isPopUpOpen} handleClose={handleClosePopUp} updateRes={updateRes} />
       <SignUp isOpen={isSignUpPopUpOpen} handleClose={handleSignUpClosePopUp} />
     </div>
   );

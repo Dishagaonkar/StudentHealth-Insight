@@ -6,15 +6,18 @@ import "../Login/Login.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+// create res outside of component
+let res = "empty";
 
-
-export const Login = ({ isOpen, handleClose }) => {
+export const Login = ({ isOpen, handleClose, updateRes }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [userData, setUserData] = useState("");
   
   const navigate = useNavigate();
+
+  console.log(res, "without login click");
 
   const LoginClick = async (ev) => {
      ev.preventDefault();
@@ -44,17 +47,15 @@ export const Login = ({ isOpen, handleClose }) => {
           password: password
         })
         
-  
+           //show message for valid login
           if (response.status === 200) {
             setEmailError(response.data.message);
+            updateRes(response.data.content);
           }
 
-          let res = response.data.content;
-          module.exports = {res};
-      
-
-          //show message for valid login
-          
+          res = response.data.content;
+    
+          console.log(res, "after login click");
 
           /*
           try{
@@ -80,10 +81,6 @@ export const Login = ({ isOpen, handleClose }) => {
         }
       }
   };
-  
-  
-
-
 
   return (
     <div className={`popup ${isOpen ? "open" : ""}`}>
@@ -127,6 +124,4 @@ export const Login = ({ isOpen, handleClose }) => {
   );
 };
 
-
 export default Login;
-
