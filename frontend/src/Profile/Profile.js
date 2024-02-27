@@ -4,22 +4,14 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-<<<<<<< Updated upstream
-=======
-import Nav from 'react-bootstrap/Nav';
->>>>>>> Stashed changes
 import { useLocation } from 'react-router-dom'
 import { useState} from 'react';
-<<<<<<< HEAD
-=======
-import Login from "../Login";
 
->>>>>>> f00bfb4e04a0134462ef5d706c4027edb8657ef5
 
 const cardContainerStyle = {
   display: 'flex',
-  // justifyContent: 'space-between',
-  //backgroundColor: '#eeeeee', 
+  justifyContent: 'space-between',
+  backgroundColor: '#eeeeee', 
 };
 
 const cardStyle = {
@@ -37,7 +29,7 @@ const cardHeader = {
 const cardColor = {
   textAlign: 'left', 
   backgroundColor: '#A2D9CE', 
-
+  width: '618px',  
   height: '400px',
 }
 
@@ -54,8 +46,8 @@ const PastEvalCard = {
   margin: '10px',
   backgroundColor: '#3091B0', 
   textAlign:'center', 
+  color:'white', 
   fontSize: '20px', 
-  color: 'white'
 }
 
 const cardContainerStyle2 = {
@@ -89,7 +81,7 @@ function NotesButton() {
 function EvalsButton() {
   return (
     <>
-    <Button variant="secondary" >Past Evaluations</Button>{' '}   
+      <Button variant="secondary" >Past Evaluations</Button>{' '}
     </>
   );
 }
@@ -118,36 +110,27 @@ const EditableText = ({ initialText }) => {
     <div>
       {isEditing ? (
         <div>
-          <>
-          <textarea style={{ height: '90%', width: '80%', resize: 'both' }}
+        <input
           type="text"
           value={text}
           onChange={handleChange}
           onBlur={handleBlur}
-          />
-          </>
+        />
+        <br/>
         <Button variant="secondary" onClick={handleSaveClick}>Save</Button>
         </div>
-      ) : 
-      (
+      ) : (
         <div>
         <p>{text}</p>
         <Button variant="secondary" onClick={handleClick}>Edit</Button>{' '}
       </div>
-      )
-      }
+      )}
     </div>
   );
 };
 
-
 function ProfileCard() {
 
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
   let fullname = "";
   let email = ""; 
   let school = "";
@@ -163,10 +146,6 @@ function ProfileCard() {
     console.log(error);
   }
 
-<<<<<<< Updated upstream
-=======
->>>>>>> f00bfb4e04a0134462ef5d706c4027edb8657ef5
->>>>>>> Stashed changes
   return (
     <Card className="text-center" >
       <Card.Header style={cardHeader}>
@@ -176,29 +155,11 @@ function ProfileCard() {
       <Card.Body style={cardColor} >
         <Card.Title></Card.Title>
         <Card.Text>
-<<<<<<< Updated upstream
           Name: <EditableText initialText={fullname}/>
           <br/>
           School: <EditableText initialText={school}/>
           <br/>
           Email: <EditableText initialText={email}/>
-=======
-<<<<<<< HEAD
-          Name: <EditableText initialText="Tej Dud"/>
-         <br/>
-          School: <EditableText initialText="University of Florida"/>
-          <br/>
-          Email: <EditableText initialText="123456@ufl.edu"/>
-          <div>
-    </div>
-=======
-          Name: <EditableText initialText={fullname}/>
-          <br/>
-          School: <EditableText initialText={school}/>
-          <br/>
-          Email: <EditableText initialText={email}/>
->>>>>>> f00bfb4e04a0134462ef5d706c4027edb8657ef5
->>>>>>> Stashed changes
         </Card.Text>
       </Card.Body>
     </Card>
@@ -213,8 +174,9 @@ function NotesCard() {
         <NotesButton/>
         </Card.Header >
       <Card.Body style={cardColor}>
+        <Card.Title>Special title treatment</Card.Title>
         <Card.Text>
-        <EditableText initialText="Notes"/>
+          With supporting text below as a natural lead-in to additional content.
         </Card.Text>
       </Card.Body>
     </Card>
@@ -224,10 +186,8 @@ function NotesCard() {
 function PastEvaluations() {
   return (
     <Card style={PastEvalCard}>
-      <Card.Header>
-      Click below to see past evaluations
-      </Card.Header>
-      <Card.Body>
+      <Card.Body>Click below to see past evaluations
+        <br/>
         <EvalsButton/>
       </Card.Body>
     </Card>
@@ -236,7 +196,7 @@ function PastEvaluations() {
 
 const Profile = () => {
   return (
-      <div style={backgroundColor}>
+    <div>
       <div style={cardContainerStyle}>
       <div style={cardStyle}>
         <ProfileCard/>
@@ -247,9 +207,13 @@ const Profile = () => {
     </div>
     <div>
       <PastEvaluations/>
-    </div>
       </div>
+    </div>
+   
+  
   );
+
+
 };
 
 export default Profile;

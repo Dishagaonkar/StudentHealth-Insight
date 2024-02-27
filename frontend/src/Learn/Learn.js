@@ -8,7 +8,7 @@ const backgroundStyle = {
 
 const cardStyle = {
   backgroundColor: '#A2D9CE', 
-
+  margin: '10px'
 
 }
 
@@ -93,11 +93,13 @@ const Learn = () => {
 
   return (
     <div style={backgroundStyle}>
-      <Disclaimer2/>
-     <br/>
-      <Card1/>
-      <br/>
-      <Footer/>
+      <div>
+        <Disclaimer2/>
+        <br/>
+        <Card1/>
+        <br/>
+        <Footer/>
+      </div>
     </div>
   )
 };

@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import Button from 'react-bootstrap/Button';
 import { Link } from "react-router-dom";
 import Login from "../Login";
 import SignUp from "../SignUp";
-
 
 const NavBar = () => {
   const [isPopUpOpen, setPopUpOpen] = useState(false);
@@ -57,10 +55,10 @@ const NavBar = () => {
             <Link to="evaluate" style={{ color: 'white', textDecoration: 'none' }}>Evaluate</Link>
           </li>
           <li>
-            <Button variant="secondary" onClick={handleOpenPopUp}>Login</Button>
+            <button onClick={handleOpenPopUp}>Login</button>
           </li>
           <li>
-            <Button variant="secondary" onClick={handleSignUpOpenPopUp}>Sign Up</Button>
+            <button onClick={handleSignUpOpenPopUp}>Sign Up</button>
           </li>
         </ul>
       </nav>
