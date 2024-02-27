@@ -5,7 +5,9 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Nav from 'react-bootstrap/Nav';
+import { useLocation } from 'react-router-dom'
 import { useState} from 'react';
+import Login from "../Login";
 
 
 const cardContainerStyle = {
@@ -130,6 +132,22 @@ const EditableText = ({ initialText }) => {
 };
 
 function ProfileCard() {
+
+  let fullname = "";
+  let email = ""; 
+  let school = "";
+  
+  try{
+   const location = useLocation();
+   const res = location.state;
+   fullname = res.data.firstName + " " + res.data.lastName;
+   email = res.data.email;
+   school = res.data.school;
+
+  }catch(error){
+    console.log(error);
+  }
+
   return (
     <Card className="text-center" >
       <Card.Header style={cardHeader}>
@@ -139,11 +157,11 @@ function ProfileCard() {
       <Card.Body style={cardColor} >
         <Card.Title></Card.Title>
         <Card.Text>
-          Name: <EditableText initialText="Tej Dud"/>
+          Name: <EditableText initialText={fullname}/>
           <br/>
-          School: <EditableText initialText="University of Florida"/>
+          School: <EditableText initialText={school}/>
           <br/>
-          Email: <EditableText initialText="123456@ufl.edu"/>
+          Email: <EditableText initialText={email}/>
         </Card.Text>
       </Card.Body>
     </Card>

@@ -9,7 +9,14 @@ const NavBar = () => {
   const [res, setRes] = useState("empty");
 
   const updateRes = (newRes) => { setRes(newRes); };
-  console.log(res, "in navbar");
+  const data = {
+    id:res._id,
+    firstName:res.firstName,
+    lastName:res.lastName,
+    email:res.email,
+    password:res.password,
+    school:res.school
+  }
 
   const handleOpenPopUp = () => {
     console.log("clicked");
@@ -33,7 +40,7 @@ const NavBar = () => {
       <nav>
         <ul>
           <li>
-            <Link to="profile" style={{ color: 'white', textDecoration: 'none' }}>Profile</Link>
+            <Link to={"profile"}state={{ data }}style={{ color: 'white', textDecoration: 'none' }}>Profile</Link>
           </li>
           <li>
             <Link to="/" style={{ color: 'white', textDecoration: 'none' }}>Dashboard</Link>
