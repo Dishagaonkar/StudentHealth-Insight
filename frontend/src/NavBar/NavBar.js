@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Login from "../Login";
 import SignUp from "../SignUp";
-//import { res } from "../Login";
 
 const NavBar = () => {
   const [isPopUpOpen, setPopUpOpen] = useState(false);
@@ -13,13 +12,11 @@ const NavBar = () => {
 
   const handleOpenPopUp = () => {
     console.log("clicked");
-    console.log(res);
     setPopUpOpen(true);
   };
 
   const handleClosePopUp = () => {
     setPopUpOpen(false);
-    console.log(res);
   };
 
   const handleSignUpOpenPopUp = () => {
@@ -35,7 +32,7 @@ const NavBar = () => {
       <nav>
         <ul>
           <li>
-            <Link to="profile" style={{ color: 'white', textDecoration: 'none' }}>Profile</Link>
+            <Link to="profile" style={{ color: 'white', textDecoration: 'none' }} disabled = {res === "empty"}>Profile</Link>
           </li>
           <li>
             <Link to="/" style={{ color: 'white', textDecoration: 'none' }}>Dashboard</Link>
