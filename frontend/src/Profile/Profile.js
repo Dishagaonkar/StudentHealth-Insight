@@ -210,16 +210,62 @@ function ProfileCard() {
   );
 }
 
+const Note = ({ id, text, onDelete }) => {
+  return (
+    <div>
+      {text}
+      <button onClick={() => onDelete(id)} style = {{float: 'right',}}>Delete</button>
+      <br/><br/>
+    </div>
+  );
+};
+
 function NotesCard() {
+  const [notes, setNotes] = useState([]);
+  const [newNoteText, setNewNoteText] = useState('');
+  
+  const addNote = () => {
+    if (newNoteText.trim() !== '') {
+      const newNote = {
+        id: new Date().getTime(),
+        text: newNoteText,
+      };
+      setNotes((prevNotes) => [...prevNotes, newNote]);
+      setNewNoteText('');
+    }
+  };
+  
+  const deleteNote = (id) => {
+    const updateNotes = notes.filter((note) => note.id !== id);
+    setNotes(updateNotes);
+  };
+
   return (
     <Card className="text-center" >
       <Card.Header style={cardHeader}>
         Notes
-        <NotesButton/>
         </Card.Header >
       <Card.Body style={cardColor}>
         <Card.Text>
-        <EditableTextNotes initialText="Notes"/>
+        <input
+          type="text"
+          placeholder="Enter new note"
+          value={newNoteText}
+          onChange={(e) => setNewNoteText(e.target.value)}
+          style={{
+            padding: '5px',
+            fontSize: '16px',
+            borderRadius: '10px',
+            border: '1px solid #ccc',
+            marginRight: '10px',
+            width: '360px',
+          }}
+        />
+        <button onClick={addNote} style = {{float: 'right',}}>Add Note</button>
+          <br/> <br/>
+          {notes.map((note) => (
+            <Note key={note.id} id={note.id} text={note.text} onDelete={deleteNote} />
+          ))}
         </Card.Text>
       </Card.Body>
     </Card>
