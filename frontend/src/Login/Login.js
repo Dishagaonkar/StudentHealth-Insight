@@ -4,27 +4,62 @@ import React, { useEffect,useState } from "react";
 import "../popup.css";
 import "../Login/Login.css";
 import { useNavigate } from "react-router-dom";
-import axios from "axios"
+import axios from "axios";
 
-const Login = ({ isOpen, handleClose }) => {
+// create res outside of component
+let res = "empty";
+
+export const Login = ({ isOpen, handleClose, updateRes, updateInactive }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-
+  const [emailError, setEmailError] = useState("");
+  
   const navigate = useNavigate();
+
 
   const LoginClick = async (ev) => {
      ev.preventDefault();
+
+     // Set initial error values to empty
+      setEmailError("");
+      //console.log(validEmail); //FIXME
+
+      // Check if the user has entered both fields correctly
+      if ("" === email) {
+        setEmailError("Please enter your email");
+        return;
+
+      }else if ("" === password) {
+        setEmailError("Please enter your password");
+        return;
+
+      }else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+        setEmailError("Please enter a valid email");
+        return;
+
+      }else{
   
-     try {
-       await axios.post("http://localhost:8000/login", {
-       email: email,
-       password: password
-     });
-     } catch (error) {
-       console.log(error);
-     }
-    
+        try {
+          const response = await axios.post("http://localhost:8000/login", {
+          email: email,
+          password: password
+        })
+        
+           //show message for valid login
+          if (response.status === 200) {
+            setEmailError(response.data.message);
+            res = response.data.content[0];
+            updateRes(res);
+            updateInactive(false);
+          }
+
+
+        } catch (error) {
+          //show message for invalid login
+          console.log(error.response.data);
+          setEmailError(error.response.data.message);
+        }
+      }
   };
 
   return (
@@ -57,9 +92,11 @@ const Login = ({ isOpen, handleClose }) => {
           <div className={"buttonContainer"}>
             <input
               className={"inputButton"}
+              onClick={LoginClick}
               type="submit"
               value={"Login"}
             />
+            <label className="errorLabel">{emailError}</label>
           </div>
         </form>
       </div>

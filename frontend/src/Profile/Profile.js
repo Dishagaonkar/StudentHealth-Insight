@@ -1,7 +1,13 @@
+// Source for clicking:
+// https://medium.com/@zahidbashirkhan/implementing-double-click-to-edit-text-in-react-2e1d4bcb2493#:~:text=Inside%20the%20EditableText%20component%2C%20create,the%20text%20to%20be%20edited.
+
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Nav from 'react-bootstrap/Nav';
+import { useLocation } from 'react-router-dom'
+import { useState} from 'react';
+import Login from "../Login";
 
 
 const cardContainerStyle = {
@@ -24,8 +30,7 @@ const cardHeader = {
 
 const cardColor = {
   textAlign: 'left', 
-  backgroundColor: '#4FA5A0', 
-  width: '618px',  
+  backgroundColor: '#A2D9CE',  
   height: '400px',
 }
 
@@ -82,18 +87,123 @@ function EvalsButton() {
   );
 }
 
+const EditableTextNotes = ({ initialText }) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [text, setText] = useState(initialText);
+
+  const handleClick = () => {
+    setIsEditing(true);
+  };
+
+  const handleSaveClick = () => {
+    setIsEditing(false);
+  };
+
+  const handleChange = (event) => {
+    setText(event.target.value);
+  };
+
+  const handleBlur = () => {
+    setIsEditing(false);
+  };
+
+  return (
+    <div>
+      {isEditing ? (
+        <div>
+        <textarea style={{ height: '90%', width: '80%', resize: 'both' }}
+          type="text"
+          value={text}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
+        <br/>
+        <Button variant="secondary" onClick={handleSaveClick}>Save</Button>
+        </div>
+      ) : (
+        <div>
+        <p>{text}</p>
+        <Button variant="secondary" onClick={handleClick}>Edit</Button>{' '}
+      </div>
+      )}
+    </div>
+  );
+};
+
+const EditableTextProfile = ({ initialText }) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [text, setText] = useState(initialText);
+
+  const handleClick = () => {
+    setIsEditing(true);
+  };
+
+  const handleSaveClick = () => {
+    setIsEditing(false);
+  };
+
+  const handleChange = (event) => {
+    setText(event.target.value);
+  };
+
+  const handleBlur = () => {
+    setIsEditing(false);
+  };
+
+  return (
+    <div>
+      {isEditing ? (
+        <div>
+        <input style={{ height: '90%', width: '80%', resize: 'both' }}
+          type="text"
+          value={text}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
+        <br/>
+        <Button variant="secondary" onClick={handleSaveClick}>Save</Button>
+        </div>
+      ) : (
+        <div>
+        <p>{text}</p>
+        <Button variant="secondary" onClick={handleClick}>Edit</Button>{' '}
+      </div>
+      )}
+    </div>
+  );
+};
+
 function ProfileCard() {
+
+  let fullname = "";
+  let email = ""; 
+  let school = "";
+  
+  try{
+   const location = useLocation();
+   const res = location.state;
+   fullname = res.data.firstName + " " + res.data.lastName;
+   email = res.data.email;
+   school = res.data.school;
+
+  }catch(error){
+    console.log(error);
+  }
+
   return (
     <Card className="text-center" >
       <Card.Header style={cardHeader}>
         Profile
         <ProfileButton/>
-        <LogOutButton/>
         </Card.Header >
-      <Card.Body style={cardColor}>
-        <Card.Title>Special title treatment</Card.Title>
+      <Card.Body style={cardColor} >
+        <Card.Title></Card.Title>
         <Card.Text>
-          With supporting text below as a natural lead-in to additional content.
+          Name: <EditableTextProfile initialText={fullname}/>
+          <br/>
+          School: <EditableTextProfile initialText={school}/>
+          <br/>
+          Email: <EditableTextProfile initialText={email}/>
         </Card.Text>
       </Card.Body>
     </Card>
@@ -108,9 +218,8 @@ function NotesCard() {
         <NotesButton/>
         </Card.Header >
       <Card.Body style={cardColor}>
-        <Card.Title>Special title treatment</Card.Title>
         <Card.Text>
-          With supporting text below as a natural lead-in to additional content.
+        <EditableTextNotes initialText="Notes"/>
         </Card.Text>
       </Card.Body>
     </Card>
@@ -120,8 +229,10 @@ function NotesCard() {
 function PastEvaluations() {
   return (
     <Card style={PastEvalCard}>
-      <Card.Body>Click below to see past evaluations
-        <br/>
+      <Card.Header>
+      Click below to see past evaluations
+      </Card.Header>
+      <Card.Body>
         <EvalsButton/>
       </Card.Body>
     </Card>
@@ -130,7 +241,7 @@ function PastEvaluations() {
 
 const Profile = () => {
   return (
-    <div>
+    <div style={backgroundColor}>
       <div style={cardContainerStyle}>
       <div style={cardStyle}>
         <ProfileCard/>
@@ -143,6 +254,7 @@ const Profile = () => {
       <PastEvaluations/>
       </div>
     </div>
+   
   
   );
 

@@ -21,7 +21,8 @@ app.post("/signup", async (req, res) => {
     firstName:req.body.firstName,
     lastName:req.body.lastName,
     email:req.body.email,
-    password:req.body.password
+    password:req.body.password,
+    school:req.body.school
   }
 
   insertDocument(data, res);
@@ -39,10 +40,22 @@ app.post("/login", async(req, res) => {
 
 });
 
-app.get("/emailexists", (req, res) => {
-  res.json({ message: "This email already exists!" });
-});
 
+/*
+
+app.get("/userInfo", (req, res) => {
+  try{
+    const user = users.find({email: req.email, password: req.password});
+    console.log(user);
+    res.json(user);
+
+  }
+  catch(error){
+    return res.status(404).json({ message: "Couldn't find user!" });
+
+  }
+});
+*/
 
 
 app.listen(8000, () => {

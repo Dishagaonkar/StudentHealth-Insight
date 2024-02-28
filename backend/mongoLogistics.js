@@ -8,7 +8,7 @@ const cors = require('cors');
 const uri = "mongodb+srv://StudentHealth:Gators24!@studenthealthinsight.gbgld4q.mongodb.net/student-health-user";
 const name = 'StudentHealthInsight';
 
-const User = mongoose.model('logins', {firstName: String, lastName: String, email: String, password: String});
+const User = mongoose.model('logins', {firstName: String, lastName: String, email: String, password: String, school: String});
 
 
 async function connectDB() {
@@ -48,7 +48,7 @@ async function insertDocument(data, res) {
   try {
     if(!emailFound){
       User.create(data);
-      res.status(200).json({ message: "Data inserted successfully!" });
+      res.status(200).json({ message: "Profile inserted successfully!" });
     }
     else if(emailFound){
     res.status(400).json({ message: "Email already exists!" });
@@ -71,12 +71,12 @@ async function validateLogin(data, res){
       res.status(400).json({ message: "This email is not in our records!" });
       return;
     }
-    const content = await User.find({email: data.email, password: data.password}).exec();
+    let content = await User.find({email: data.email, password: data.password}).exec();
     if (content.length == 0) {
       res.status(400).json({ message: "This password is incorrect!" });
     
     }else{
-      res.status(200).json({ message: "You are successfully signed in!" });
+      res.status(200).json({ message: "You are successfully signed in!", content : content});
     }
     
   } catch(error) {

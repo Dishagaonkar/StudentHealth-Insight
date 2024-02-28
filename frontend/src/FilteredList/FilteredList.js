@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './FilteredList.css';
+import {Dropdown, DropdownButton, Form, Button} from 'react-bootstrap';
 
 const FilteredList = ({ items }) => {
   const [selectedFilter, setSelectedFilter] = useState('All Types');
@@ -29,6 +30,14 @@ const FilteredList = ({ items }) => {
     setSelectedFilter2(e.target.value);
   };
 
+  const dropdownStyle = {
+    padding: '5px',
+    fontSize: '16px',
+    borderRadius: '10px',
+    border: '1px solid #ccc',
+    marginRight: '10px',
+  }
+
   const filteredItems = items.filter(item => {
     const optionFilter = selectedFilter === 'All Types' || item.type.includes(selectedFilter);
     const optionFilter2 = selectedFilter2 === 'All Symptoms' || item.symptoms.includes(selectedFilter2);
@@ -42,23 +51,15 @@ const FilteredList = ({ items }) => {
   return (
     <div>
       {/* Drop-down filter */}
-      <select value={selectedFilter} onChange={handleFilterChange}>
+      <select value={selectedFilter} onChange={handleFilterChange} style = {dropdownStyle}>
         <option value="All Types">All Types</option>
-        {/* Add your filter options dynamically based on your data */}
         <option value="Respitory">Respitory</option>
-        <option value="Sexually Transmitted Disease">Sexually Transmitted Disease</option>
-        <option value="Virus">Virus</option>
-        {/* Add more options as needed */}
       </select>
 
       {/* Drop-down filter */}
-      <select value={selectedFilter2} onChange={handleFilterChange2}>
+      <select value={selectedFilter2} onChange={handleFilterChange2} style = {dropdownStyle}>
         <option value="All Symptoms">All Symptoms</option>
-        {/* Add your filter options dynamically based on your data */}
         <option value="Congestion">Congestion</option>
-        <option value="Fever">Fever</option>
-        <option value="Skin Irritation">Skin Irritation</option>
-        {/* Add more options as needed */}
       </select>
 
       {/* Search bar */}
@@ -66,11 +67,19 @@ const FilteredList = ({ items }) => {
       type="text"
       placeholder="Search by name"
       value={searchTerm}
-      onChange={handleSearchChange}
+      onChange={handleSearchChange} style={{
+        padding: '5px',
+        fontSize: '16px',
+        borderRadius: '10px',
+        border: '1px solid #ccc',
+        marginRight: '10px',
+        width: '400px',
+      }}
     />
   
       {/* Display filtered list */}
       <ul className="filtered-list">
+        <br/>
         {filteredItems.map((item) => (
           <li key={item.id} onClick={() => showPopup(item.id)}>
             <h2>{item.name}</h2>
@@ -80,18 +89,20 @@ const FilteredList = ({ items }) => {
 
       {/* Make Popups */}
       {popupVisible !== null && (
-      <div className={`popup ${popupVisible !== null ? 'visible' : ''}`}>
-        <div className="popup-content">
+      <div className={`popupFiltered ${popupVisible !== null ? 'visible' : ''}`}>
+        <div className="popup-content-Filtered">
+        <button onClick={hidePopup}>Go Back</button>
+        <br/><br/>
           <h1>{items.find((item) => item.id === popupVisible).name}</h1>
-          <p>Type: {items.find((item) => item.id === popupVisible).type.map((i, index) => (
-            <li key={index}>{i}; </li>
-          ))}</p>
-          <p>Symptoms: {items.find((item) => item.id === popupVisible).symptoms.map((i, index2) => (
-              <li key={index2}>{i}; </li>
-            ))}</p>
+          <h3>Type:</h3> {items.find((item) => item.id === popupVisible).type.map((i, index) => (
+            <li key={index}>- {i}<br /></li>
+          ))}
+          <h3>Symptoms:</h3> {items.find((item) => item.id === popupVisible).symptoms.map((i, index2) => (
+              <li key={index2}>- {i} <br /> </li>
+            ))}
+            <h3>More Info:</h3>
           <p>{items.find((item) => item.id === popupVisible).description}</p>
-            <h2>Please seek medical care if any symptom is persistent, servere, or concerning.</h2>
-          <button onClick={hidePopup}>Go Back</button>
+            <h1>Please seek medical care if any symptom is persistent, servere, or concerning.</h1>
         </div>
       </div>
     )}
