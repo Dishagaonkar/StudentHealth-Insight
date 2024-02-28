@@ -38,6 +38,7 @@ const backgroundColor = {
 const cardColor = {
   backgroundColor: '#367EB6', 
   padding: '20px', 
+  display: 'flex',
 }
 
 const tabColor = {
