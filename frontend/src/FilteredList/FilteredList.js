@@ -50,13 +50,13 @@ const FilteredList = ({ items }) => {
   console.log('Popup visible:', popupVisible);
   return (
     <div>
-      {/* Drop-down filter */}
+      {/* Types Drop-down filter */}
       <select value={selectedFilter} onChange={handleFilterChange} style = {dropdownStyle}>
         <option value="All Types">All Types</option>
         <option value="Respitory">Respitory</option>
       </select>
 
-      {/* Drop-down filter */}
+      {/* Symptoms Drop-down filter */}
       <select value={selectedFilter2} onChange={handleFilterChange2} style = {dropdownStyle}>
         <option value="All Symptoms">All Symptoms</option>
         <option value="Congestion">Congestion</option>

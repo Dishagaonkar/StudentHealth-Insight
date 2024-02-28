@@ -8,6 +8,7 @@ import Nav from 'react-bootstrap/Nav';
 import { useLocation } from 'react-router-dom'
 import { useState} from 'react';
 import Login from "../Login";
+import { detectOverflow } from '@popperjs/core';
 
 
 const cardContainerStyle = {
@@ -239,11 +240,16 @@ function NotesCard() {
       <Card.Header style={cardHeader}>
         Notes
         </Card.Header >
-      <Card.Body style={cardColor}>
+      <Card.Body style={{
+        textAlign: 'left', 
+        backgroundColor: '#A2D9CE',  
+        height: '400px',
+        overflowY: 'scroll',
+      }}>
         <Card.Text>
-        <input
+        <textarea
           type="text"
-          placeholder="Enter new note"
+          placeholder="Enter a new note."
           value={newNoteText}
           onChange={(e) => setNewNoteText(e.target.value)}
           style={{
