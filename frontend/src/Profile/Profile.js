@@ -51,30 +51,10 @@ const PastEvalCard = {
   fontSize: '20px', 
 }
 
-const cardContainerStyle2 = {
-  backgroundColor: '#eeeeee', 
-};
-
 function ProfileButton() {
   return (
     <>
       <Button variant="secondary" style={editButton}>Logout</Button>{' '}
-    </>
-  );
-}
-
-function LogOutButton() {
-  return (
-    <>
-      <Button variant="secondary">Edit</Button>{' '}
-    </>
-  );
-}
-
-function NotesButton() {
-  return (
-    <>
-      <Button variant="secondary" style={editButton}>Edit</Button>{' '}
     </>
   );
 }
@@ -87,9 +67,13 @@ function EvalsButton() {
   );
 }
 
-const EditableTextNotes = ({ initialText }) => {
+const EditableTextProfile = ({ initialFirst, initialLast, initialSchool, initialEmail, initialPhone }) => {
   const [isEditing, setIsEditing] = useState(false);
-  const [text, setText] = useState(initialText);
+  const [first, setFirst] = useState(initialFirst);
+  const [last, setLast] = useState(initialLast);
+  const [school, setSchool] = useState(initialSchool);
+  const [email, setEmail] = useState(initialEmail);
+  const [phone, setPhone] = useState(initialPhone);
 
   const handleClick = () => {
     setIsEditing(true);
@@ -99,8 +83,20 @@ const EditableTextNotes = ({ initialText }) => {
     setIsEditing(false);
   };
 
-  const handleChange = (event) => {
-    setText(event.target.value);
+  const handleChangeFirst = (event) => {
+    setFirst(event.target.value);
+  };
+  const handleChangeLast = (event) => {
+    setLast(event.target.value);
+  };
+  const handleChangeSchool = (event) => {
+    setSchool(event.target.value);
+  };
+  const handleChangeEmail = (event) => {
+    setEmail(event.target.value);
+  };
+  const handleChangePhone = (event) => {
+    setPhone(event.target.value);
   };
 
   const handleBlur = () => {
@@ -111,61 +107,59 @@ const EditableTextNotes = ({ initialText }) => {
     <div>
       {isEditing ? (
         <div>
-        <textarea style={{ height: '90%', width: '80%', resize: 'both' }}
-          type="text"
-          value={text}
-          onChange={handleChange}
-          onBlur={handleBlur}
-        />
-        <br/>
-        <Button variant="secondary" onClick={handleSaveClick}>Save</Button>
-        </div>
-      ) : (
-        <div>
-        <p>{text}</p>
-        <Button variant="secondary" onClick={handleClick}>Edit</Button>{' '}
-      </div>
-      )}
-    </div>
-  );
-};
-
-const EditableTextProfile = ({ initialText }) => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [text, setText] = useState(initialText);
-
-  const handleClick = () => {
-    setIsEditing(true);
-  };
-
-  const handleSaveClick = () => {
-    setIsEditing(false);
-  };
-
-  const handleChange = (event) => {
-    setText(event.target.value);
-  };
-
-  const handleBlur = () => {
-    setIsEditing(false);
-  };
-
-  return (
-    <div>
-      {isEditing ? (
-        <div>
+          First Name:&nbsp;
         <input style={{ height: '90%', width: '80%', resize: 'both' }}
           type="text"
-          value={text}
-          onChange={handleChange}
+          value={first}
+          onChange={handleChangeFirst}
           onBlur={handleBlur}
         />
+        <br/><br/>
+        Last Name:&nbsp;
+        <input style={{ height: '90%', width: '80%', resize: 'both' }}
+          type="text"
+          value={last}
+          onChange={handleChangeLast}
+          onBlur={handleBlur}
+        />
+        <br/>
+        <br/>
+        School:&nbsp;
+        <input style={{ height: '90%', width: '80%', resize: 'both' }}
+          type="text"
+          value={school}
+          onChange={handleChangeSchool}
+          onBlur={handleBlur}
+        />
+        <br/>
+        <br/>
+        Email:&nbsp;
+        <input style={{ height: '90%', width: '80%', resize: 'both' }}
+          type="text"
+          value={email}
+          onChange={handleChangeEmail}
+          onBlur={handleBlur}
+        />
+        <br/>
+        <br/>
+        Phone:&nbsp;
+        <input style={{ height: '90%', width: '80%', resize: 'both' }}
+          type="text"
+          value={phone}
+          onChange={handleChangePhone}
+          onBlur={handleBlur}
+        />
+        <br/>
         <br/>
         <Button variant="secondary" onClick={handleSaveClick}>Save</Button>
         </div>
       ) : (
         <div>
-        <p>{text}</p>
+        <p>First Name:&nbsp;{first}</p>
+        <p>Last Name:&nbsp;{last}</p>
+        <p>School:&nbsp;{school}</p>
+        <p>Email:&nbsp;{email}</p>
+        <p>Phone:&nbsp;{phone}</p>
         <Button variant="secondary" onClick={handleClick}>Edit</Button>{' '}
       </div>
       )}
@@ -175,14 +169,17 @@ const EditableTextProfile = ({ initialText }) => {
 
 function ProfileCard() {
 
-  let fullname = "";
-  let email = ""; 
+  let firstName = "";
+  let lastName = "";
   let school = "";
+  let email = ""; // does this change their user name
+  let phone = "";
   
   try{
    const location = useLocation();
    const res = location.state;
-   fullname = res.data.firstName + " " + res.data.lastName;
+   firstName = res.data.firstName;
+   lastName = res.data.lastName;
    email = res.data.email;
    school = res.data.school;
 
@@ -199,11 +196,8 @@ function ProfileCard() {
       <Card.Body style={cardColor} >
         <Card.Title></Card.Title>
         <Card.Text>
-          Name: <EditableTextProfile initialText={fullname}/>
-          <br/>
-          School: <EditableTextProfile initialText={school}/>
-          <br/>
-          Email: <EditableTextProfile initialText={email}/>
+          <EditableTextProfile initialFirst={firstName} initialLast={lastName} initialSchool={school} initialEmail={email} initialPhone={phone}/>
+          <br/>Note:&nbsp;Editing your email will NOT change the email you use to login.
         </Card.Text>
       </Card.Body>
     </Card>
