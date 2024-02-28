@@ -1,19 +1,7 @@
 .side {
   display: flex;
   justify-content: space-between;
-}
-
-.space {
-  width: 30px; 
-}
-
-.space2 {
-  height: 30px;
-}
-
-.container {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
 }
+
 

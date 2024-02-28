@@ -39,6 +39,8 @@ const backgroundColor = {
 
 const cardColor = {
   backgroundColor: '#367EB6', 
+  width: '400px', 
+  height: '100px'
 
 }
 
@@ -243,11 +245,8 @@ const Dashboard = () => {
       <br/>
       <div className="side">
       <Card1 />
-      <div className="side" />
       <Card2 />
-      <div className="side"/>
       <Card3 />
-      
     </div>
     <p >
     <Disclaimer/>
