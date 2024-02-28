@@ -12,6 +12,7 @@ const SignUp = ({ isOpen, handleClose }) => {
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const [validEmail, setValidEmail] = useState("");
 
   const SignUpClick = async (ev) => {
@@ -52,6 +53,11 @@ const SignUp = ({ isOpen, handleClose }) => {
 
     if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
       setEmailError("Please enter a valid email");
+      return;
+    }
+
+    if ("" === password) {
+      setPasswordError("Please enter a password");
       return;
     }
   };
