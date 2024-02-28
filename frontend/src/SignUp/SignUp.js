@@ -49,17 +49,13 @@ const SignUp = ({ isOpen, handleClose }) => {
         //show message for valid login
         if (response.status === 200) {
           setEmailError(response.data.message);
+          handleClose();
         }
       } catch (error) {
         //show message for invalid login
         console.log(error.response.data);
         setEmailError(error.response.data.message);
       }
-    }
-
-    if ("" === password) {
-      setPasswordError("Please enter a password");
-      return;
     }
   };
 
