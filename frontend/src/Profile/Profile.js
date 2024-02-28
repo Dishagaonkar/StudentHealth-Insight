@@ -22,6 +22,7 @@ const cardStyle = {
   padding: '10px',
 };
 
+
 const cardHeader = {
   textAlign: 'left', 
   backgroundColor: '#FFFFFF', 
@@ -156,11 +157,11 @@ const EditableTextProfile = ({ initialFirst, initialLast, initialSchool, initial
         </div>
       ) : (
         <div>
-        <p>First Name:&nbsp;{first}</p>
-        <p>Last Name:&nbsp;{last}</p>
-        <p>School:&nbsp;{school}</p>
-        <p>Email:&nbsp;{email}</p>
-        <p>Phone:&nbsp;{phone}</p>
+        <p><strong>First Name:</strong>&nbsp;{first}</p>
+        <p><strong>Last Name:</strong>&nbsp;{last}</p>
+        <p><strong>School:</strong>&nbsp;{school}</p>
+        <p><strong>Email:</strong>&nbsp;{email}</p>
+        <p><strong>Phone:</strong>&nbsp;{phone}</p>
         <Button variant="secondary" onClick={handleClick}>Edit</Button>{' '}
       </div>
       )}
@@ -209,7 +210,7 @@ const Note = ({ id, text, onDelete }) => {
   return (
     <div>
       {text}
-      <button onClick={() => onDelete(id)} style = {{float: 'right',}}>Delete</button>
+      <Button variant="secondary" onClick={() => onDelete(id)} style = {{float: 'right',}}>Delete</Button>
       <br/><br/>
     </div>
   );
@@ -240,7 +241,7 @@ function NotesCard() {
       <Card.Header style={cardHeader}>
         Notes
         </Card.Header >
-      <Card.Body style={{
+      <Card.Body style={ {
         textAlign: 'left', 
         backgroundColor: '#A2D9CE',  
         height: '400px',
@@ -261,7 +262,7 @@ function NotesCard() {
             width: '360px',
           }}
         />
-        <button onClick={addNote} style = {{float: 'right',}}>Add Note</button>
+        <Button variant="secondary"onClick={addNote} style = {{float: 'right',}}>Add Note</Button>
           <br/> <br/>
           {notes.map((note) => (
             <Note key={note.id} id={note.id} text={note.text} onDelete={deleteNote} />
