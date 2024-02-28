@@ -12,6 +12,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
+
+
 const mainStyle = { 
   backgroundColor: '#4fa5a0', 
   padding: '20px', 
@@ -37,8 +39,7 @@ const backgroundColor = {
 
 const cardColor = {
   backgroundColor: '#367EB6', 
-  padding: '20px', 
-  display: 'flex',
+
 }
 
 const tabColor = {
@@ -242,9 +243,9 @@ const Dashboard = () => {
       <br/>
       <div className="side">
       <Card1 />
-      <div className="space" />
+      <div className="side" />
       <Card2 />
-      <div className="space" />
+      <div className="side"/>
       <Card3 />
       
     </div>
