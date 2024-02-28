@@ -9,7 +9,6 @@ const backgroundStyle = {
 
 const cardStyle = {
   backgroundColor: '#A2D9CE', 
-  margin: '10px'
 
 }
 

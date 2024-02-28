@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Button from 'react-bootstrap/Button';
 import Login from "../Login";
 import SignUp from "../SignUp";
 
@@ -55,10 +56,10 @@ const NavBar = () => {
             <Link to="evaluate" style={{ color: 'white', textDecoration: 'none' }}>Evaluate</Link>
           </li>
           <li>
-            <button onClick={handleOpenPopUp}>Login</button>
+            <Button variant="secondary" onClick={handleSignUpOpenPopUp}>Sign Up</Button>
           </li>
           <li>
-            <button onClick={handleSignUpOpenPopUp}>Sign Up</button>
+            <Button variant="secondary" onClick={handleSignUpOpenPopUp}>Sign Up</Button>
           </li>
         </ul>
       </nav>
