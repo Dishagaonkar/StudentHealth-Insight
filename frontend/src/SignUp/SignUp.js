@@ -12,7 +12,7 @@ const SignUp = ({ isOpen, handleClose }) => {
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
-  const [school, setSchool] = useState("");
+  // const [school, setSchool] = useState("");
 
   const SignUpClick = async (ev) => {
     ev.preventDefault();
@@ -44,7 +44,7 @@ const SignUp = ({ isOpen, handleClose }) => {
           lastName: lastName,
           email: email,
           password: password,
-          school: school,
+          // school: school,
         });
         //show message for valid login
         if (response.status === 200) {
@@ -104,16 +104,7 @@ const SignUp = ({ isOpen, handleClose }) => {
             />
           </div>
           <br />
-          <div className={"inputContainer"}>
-            <input
-              value={school}
-              placeholder="Enter your school here"
-              onChange={(ev) => setSchool(ev.target.value)}
-              className={"inputBox"}
-              type="school"
-            />
-          </div>
-          <br />
+
           <div className={"buttonContainer"}>
             <input
               className={"inputButton"}
