@@ -5,7 +5,7 @@ import FilteredList from '../FilteredList';
 
 const backgroundStyle = {
   backgroundColor: '#eeeeee', 
-};
+}
 
 const cardStyle = {
   backgroundColor: '#A2D9CE', 
@@ -17,8 +17,7 @@ const disclaimer2Style = {
   padding: '10px', 
   marginTop: '20px', 
   backgroundColor: '#367EB6'
-
-};
+}
 
 const footerStyle = {
   backgroundColor: '#333',
@@ -46,8 +45,16 @@ function Footer() {
   return (
     <Card style={footerStyle}>
       <Card.Body>
-        <Card.Title style={{color: 'white'}}>Resources</Card.Title>
-        <Card.Text style={{color: 'white'}}>...</Card.Text>
+        <Card.Title style={{color: 'white'}}>References</Card.Title>
+        <Card.Text style={{color: 'white'}}>
+        Centers for Disease Control and Prevention. CDC, https://www.cdc.gov/.
+        <br/>"Common Illnesses." Princeton University Health Services, https://uhs.princeton.edu/health-resources/common-illnesses.
+        <br/>"Health Issues Among College Students in the US." Statista, https://www.statista.com/statistics/826999/health-issues-among-college-students-us/.
+        <br/>Mayo Clinic. Mayo Clinic, https://www.mayoclinic.org/.
+        <br/>MedlinePlus. MedlinePlus, https://medlineplus.gov.
+        <br/>"US College Student Conditions." Statista, https://www.statista.com/statistics/1126483/us-college-student-conditions/.
+        <br/>WebMD. WebMD, https://www.webmd.com/.
+        </Card.Text>
       </Card.Body>
     </Card>
   );

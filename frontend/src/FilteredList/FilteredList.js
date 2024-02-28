@@ -30,6 +30,14 @@ const FilteredList = ({ items }) => {
     setSelectedFilter2(e.target.value);
   };
 
+  const dropdownStyle = {
+    padding: '5px',
+    fontSize: '16px',
+    borderRadius: '10px',
+    border: '1px solid #ccc',
+    marginRight: '10px',
+  }
+
   const filteredItems = items.filter(item => {
     const optionFilter = selectedFilter === 'All Types' || item.type.includes(selectedFilter);
     const optionFilter2 = selectedFilter2 === 'All Symptoms' || item.symptoms.includes(selectedFilter2);
@@ -43,35 +51,15 @@ const FilteredList = ({ items }) => {
   return (
     <div>
       {/* Drop-down filter */}
-      <select value={selectedFilter} onChange={handleFilterChange} style={{
-        padding: '5px',
-        fontSize: '16px',
-        borderRadius: '10px',
-        border: '1px solid #ccc',
-        marginRight: '10px',
-      }}>
+      <select value={selectedFilter} onChange={handleFilterChange} style = {dropdownStyle}>
         <option value="All Types">All Types</option>
-        {/* Add your filter options dynamically based on your data */}
         <option value="Respitory">Respitory</option>
-        <option value="Sexually Transmitted Disease">Sexually Transmitted Disease</option>
-        <option value="Virus">Virus</option>
-        {/* Add more options as needed */}
       </select>
 
       {/* Drop-down filter */}
-      <select value={selectedFilter2} onChange={handleFilterChange2} style={{
-        padding: '5px',
-        fontSize: '16px',
-        borderRadius: '10px',
-        border: '1px solid #ccc',
-        marginRight: '10px',
-      }}>
+      <select value={selectedFilter2} onChange={handleFilterChange2} style = {dropdownStyle}>
         <option value="All Symptoms">All Symptoms</option>
-        {/* Add your filter options dynamically based on your data */}
         <option value="Congestion">Congestion</option>
-        <option value="Fever">Fever</option>
-        <option value="Skin Irritation">Skin Irritation</option>
-        {/* Add more options as needed */}
       </select>
 
       {/* Search bar */}
