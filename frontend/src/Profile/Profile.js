@@ -110,7 +110,7 @@ const EditableTextProfile = ({ initialFirst, initialLast, initialSchool, initial
       {isEditing ? (
         <div>
           First Name:&nbsp;
-        <input style={{ height: '90%', width: '80%', resize: 'both' }}
+        <input style={{ height: '90%', width: '80%', resize: 'both', float: 'right'}}
           type="text"
           value={first}
           onChange={handleChangeFirst}
@@ -118,7 +118,7 @@ const EditableTextProfile = ({ initialFirst, initialLast, initialSchool, initial
         />
         <br/><br/>
         Last Name:&nbsp;
-        <input style={{ height: '90%', width: '80%', resize: 'both' }}
+        <input style={{ height: '90%', width: '80%', resize: 'both', float: 'right'}}
           type="text"
           value={last}
           onChange={handleChangeLast}
@@ -127,7 +127,7 @@ const EditableTextProfile = ({ initialFirst, initialLast, initialSchool, initial
         <br/>
         <br/>
         School:&nbsp;
-        <input style={{ height: '90%', width: '80%', resize: 'both' }}
+        <input style={{ height: '90%', width: '80%', resize: 'both', float: 'right'}}
           type="text"
           value={school}
           onChange={handleChangeSchool}
@@ -136,7 +136,7 @@ const EditableTextProfile = ({ initialFirst, initialLast, initialSchool, initial
         <br/>
         <br/>
         Email:&nbsp;
-        <input style={{ height: '90%', width: '80%', resize: 'both' }}
+        <input style={{ height: '90%', width: '80%', resize: 'both', float: 'right'}}
           type="text"
           value={email}
           onChange={handleChangeEmail}
@@ -145,7 +145,7 @@ const EditableTextProfile = ({ initialFirst, initialLast, initialSchool, initial
         <br/>
         <br/>
         Phone:&nbsp;
-        <input style={{ height: '90%', width: '80%', resize: 'both' }}
+        <input style={{ height: '90%', width: '80%', resize: 'both', float: 'right'}}
           type="text"
           value={phone}
           onChange={handleChangePhone}
@@ -153,7 +153,7 @@ const EditableTextProfile = ({ initialFirst, initialLast, initialSchool, initial
         />
         <br/>
         <br/>
-        <Button variant="secondary" onClick={handleSaveClick}>Save</Button>
+        <Button variant="secondary" onClick={handleSaveClick} style={{float: 'right'}} >Save</Button>
         </div>
       ) : (
         <div>
