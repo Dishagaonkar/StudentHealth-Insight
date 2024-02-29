@@ -1,6 +1,68 @@
 import React, { useState } from 'react';
 import './FilteredList.css';
-import {Dropdown, DropdownButton, Form, Button} from 'react-bootstrap';
+
+const ScrollableDropdown = ({ options, selectedValue, onChange, updateSelectedFilter }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleOptionClick = (option) => {
+    onChange(option);
+    updateSelectedFilter(option);
+    toggleDropdown();
+  };
+
+  const dropdownStyle = {
+    padding: '5px',
+    fontSize: '16px',
+    borderRadius: '10px',
+    border: '1px solid #ccc',
+    marginRight: '10px',
+    position: 'relative',
+    display: 'inline-block',
+    backgroundColor: 'white',
+    cursor: 'pointer',
+    minWidth: '150px',
+    zIndex: 1,
+  };
+
+  const dropdownListStyle = {
+    maxHeight: '300px', // Set the maximum height for the dropdown list
+    overflowY: 'scroll', // Enable vertical scrolling
+    position: 'absolute',
+    top: '100%',
+    left: '0',
+    width: 'auto',
+    backgroundColor: 'white',
+    zIndex: 2,
+  };
+
+  const dropdownItemStyle = {
+    padding: '10px',
+    cursor: 'pointer',
+    borderBottom: '1px solid #ccc',
+  };
+
+  return (
+    <div style={dropdownStyle}>
+      <div onClick={toggleDropdown}>
+        {selectedValue}
+      </div>
+      {isOpen && (
+        <div style={dropdownListStyle}>
+          {options.map((option, index) => (
+            <div key={index} style={dropdownItemStyle} onClick={() => handleOptionClick(option)}>
+              {option}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
 
 const FilteredList = ({ items }) => {
   const [selectedFilter, setSelectedFilter] = useState('All Types');
@@ -23,20 +85,20 @@ const FilteredList = ({ items }) => {
   };
 
   const handleFilterChange = (e) => {
-    setSelectedFilter(e.target.value);
+    setSelectedFilter(e.target?.value || '');
   };
 
   const handleFilterChange2 = (e) => {
-    setSelectedFilter2(e.target.value);
+    setSelectedFilter2(e.target?.value || '');
   };
 
-  const dropdownStyle = {
-    padding: '5px',
-    fontSize: '16px',
-    borderRadius: '10px',
-    border: '1px solid #ccc',
-    marginRight: '10px',
-  }
+  const updateSelectedFilter = (value) => {
+    setSelectedFilter(value);
+  };
+
+  const updateSelectedFilter2 = (value) => {
+    setSelectedFilter2(value);
+  };
 
   const filteredItems = items.filter(item => {
     const optionFilter = selectedFilter === 'All Types' || item.type.includes(selectedFilter);
@@ -47,20 +109,27 @@ const FilteredList = ({ items }) => {
     return optionFilter && optionFilter2 && searchFilter;
   });
 
+  const typesOptions = ['All Types', 'Allergen', 'Autoimmune', 'Bacterial', 'Blood', 'Chronic', 'Dental', 'Eating Disorder', 'Hormonal', 'Infection', 'Inflammation', 'Medical Emergency', 'Mental Condition', 'Neurological', 'Physical', 'Reproductive', 'Respiratory', 'Sexually Transmitted Disease', 'Skin', 'Sleep Disorder', 'Viral'];
+  const symptomsOptions = ['All Symptoms', 'Aching', 'Bleeding', 'Blisters', 'Bloating', 'Bumps', 'Burning', 'Chills', 'Constipation', 'Cough', 'Decrease in Appetite', 'Depression', 'Diarrhea', 'Discharge', 'Dizziness', 'Dry Skin', 'Fatigue', 'Feeling Fear', 'Feeling Irritable', 'Fever', 'Frequent Urination', 'Hair Loss', 'Itching', 'Jaundice', 'Muscle/Body Aches', 'Nasal Congestion', 'Nausea', 'Numbness', 'Pain', 'Rash', 'Redness', 'Runny Nose', 'Shortness of Breath', 'Skin Irritation', 'Sneezing', 'Sore Throat', 'Stiffness', 'Stomach Pain', 'Swelling', 'Tenderness', 'Trouble Concentrating', 'Trouble Sleeping', 'Vomiting', 'Weight Loss', 'Wheezing'];
+
   console.log('Popup visible:', popupVisible);
   return (
     <div>
-      {/* Types Drop-down filter */}
-      <select value={selectedFilter} onChange={handleFilterChange} style = {dropdownStyle}>
-        <option value="All Types">All Types</option>
-        <option value="Respitory">Respitory</option>
-      </select>
+       {/* Types Drop-down filter */}
+       <ScrollableDropdown
+        options={typesOptions}
+        selectedValue={selectedFilter}
+        onChange={handleFilterChange}
+        updateSelectedFilter={updateSelectedFilter}
+      />
 
       {/* Symptoms Drop-down filter */}
-      <select value={selectedFilter2} onChange={handleFilterChange2} style = {dropdownStyle}>
-        <option value="All Symptoms">All Symptoms</option>
-        <option value="Congestion">Congestion</option>
-      </select>
+      <ScrollableDropdown
+        options={symptomsOptions}
+        selectedValue={selectedFilter2}
+        onChange={handleFilterChange2}
+        updateSelectedFilter={updateSelectedFilter2}
+      />
 
       {/* Search bar */}
     <input
@@ -76,7 +145,7 @@ const FilteredList = ({ items }) => {
         width: '400px',
       }}
     />
-  
+
       {/* Display filtered list */}
       <ul className="filtered-list">
         <br/>
@@ -87,28 +156,30 @@ const FilteredList = ({ items }) => {
         ))}
       </ul>
 
-      {/* Make Popups */}
       {popupVisible !== null && (
-      <div className={`popupFiltered ${popupVisible !== null ? 'visible' : ''}`}>
-        <div className="popup-content-Filtered">
-        <button onClick={hidePopup}>Go Back</button>
-        <br/><br/>
-          <h1>{items.find((item) => item.id === popupVisible).name}</h1>
-          <h3>Type:</h3> {items.find((item) => item.id === popupVisible).type.map((i, index) => (
-            <li key={index}>- {i}<br /></li>
-          ))}
-          <h3>Symptoms:</h3> {items.find((item) => item.id === popupVisible).symptoms.map((i, index2) => (
-              <li key={index2}>- {i} <br /> </li>
-            ))}
-            <h3>More Info:</h3>
-          <p>{items.find((item) => item.id === popupVisible).description}</p>
-            <h1>Please seek medical care if any symptom is persistent, servere, or concerning.</h1>
-        </div>
+  <div className={`popupFiltered ${popupVisible !== null ? 'visible' : ''}`}>
+    <div className="popup-content-Filtered">
+      <button onClick={hidePopup}>Go Back</button>
+      <br/><br/>
+      <div className="scrollable-popup-content">
+        <h1>{items.find((item) => item.id === popupVisible).name}</h1>
+        <h3>Type:</h3>
+        {items.find((item) => item.id === popupVisible).type.map((i, index) => (
+          <li key={index}>- {i}<br /></li>
+        ))}
+        <h3>Symptoms:</h3>
+        {items.find((item) => item.id === popupVisible).symptoms.map((i, index2) => (
+          <li key={index2}>- {i} <br /> </li>
+        ))}
+        <h3>More Info:</h3>
+        <p>{items.find((item) => item.id === popupVisible).description}</p>
+        <h1>Please seek medical care if any symptom is persistent, severe, or concerning.</h1>
       </div>
-    )}
-
     </div>
-  );
+  </div>
+)}
+    </div>
+);
 };
 
 export default FilteredList;
