@@ -165,11 +165,11 @@ const FilteredList = ({ items }) => {
         <h1>{items.find((item) => item.id === popupVisible).name}</h1>
         <h3>Type:</h3>
         {items.find((item) => item.id === popupVisible).type.map((i, index) => (
-          <li key={index}>- {i}<br /></li>
+          <li key={index}>&#8226; {i}<br /></li>
         ))}
         <h3>Symptoms:</h3>
         {items.find((item) => item.id === popupVisible).symptoms.map((i, index2) => (
-          <li key={index2}>- {i} <br /> </li>
+          <li key={index2}>&#8226; {i} <br /> </li>
         ))}
         <h3>More Info:</h3>
         <p>{items.find((item) => item.id === popupVisible).description}</p>
