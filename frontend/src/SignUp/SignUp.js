@@ -6,7 +6,6 @@ import "../Login/Login.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Login from "../Login";
-import NavBar from "../NavBar/NavBar";
 
 const SignUp = ({ isOpen, handleClose }) => {
   const [email, setEmail] = useState("");
@@ -141,7 +140,12 @@ const SignUp = ({ isOpen, handleClose }) => {
           </div>
         </form>
       </div>
-      <Login isOpen={isPopUpOpen} handleClose={handleClosePopUp} />
+      <Login
+        isOpen={isPopUpOpen}
+        handleClose={handleClosePopUp}
+        updateRes={updateRes}
+        updateInactive={updateInactive}
+      />
     </div>
   );
 };
