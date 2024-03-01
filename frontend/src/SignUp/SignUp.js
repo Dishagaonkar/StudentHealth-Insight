@@ -5,6 +5,8 @@ import "../popup.css";
 import "../Login/Login.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Login from "../Login";
+import NavBar from "../NavBar/NavBar";
 
 const SignUp = ({ isOpen, handleClose }) => {
   const [email, setEmail] = useState("");
@@ -12,6 +14,24 @@ const SignUp = ({ isOpen, handleClose }) => {
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
+  const [isPopUpOpen, setPopUpOpen] = useState(false);
+  const [isInactive, setInactive] = useState(true);
+  const [res, setRes] = useState("empty");
+  const [isSignUpPopUpOpen, setSignUpPopUpOpen] = useState(false);
+  const handleOpenPopUp = () => {
+    console.log("clicked for login");
+    setPopUpOpen(true);
+  };
+  const handleClosePopUp = () => {
+    setPopUpOpen(false);
+  };
+  const updateInactive = (temp) => {
+    setInactive(temp);
+  };
+  const updateRes = (newRes) => {
+    setRes(newRes);
+  };
+
   // const [school, setSchool] = useState("");
 
   const SignUpClick = async (ev) => {
@@ -49,6 +69,7 @@ const SignUp = ({ isOpen, handleClose }) => {
         //show message for valid login
         if (response.status === 200) {
           setEmailError(response.data.message);
+          //handleOpenPopUp();
           handleClose();
         }
       } catch (error) {
@@ -113,6 +134,12 @@ const SignUp = ({ isOpen, handleClose }) => {
               value={"Sign Up"}
             />
             <label className="errorLabel">{emailError}</label>
+            <Login
+              isOpen={isPopUpOpen}
+              handleClose={handleClosePopUp}
+              updateRes={updateRes}
+              updateInactive={updateInactive}
+            />
           </div>
         </form>
       </div>
