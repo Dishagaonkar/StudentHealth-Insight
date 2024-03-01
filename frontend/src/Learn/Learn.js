@@ -987,7 +987,7 @@ const Learn = () => {
       type: ["Inflammation"],
       symptoms: ["Bumps", "Itching", "Pain"],
       description:
-        "Hemorrhoids is when veins lining the anal canal become inflamed/swollen. It can happen to anyone and is very common. It is caused by increased pressure on the lower body, such as straining on the toilet, constipation, diarrhea, obesity, pregnancy, childbirth, and lifting heavy objects. Most cases are mild and can go away on their own. However, if symptoms are more severe, then it could lead to other complications (prolases & thrombosis) which would need medical attention.",
+        "Hemorrhoids are when veins lining the anal canal become inflamed/swollen. It can happen to anyone and is very common. It is caused by increased pressure on the lower body, such as straining on the toilet, constipation, diarrhea, obesity, pregnancy, childbirth, and lifting heavy objects. Most cases are mild and can go away on their own. However, if symptoms are more severe, then it could lead to other complications (prolases & thrombosis) which would need medical attention.",
     },
     {
       id: 80,
