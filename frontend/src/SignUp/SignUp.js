@@ -32,6 +32,10 @@ const SignUp = ({ isOpen, handleClose }) => {
     setRes(newRes);
   };
 
+  const handleSignUpClosePopUp = () => {
+    setSignUpPopUpOpen(false);
+  };
+
   // const [school, setSchool] = useState("");
 
   const SignUpClick = async (ev) => {
@@ -69,8 +73,8 @@ const SignUp = ({ isOpen, handleClose }) => {
         //show message for valid login
         if (response.status === 200) {
           setEmailError(response.data.message);
-          //handleOpenPopUp();
-          handleClose();
+          handleSignUpClosePopUp();
+          handleOpenPopUp();
         }
       } catch (error) {
         //show message for invalid login
@@ -134,15 +138,10 @@ const SignUp = ({ isOpen, handleClose }) => {
               value={"Sign Up"}
             />
             <label className="errorLabel">{emailError}</label>
-            <Login
-              isOpen={isPopUpOpen}
-              handleClose={handleClosePopUp}
-              updateRes={updateRes}
-              updateInactive={updateInactive}
-            />
           </div>
         </form>
       </div>
+      <Login isOpen={isPopUpOpen} handleClose={handleClosePopUp} />
     </div>
   );
 };
