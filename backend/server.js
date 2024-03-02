@@ -21,7 +21,8 @@ app.post("/signup", async (req, res) => {
     firstName:req.body.firstName,
     lastName:req.body.lastName,
     email:req.body.email,
-    password:req.body.password
+    password:req.body.password,
+    school:req.body.school
   }
 
   insertDocument(data, res);
@@ -55,8 +56,6 @@ app.get("/userInfo", (req, res) => {
   }
 });
 */
-
-
 
 
 app.listen(8000, () => {

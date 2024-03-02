@@ -1,6 +1,6 @@
 //source referenced : https://www.youtube.com/watch?v=KZB6gtKQ9_I&t=511s & https://codedamn.com/news/reactjs/how-to-connect-react-with-node-js
-//https://blog.logrocket.com/how-to-use-axios-post-requests/ 
-import React, { useEffect,useState } from "react";
+//https://blog.logrocket.com/how-to-use-axios-post-requests/
+import React, { useEffect, useState } from "react";
 import "../popup.css";
 import "../Login/Login.css";
 import { useNavigate } from "react-router-dom";
@@ -9,77 +9,51 @@ import axios from "axios";
 // create res outside of component
 let res = "empty";
 
-export const Login = ({ isOpen, handleClose, updateRes }) => {
+export const Login = ({ isOpen, handleClose, updateRes, updateInactive }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
-  const [userData, setUserData] = useState("");
-  
+
   const navigate = useNavigate();
 
-  console.log(res, "without login click");
-
   const LoginClick = async (ev) => {
-     ev.preventDefault();
+    ev.preventDefault();
 
-     // Set initial error values to empty
-      setEmailError("");
-      //console.log(validEmail); //FIXME
+    // Set initial error values to empty
+    setEmailError("");
+    //console.log(validEmail); //FIXME
 
-      // Check if the user has entered both fields correctly
-      if ("" === email) {
-        setEmailError("Please enter your email");
-        return;
-
-      }else if ("" === password) {
-        setEmailError("Please enter your password");
-        return;
-
-      }else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
-        setEmailError("Please enter a valid email");
-        return;
-
-      }else{
-  
-        try {
-          const response = await axios.post("http://localhost:8000/login", {
+    // Check if the user has entered both fields correctly
+    if ("" === email) {
+      setEmailError("Please enter your email");
+      return;
+    } else if ("" === password) {
+      setEmailError("Please enter your password");
+      return;
+    } else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+      setEmailError("Please enter a valid email");
+      return;
+    } else {
+      try {
+        const response = await axios.post("http://localhost:8000/login", {
           email: email,
-          password: password
-        })
-        
-           //show message for valid login
-          if (response.status === 200) {
-            setEmailError(response.data.message);
-            updateRes(response.data.content);
-          }
+          password: password,
+        });
 
-          res = response.data.content;
-    
-          console.log(res, "after login click");
-
-          /*
-          try{
-            
-            await axios.post('userInfo', {
-              email: email,
-              password: password })
-              .then(response => {
-                setUser(response.data);
-              });
-              //how to interchange between login and profile page 
-          }
-          catch(error){
-            console.log('Error fetching user data:', error);
-
-          }
-          */
-
-        } catch (error) {
-          //show message for invalid login
-          console.log(error.response.data);
-          setEmailError(error.response.data.message);
+        //show message for valid login
+        if (response.status === 200) {
+          setEmailError(response.data.message);
+          res = response.data.content[0];
+          updateRes(res);
+          updateInactive(false);
+          handleClose();
         }
+      } catch (error) {
+        //show message for invalid login
+        console.log(error.response.data);
+        setEmailError(error.response.data.message);
       }
+    }
   };
 
   return (

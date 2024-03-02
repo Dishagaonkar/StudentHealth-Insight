@@ -8,7 +8,7 @@ const cors = require('cors');
 const uri = "mongodb+srv://StudentHealth:Gators24!@studenthealthinsight.gbgld4q.mongodb.net/student-health-user";
 const name = 'StudentHealthInsight';
 
-const User = mongoose.model('logins', {firstName: String, lastName: String, email: String, password: String});
+const User = mongoose.model('logins', {firstName: String, lastName: String, email: String, password: String, school: String});
 
 
 async function connectDB() {

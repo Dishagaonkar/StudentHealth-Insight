@@ -11,7 +11,6 @@ import './Dashboard.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-
 const mainStyle = { 
   backgroundColor: '#4fa5a0', 
   padding: '20px', 
@@ -37,7 +36,9 @@ const backgroundColor = {
 
 const cardColor = {
   backgroundColor: '#367EB6', 
-  padding: '20px', 
+  width: '400px', 
+  height: '100px'
+
 }
 
 const tabColor = {
@@ -89,6 +90,7 @@ function Info() {
       <Accordion.Item eventKey="0">
         <Accordion.Header>What is StudentHealth-Insight?</Accordion.Header>
         <Accordion.Body>
+          <h3></h3>
         StudentHealth-Insight is a web application that educates college 
         students about common illnesses and injuries. Our focus is student health 
         care awareness, especially the most common illnesses/diseases. Our goal is to
@@ -102,44 +104,61 @@ function Info() {
         <Accordion.Header>How to Get Started</Accordion.Header>
         <Accordion.Body>
           <h3>Login or Signup:</h3> 
-          - If you are a new user, click the sign up button and enter your information!
+          &#8226; If you are a new user, click the sign up button and enter your information!
           <br />
-          - Already signed up? Click the login button and Log in into your account!
+          &#8226; Already signed up? Click the login button and Log in into your account!
           <br />
           <br />
           <h3>Why create an account?</h3>
-          - Write notes to help manage your health!
+          &#8226; Write notes to help manage your health!
           <br />
-          - Save past evaluations for access to them later!
+          &#8226; Save past evaluations for access to them later!
           <br />
           <br />
           Explore each tab to see how you can take care of your health!
         </Accordion.Body>
       </Accordion.Item>
       <Accordion.Item eventKey="2">
+        <Accordion.Header>Our Features</Accordion.Header>
+        <Accordion.Body>
+          <h3>Learn</h3> 
+          &#8226; Learn about the most common illness that affect college students!
+          <br />
+          &#8226; Filter the information by illness types or symptoms, or just search by the illness's name!
+          <br />
+          <br />
+          <h3>Nearby Help</h3>
+          &#8226; Easily locate medical professionals near you!
+          <br />
+          <br />
+          <h3>Evaluate</h3>
+          &#8226; Take a survey to see what illness you MIGHT have!
+        </Accordion.Body>
+      </Accordion.Item>
+      <Accordion.Item eventKey="3">
         <Accordion.Header>Basic Health & Hygiene Practices</Accordion.Header>
         <Accordion.Body>
-          - Wash hands thouroughly with soap and water (at least 20 sec), especially before eating or preparing food and after coughing, sneezing, or using the bathroom
+        &#8226; Wash hands thouroughly with soap and water (at least 20 sec), especially before eating or preparing food and after coughing, sneezing, or using the bathroom
+        <br />
+          &#8226; Cover your mouth and nose when choughing or sneezing
           <br />
-          - Take regular showers/baths
+          &#8226; Use safe sex practices (protection & regular reproductive check-ups)
+          <br />
+          &#8226; Maintain a regular sleep schedule
+          <br />
+          &#8226; Stay physically active
+          <br />
+          &#8226; Find ways to appropriately manage stress
+          <br />
+          &#8226; Drink plenty of water
+          <br />
+          &#8226; Take regular showers/baths
           <br /> 
-          - Brush teeth at least twice a day & floss daily
+          &#8226; Brush teeth at least twice a day & floss daily
           <br />     
-          - Maintain regular doctors visits, including the dentist
+          &#8226; Maintain regular doctors visits, including the dentist
           <br />
-          - Cover your mouth and nose when choughing or sneezing
-          <br />
-          - Maintain a regular sleep schedule
-          <br />
-          - Stay physically active
-          <br />
-          - Find ways to appropriately manage stress
-          <br />
-          - Use safe sex practices (protection & regular reproductive check-ups)
-          <br />
-          - Drink plenty of water
-          <br />
-          - Stay up-to-date with vaccinations and medications (take medications responsibly)
+          &#8226; Stay up-to-date with vaccinations and medications (take medications responsibly)
           <br />
         </Accordion.Body>
       </Accordion.Item>
@@ -238,15 +257,11 @@ const Dashboard = () => {
         A web application to help college students maintain their health!
       </p>
       <Info />
-      <br/>
-      <div className="side">
+      {/* <div className="side">
       <Card1 />
-      <div className="space" />
       <Card2 />
-      <div className="space" />
       <Card3 />
-      
-    </div>
+    </div> */}
     <p >
     <Disclaimer/>
     </p>

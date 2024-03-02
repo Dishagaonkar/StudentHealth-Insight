@@ -12,6 +12,7 @@ const SignUp = ({ isOpen, handleClose }) => {
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
+  // const [school, setSchool] = useState("");
 
   const SignUpClick = async (ev) => {
     ev.preventDefault();
@@ -21,44 +22,40 @@ const SignUp = ({ isOpen, handleClose }) => {
     //console.log(validEmail); //FIXME
 
     // Check if the user has entered fields correctly
-    if("" === firstName){
+    if ("" === firstName) {
       setEmailError("Please enter your first name");
       return;
-
-    }else if("" === lastName){
+    } else if ("" === lastName) {
       setEmailError("Please enter your last name");
       return;
-    
-    }else if ("" === email) {
+    } else if ("" === email) {
       setEmailError("Please enter your email");
       return;
-
-    }else if ("" === password) {
+    } else if ("" === password) {
       setEmailError("Please enter your password");
       return;
-    
-    }else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+    } else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
       setEmailError("Please enter a valid email");
       return;
-
-    }else{
+    } else {
       try {
         const response = await axios.post("http://localhost:8000/signup", {
           firstName: firstName,
           lastName: lastName,
           email: email,
           password: password,
+          // school: school,
         });
         //show message for valid login
         if (response.status === 200) {
           setEmailError(response.data.message);
+          handleClose();
         }
       } catch (error) {
         //show message for invalid login
         console.log(error.response.data);
         setEmailError(error.response.data.message);
       }
-
     }
   };
 
@@ -107,6 +104,7 @@ const SignUp = ({ isOpen, handleClose }) => {
             />
           </div>
           <br />
+
           <div className={"buttonContainer"}>
             <input
               className={"inputButton"}
