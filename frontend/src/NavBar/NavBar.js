@@ -66,10 +66,10 @@ const NavBar = () => {
             <Link to="evaluate" style={{ color: 'white', textDecoration: 'none' }}>Evaluate</Link>
           </li>
           <li>
-            <Button variant="secondary" onClick={handleOpenPopUp}>Login</Button>
+            <Button variant="secondary" onClick={(e) => {if(isInactive){handleOpenPopUp}}}>Login</Button>
           </li>
           <li>
-            <Button variant="secondary" onClick={handleSignUpOpenPopUp}>Sign Up</Button>
+            <Button variant="secondary" onClick={(e) => {if(isInactive){handleSignUpOpenPopUp}}}>Sign Up</Button>
           </li>
         </ul>
       </nav>
