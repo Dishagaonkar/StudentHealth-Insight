@@ -5,7 +5,7 @@
 
 const express = require('express');
 const cors = require('cors');
-const { connectDB, findDB, insertDocument, validateLogin } = require("./mongoLogistics");
+const { connectDB, findDB, insertDocument, validateLogin, updateProfileInfo } = require("./mongoLogistics");
 
 const app = express();
 
@@ -41,13 +41,14 @@ app.post("/login", async(req, res) => {
 });
 
 app.post("/editprofile", async(req,res) => {
+
    const data = {
-    originalEmail: originalEmail,
-    first: first,
-    last: last,
-    school: school,
-    email: email,
-    phone: phone
+    originalEmail: req.body.originalEmail,
+    first: req.body.first,
+    last: req.body.last,
+    school: req.body.school,
+    email: req.body.email,
+    phone: req.body.phone
    }
 
    console.log("in app.post");

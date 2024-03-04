@@ -84,10 +84,10 @@ export const EditableTextProfile = ({ initialFirst, initialLast, initialSchool, 
   };
 
   const handleSaveClick  = async (ev) => {
+    
     ev.preventDefault();
-    console.log("outside of try catch");
+
     try{
-      console.log("hello");
       const response = await axios.post("http://localhost:8000/editprofile", {
             originalEmail: originalEmail,
             first: first,
@@ -100,8 +100,6 @@ export const EditableTextProfile = ({ initialFirst, initialLast, initialSchool, 
     }catch(error){
       console.log(error.response.data);
     }
-
-    console.log("outside of try catch");
 
     setIsEditing(false);
   };
@@ -120,14 +118,14 @@ export const EditableTextProfile = ({ initialFirst, initialLast, initialSchool, 
         <input style={{ height: '90%', width: '80%', resize: 'both', float: 'right'}}
           type="text"
           onChange={(ev) => setFirst(ev.target.value)}
-          onBlur={handleBlur}
+          className={"inputBox"}
         />
         <br/><br/>
         Last Name:&nbsp;
         <input style={{ height: '90%', width: '80%', resize: 'both', float: 'right'}}
           type="text"
           onChange={(ev) => setLast(ev.target.value)}
-          onBlur={handleBlur}
+          className={"inputBox"}
         />
         <br/>
         <br/>
@@ -135,7 +133,7 @@ export const EditableTextProfile = ({ initialFirst, initialLast, initialSchool, 
         <input style={{ height: '90%', width: '80%', resize: 'both', float: 'right'}}
           type="text"
           onChange={(ev) => setSchool(ev.target.value)}
-          onBlur={handleBlur}
+          className={"inputBox"}
         />
         <br/>
         <br/>
@@ -143,7 +141,7 @@ export const EditableTextProfile = ({ initialFirst, initialLast, initialSchool, 
         <input style={{ height: '90%', width: '80%', resize: 'both', float: 'right'}}
           type="text"
           onChange={(ev) => setEmail(ev.target.value)}
-          onBlur={handleBlur}
+          className={"inputBox"}
         />
         <br/>
         <br/>
@@ -151,7 +149,7 @@ export const EditableTextProfile = ({ initialFirst, initialLast, initialSchool, 
         <input style={{ height: '90%', width: '80%', resize: 'both', float: 'right'}}
           type="text"
           onChange={(ev) => setPhone(ev.target.value)}
-          onBlur={handleBlur}
+          className={"inputBox"}
         />
         <br/>
         <br/>
@@ -321,7 +319,6 @@ const Profile = () => {
     }
   }, [location.state]); 
   */
-
 
 
   return (
