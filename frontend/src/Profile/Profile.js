@@ -6,10 +6,10 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Nav from 'react-bootstrap/Nav';
 import { useLocation } from 'react-router-dom'
-import { useState} from 'react';
+import { useState, useEffect} from 'react';
 import Login from "../Login";
 import { detectOverflow } from '@popperjs/core';
-
+import axios from "axios";
 
 const cardContainerStyle = {
   display: 'flex',
@@ -69,59 +69,64 @@ function EvalsButton() {
   );
 }
 
-const EditableTextProfile = ({ initialFirst, initialLast, initialSchool, initialEmail, initialPhone }) => {
+export const EditableTextProfile = ({ initialFirst, initialLast, initialSchool, initialEmail, initialPhone }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [first, setFirst] = useState(initialFirst);
   const [last, setLast] = useState(initialLast);
   const [school, setSchool] = useState(initialSchool);
   const [email, setEmail] = useState(initialEmail);
   const [phone, setPhone] = useState(initialPhone);
+  const [originalEmail, setOriginal] = useState(initialEmail);
 
   const handleClick = () => {
     setIsEditing(true);
+
   };
 
-  const handleSaveClick = () => {
+  const handleSaveClick  = async (ev) => {
+    ev.preventDefault();
+    console.log("outside of try catch");
+    try{
+      console.log("hello");
+      const response = await axios.post("http://localhost:8000/editprofile", {
+            originalEmail: originalEmail,
+            first: first,
+            last: last,
+            school: school,
+            email: email,
+            phone: phone
+      });
+  
+    }catch(error){
+      console.log(error.response.data);
+    }
+
+    console.log("outside of try catch");
+
     setIsEditing(false);
-  };
-
-  const handleChangeFirst = (event) => {
-    setFirst(event.target.value);
-  };
-  const handleChangeLast = (event) => {
-    setLast(event.target.value);
-  };
-  const handleChangeSchool = (event) => {
-    setSchool(event.target.value);
-  };
-  const handleChangeEmail = (event) => {
-    setEmail(event.target.value);
-  };
-  const handleChangePhone = (event) => {
-    setPhone(event.target.value);
   };
 
   const handleBlur = () => {
     setIsEditing(false);
   };
 
+
   return (
     <div>
       {isEditing ? (
         <div>
+          <form onSubmit={handleSaveClick}>
           First Name:&nbsp;
         <input style={{ height: '90%', width: '80%', resize: 'both', float: 'right'}}
           type="text"
-          value={first}
-          onChange={handleChangeFirst}
+          onChange={(ev) => setFirst(ev.target.value)}
           onBlur={handleBlur}
         />
         <br/><br/>
         Last Name:&nbsp;
         <input style={{ height: '90%', width: '80%', resize: 'both', float: 'right'}}
           type="text"
-          value={last}
-          onChange={handleChangeLast}
+          onChange={(ev) => setLast(ev.target.value)}
           onBlur={handleBlur}
         />
         <br/>
@@ -129,8 +134,7 @@ const EditableTextProfile = ({ initialFirst, initialLast, initialSchool, initial
         School:&nbsp;
         <input style={{ height: '90%', width: '80%', resize: 'both', float: 'right'}}
           type="text"
-          value={school}
-          onChange={handleChangeSchool}
+          onChange={(ev) => setSchool(ev.target.value)}
           onBlur={handleBlur}
         />
         <br/>
@@ -138,8 +142,7 @@ const EditableTextProfile = ({ initialFirst, initialLast, initialSchool, initial
         Email:&nbsp;
         <input style={{ height: '90%', width: '80%', resize: 'both', float: 'right'}}
           type="text"
-          value={email}
-          onChange={handleChangeEmail}
+          onChange={(ev) => setEmail(ev.target.value)}
           onBlur={handleBlur}
         />
         <br/>
@@ -147,13 +150,13 @@ const EditableTextProfile = ({ initialFirst, initialLast, initialSchool, initial
         Phone:&nbsp;
         <input style={{ height: '90%', width: '80%', resize: 'both', float: 'right'}}
           type="text"
-          value={phone}
-          onChange={handleChangePhone}
+          onChange={(ev) => setPhone(ev.target.value)}
           onBlur={handleBlur}
         />
         <br/>
         <br/>
-        <Button variant="secondary" onClick={handleSaveClick} style={{float: 'right'}} >Save</Button>
+        <input className={"inputButton"} onClick={handleSaveClick} type="submit" value={"Save"} />
+        </form>
         </div>
       ) : (
         <div>
@@ -166,6 +169,7 @@ const EditableTextProfile = ({ initialFirst, initialLast, initialSchool, initial
       </div>
       )}
     </div>
+    
   );
 };
 
@@ -184,6 +188,7 @@ function ProfileCard() {
    lastName = res.data.lastName;
    email = res.data.email;
    school = res.data.school;
+
 
   }catch(error){
     console.log(error);
@@ -287,6 +292,38 @@ function PastEvaluations() {
 }
 
 const Profile = () => {
+
+  /*
+  
+  const [isPopUpOpen, setPopUpOpen] = useState(false);
+  const [isInactive, setInactive] = useState(true);
+  const [res, setRes] = useState("empty");
+
+  const handleOpenPopUp = () => {
+    console.log("clicked for login");
+    setPopUpOpen(true);
+  };
+  const handleClose = () => {
+    setPopUpOpen(false);
+  };
+  const updateInactive = (temp) => {
+    setInactive(temp);
+  };
+
+  const updateRes = (newRes) => { setRes(newRes); };
+
+  const location = useLocation();
+
+  useEffect(() => {
+    const res = location.state;
+    if (res === null) {
+      handleOpenPopUp();
+    }
+  }, [location.state]); 
+  */
+
+
+
   return (
     <div style={backgroundColor}>
       <div style={cardContainerStyle}>

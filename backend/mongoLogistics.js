@@ -62,6 +62,31 @@ async function insertDocument(data, res) {
 
 }
 
+async function updateProfileInfo(data, res){
+
+  console.log("in update profile info");
+
+  try{
+    const dataFilter = { originalEmail: data.originalEmail};
+    const updatedVersion = {
+      first: data.first,
+      last: data.last,
+      school: data.school,
+      email: data.email,
+      phone: data.phone
+    }
+
+    let result = await User.findOneAndUpdate(dataFilter, updatedVersion);
+    console.log(result);
+    res.status(200).json({ message: "Profile updated!" });
+
+  }catch(error){
+    console.error("Could not update profile", error);
+  }
+
+
+}
+
 async function validateLogin(data, res){
 
   let emailFound = await findDB(data.email);
@@ -85,4 +110,4 @@ async function validateLogin(data, res){
   }
 
 }
-module.exports = { connectDB, findDB, insertDocument, validateLogin };
+module.exports = { connectDB, findDB, insertDocument, updateProfileInfo, validateLogin};
