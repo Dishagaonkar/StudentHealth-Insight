@@ -54,6 +54,8 @@ const NavBar = () => {
               onClick={(e) => {
                 if (isInactive) {
                   e.preventDefault();
+                  console.log(data);
+                  console.log("is inactive profile");
                 }
               }}
               style={{ color: "white", textDecoration: "none" }}
@@ -105,7 +107,12 @@ const NavBar = () => {
         updateRes={updateRes}
         updateInactive={updateInactive}
       />
-      <SignUp isOpen={isSignUpPopUpOpen} handleClose={handleSignUpClosePopUp} />
+      <SignUp
+        isOpen={isSignUpPopUpOpen}
+        handleClose={handleSignUpClosePopUp}
+        updateRes={updateRes}
+        updateInactive={updateInactive}
+      />
     </div>
   );
 };

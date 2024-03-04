@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Login from "../Login";
 
-const SignUp = ({ isOpen, handleClose }) => {
+const SignUp = ({ isOpen, handleClose, updateRes, updateInactive }) => {
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -20,15 +20,6 @@ const SignUp = ({ isOpen, handleClose }) => {
   const handleOpenPopUp = () => {
     console.log("clicked for login");
     setPopUpOpen(true);
-  };
-  const handleClosePopUp = () => {
-    setPopUpOpen(false);
-  };
-  const updateInactive = (temp) => {
-    setInactive(temp);
-  };
-  const updateRes = (newRes) => {
-    setRes(newRes);
   };
 
   const handleSignUpClosePopUp = () => {
@@ -71,6 +62,7 @@ const SignUp = ({ isOpen, handleClose }) => {
         });
         //show message for valid login
         if (response.status === 200) {
+          updateInactive(false);
           setEmailError(response.data.message);
           handleSignUpClosePopUp();
           handleOpenPopUp();
@@ -142,7 +134,7 @@ const SignUp = ({ isOpen, handleClose }) => {
       </div>
       <Login
         isOpen={isPopUpOpen}
-        handleClose={handleClosePopUp}
+        handleClose={handleClose}
         updateRes={updateRes}
         updateInactive={updateInactive}
       />
