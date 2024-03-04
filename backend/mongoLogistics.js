@@ -8,7 +8,7 @@ const cors = require('cors');
 const uri = "mongodb+srv://StudentHealth:Gators24!@studenthealthinsight.gbgld4q.mongodb.net/student-health-user";
 const name = 'StudentHealthInsight';
 
-const User = mongoose.model('logins', {firstName: String, lastName: String, email: String, password: String, school: String});
+const User = mongoose.model('logins', {firstName: String, lastName: String, email: String, password: String, school: String, phone: String});
 
 
 async function connectDB() {
@@ -62,6 +62,30 @@ async function insertDocument(data, res) {
 
 }
 
+async function updateProfileInfo(data, res){
+
+  console.log("in update profile info");
+
+  try{
+    const dataFilter = { email: data.originalEmail};
+    const updatedVersion = {
+      firstName: data.first,
+      lastName: data.last,
+      email: data.email,
+      school: data.school,
+      phone: data.phone
+    }
+
+    let result = await User.findOneAndUpdate(dataFilter, updatedVersion);
+    res.status(200).json({ message: "Profile updated!" });
+
+  }catch(error){
+    console.error("Could not update profile", error);
+  }
+
+
+}
+
 async function validateLogin(data, res){
 
   let emailFound = await findDB(data.email);
@@ -85,4 +109,4 @@ async function validateLogin(data, res){
   }
 
 }
-module.exports = { connectDB, findDB, insertDocument, validateLogin };
+module.exports = { connectDB, findDB, insertDocument, updateProfileInfo, validateLogin};

@@ -5,7 +5,7 @@
 
 const express = require('express');
 const cors = require('cors');
-const { connectDB, findDB, insertDocument, validateLogin } = require("./mongoLogistics");
+const { connectDB, findDB, insertDocument, validateLogin, updateProfileInfo } = require("./mongoLogistics");
 
 const app = express();
 
@@ -40,22 +40,22 @@ app.post("/login", async(req, res) => {
 
 });
 
+app.post("/editprofile", async(req,res) => {
 
-/*
+   const data = {
+    originalEmail: req.body.originalEmail,
+    first: req.body.first,
+    last: req.body.last,
+    school: req.body.school,
+    email: req.body.email,
+    phone: req.body.phone
+   }
 
-app.get("/userInfo", (req, res) => {
-  try{
-    const user = users.find({email: req.email, password: req.password});
-    console.log(user);
-    res.json(user);
+   console.log("in app.post");
 
-  }
-  catch(error){
-    return res.status(404).json({ message: "Couldn't find user!" });
+   updateProfileInfo(data, res);
 
-  }
 });
-*/
 
 
 app.listen(8000, () => {
