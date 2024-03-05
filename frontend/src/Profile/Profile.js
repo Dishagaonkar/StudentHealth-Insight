@@ -179,6 +179,7 @@ function ProfileCard() {
   let email = ""; // does this change their user name
   let phone = "";
   
+  
   try{
    const location = useLocation();
    const res = location.state;
@@ -191,6 +192,8 @@ function ProfileCard() {
   }catch(error){
     console.log(error);
   }
+  
+  
 
   return (
     <Card className="text-center" >
@@ -222,15 +225,38 @@ const Note = ({ id, text, onDelete }) => {
 function NotesCard() {
   const [notes, setNotes] = useState([]);
   const [newNoteText, setNewNoteText] = useState('');
+
+  let email = "";
+
+  try{
+    const location = useLocation();
+    const res = location.state;
+    email = res.data.email;
   
-  const addNote = () => {
-    if (newNoteText.trim() !== '') {
+   }catch(error){
+     console.log(error);
+   }
+  
+  const addNote  = async (ev) => {
+    if (newNoteText.trim() !== '' && email != "") {
       const newNote = {
-        id: new Date().getTime(),
+        email: email,
+        time: new Date().getTime(),
         text: newNoteText,
       };
-      setNotes((prevNotes) => [...prevNotes, newNote]);
-      setNewNoteText('');
+      try{
+        let response = await axios.post("http://localhost:8000/insertNote", newNote);
+        const note = {
+          email: response.data.note.email,
+          text: response.data.note.text,
+          time: response.data.note.time
+        }
+        setNotes((prevNotes) => [...prevNotes, note]);
+        setNewNoteText('');
+      }catch(error){
+        console.log(error.response.data);
+      }
+      
     }
   };
   
@@ -241,6 +267,7 @@ function NotesCard() {
 
   return (
     <Card className="text-center" >
+      <form onSubmit={addNote}>
       <Card.Header style={cardHeader}>
         Notes
         </Card.Header >
@@ -255,7 +282,7 @@ function NotesCard() {
           type="text"
           placeholder="Enter a new note."
           value={newNoteText}
-          onChange={(e) => setNewNoteText(e.target.value)}
+          onChange={(ev) => setNewNoteText(ev.target.value)}
           style={{
             padding: '5px',
             fontSize: '16px',
@@ -272,6 +299,7 @@ function NotesCard() {
           ))}
         </Card.Text>
       </Card.Body>
+      </form>
     </Card>
   );
 }
@@ -290,6 +318,7 @@ function PastEvaluations() {
 }
 
 const Profile = () => {
+
 
   /*
   
@@ -319,6 +348,10 @@ const Profile = () => {
     }
   }, [location.state]); 
   */
+
+  //<Login isOpen={isPopUpOpen} handleClose={handleClose} updateRes={updateRes} updateInactive={updateInactive} />
+
+  
 
 
   return (
