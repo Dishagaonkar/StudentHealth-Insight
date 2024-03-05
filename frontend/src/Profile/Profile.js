@@ -6,10 +6,10 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Nav from 'react-bootstrap/Nav';
 import { useLocation } from 'react-router-dom'
-import { useState} from 'react';
+import { useState, useEffect} from 'react';
 import Login from "../Login";
 import { detectOverflow } from '@popperjs/core';
-
+import axios from "axios";
 
 const cardContainerStyle = {
   display: 'flex',
@@ -69,91 +69,92 @@ function EvalsButton() {
   );
 }
 
-const EditableTextProfile = ({ initialFirst, initialLast, initialSchool, initialEmail, initialPhone }) => {
+export const EditableTextProfile = ({ initialFirst, initialLast, initialSchool, initialEmail, initialPhone }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [first, setFirst] = useState(initialFirst);
   const [last, setLast] = useState(initialLast);
   const [school, setSchool] = useState(initialSchool);
   const [email, setEmail] = useState(initialEmail);
   const [phone, setPhone] = useState(initialPhone);
+  const [originalEmail, setOriginal] = useState(initialEmail);
 
   const handleClick = () => {
     setIsEditing(true);
+
   };
 
-  const handleSaveClick = () => {
+  const handleSaveClick  = async (ev) => {
+    
+    ev.preventDefault();
+
+    try{
+      const response = await axios.post("http://localhost:8000/editprofile", {
+            originalEmail: originalEmail,
+            first: first,
+            last: last,
+            school: school,
+            email: email,
+            phone: phone
+      });
+  
+    }catch(error){
+      console.log(error.response.data);
+    }
+
     setIsEditing(false);
-  };
-
-  const handleChangeFirst = (event) => {
-    setFirst(event.target.value);
-  };
-  const handleChangeLast = (event) => {
-    setLast(event.target.value);
-  };
-  const handleChangeSchool = (event) => {
-    setSchool(event.target.value);
-  };
-  const handleChangeEmail = (event) => {
-    setEmail(event.target.value);
-  };
-  const handleChangePhone = (event) => {
-    setPhone(event.target.value);
   };
 
   const handleBlur = () => {
     setIsEditing(false);
   };
 
+
   return (
     <div>
       {isEditing ? (
         <div>
+          <form onSubmit={handleSaveClick}>
           First Name:&nbsp;
         <input style={{ height: '90%', width: '80%', resize: 'both', float: 'right'}}
           type="text"
-          value={first}
-          onChange={handleChangeFirst}
-          onBlur={handleBlur}
+          onChange={(ev) => setFirst(ev.target.value)}
+          className={"inputBox"}
         />
         <br/><br/>
         Last Name:&nbsp;
         <input style={{ height: '90%', width: '80%', resize: 'both', float: 'right'}}
           type="text"
-          value={last}
-          onChange={handleChangeLast}
-          onBlur={handleBlur}
+          onChange={(ev) => setLast(ev.target.value)}
+          className={"inputBox"}
         />
         <br/>
         <br/>
         School:&nbsp;
         <input style={{ height: '90%', width: '80%', resize: 'both', float: 'right'}}
           type="text"
-          value={school}
-          onChange={handleChangeSchool}
-          onBlur={handleBlur}
+          onChange={(ev) => setSchool(ev.target.value)}
+          className={"inputBox"}
         />
         <br/>
         <br/>
         Email:&nbsp;
         <input style={{ height: '90%', width: '80%', resize: 'both', float: 'right'}}
           type="text"
-          value={email}
-          onChange={handleChangeEmail}
-          onBlur={handleBlur}
+          onChange={(ev) => setEmail(ev.target.value)}
+          className={"inputBox"}
         />
         <br/>
         <br/>
         Phone:&nbsp;
         <input style={{ height: '90%', width: '80%', resize: 'both', float: 'right'}}
           type="text"
-          value={phone}
-          onChange={handleChangePhone}
-          onBlur={handleBlur}
+          onChange={(ev) => setPhone(ev.target.value)}
+          className={"inputBox"}
         />
         <br/>
         <br/>
-        <Button variant="secondary" onClick={handleSaveClick} style={{float: 'right'}} >Save</Button>
+        <input className={"inputButton"} onClick={handleSaveClick} type="submit" value={"Save"} />
+        </form>
         </div>
       ) : (
         <div>
@@ -166,6 +167,7 @@ const EditableTextProfile = ({ initialFirst, initialLast, initialSchool, initial
       </div>
       )}
     </div>
+    
   );
 };
 
@@ -177,6 +179,7 @@ function ProfileCard() {
   let email = ""; // does this change their user name
   let phone = "";
   
+  
   try{
    const location = useLocation();
    const res = location.state;
@@ -185,9 +188,12 @@ function ProfileCard() {
    email = res.data.email;
    school = res.data.school;
 
+
   }catch(error){
     console.log(error);
   }
+  
+  
 
   return (
     <Card className="text-center" >
@@ -219,15 +225,38 @@ const Note = ({ id, text, onDelete }) => {
 function NotesCard() {
   const [notes, setNotes] = useState([]);
   const [newNoteText, setNewNoteText] = useState('');
+
+  let email = "";
+
+  try{
+    const location = useLocation();
+    const res = location.state;
+    email = res.data.email;
   
-  const addNote = () => {
-    if (newNoteText.trim() !== '') {
+   }catch(error){
+     console.log(error);
+   }
+  
+  const addNote  = async (ev) => {
+    if (newNoteText.trim() !== '' && email != "") {
       const newNote = {
-        id: new Date().getTime(),
+        email: email,
+        time: new Date().getTime(),
         text: newNoteText,
       };
-      setNotes((prevNotes) => [...prevNotes, newNote]);
-      setNewNoteText('');
+      try{
+        let response = await axios.post("http://localhost:8000/insertNote", newNote);
+        const note = {
+          email: response.data.note.email,
+          text: response.data.note.text,
+          time: response.data.note.time
+        }
+        setNotes((prevNotes) => [...prevNotes, note]);
+        setNewNoteText('');
+      }catch(error){
+        console.log(error.response.data);
+      }
+      
     }
   };
   
@@ -238,6 +267,7 @@ function NotesCard() {
 
   return (
     <Card className="text-center" >
+      <form onSubmit={addNote}>
       <Card.Header style={cardHeader}>
         Notes
         </Card.Header >
@@ -252,7 +282,7 @@ function NotesCard() {
           type="text"
           placeholder="Enter a new note."
           value={newNoteText}
-          onChange={(e) => setNewNoteText(e.target.value)}
+          onChange={(ev) => setNewNoteText(ev.target.value)}
           style={{
             padding: '5px',
             fontSize: '16px',
@@ -269,6 +299,7 @@ function NotesCard() {
           ))}
         </Card.Text>
       </Card.Body>
+      </form>
     </Card>
   );
 }
@@ -287,6 +318,42 @@ function PastEvaluations() {
 }
 
 const Profile = () => {
+
+
+  /*
+  
+  const [isPopUpOpen, setPopUpOpen] = useState(false);
+  const [isInactive, setInactive] = useState(true);
+  const [res, setRes] = useState("empty");
+
+  const handleOpenPopUp = () => {
+    console.log("clicked for login");
+    setPopUpOpen(true);
+  };
+  const handleClose = () => {
+    setPopUpOpen(false);
+  };
+  const updateInactive = (temp) => {
+    setInactive(temp);
+  };
+
+  const updateRes = (newRes) => { setRes(newRes); };
+
+  const location = useLocation();
+
+  useEffect(() => {
+    const res = location.state;
+    if (res === null) {
+      handleOpenPopUp();
+    }
+  }, [location.state]); 
+  */
+
+  //<Login isOpen={isPopUpOpen} handleClose={handleClose} updateRes={updateRes} updateInactive={updateInactive} />
+
+  
+
+
   return (
     <div style={backgroundColor}>
       <div style={cardContainerStyle}>

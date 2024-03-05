@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Login from "../Login";
 import SignUp from "../SignUp";
+import Profile from "../Profile";
 
 const NavBar = () => {
   const [isPopUpOpen, setPopUpOpen] = useState(false);
