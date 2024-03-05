@@ -90,12 +90,26 @@ const NavBar = () => {
             </Link>
           </li>
           <li>
-            <Button variant="secondary" onClick={handleOpenPopUp}>
+            <Button
+              variant="secondary"
+              onClick={(e) => {
+                if (isInactive) {
+                  handleOpenPopUp();
+                }
+              }}
+            >
               Login
             </Button>
           </li>
           <li>
-            <Button variant="secondary" onClick={handleSignUpOpenPopUp}>
+            <Button
+              variant="secondary"
+              onClick={(e) => {
+                if (isInactive) {
+                  handleSignUpOpenPopUp();
+                }
+              }}
+            >
               Sign Up
             </Button>
           </li>
