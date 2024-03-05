@@ -9,6 +9,7 @@ const uri = "mongodb+srv://StudentHealth:Gators24!@studenthealthinsight.gbgld4q.
 const name = 'StudentHealthInsight';
 
 const User = mongoose.model('logins', {firstName: String, lastName: String, email: String, password: String, school: String, phone: String});
+const Notes = mongoose.model('notes', {email: String, time: { type : Date, default: Date.now }, text: String});
 
 
 async function connectDB() {
@@ -109,4 +110,17 @@ async function validateLogin(data, res){
   }
 
 }
-module.exports = { connectDB, findDB, insertDocument, updateProfileInfo, validateLogin};
+async function insertNote(data, res){
+
+  try{
+    Notes.create(data);
+    res.status(200).json({ message: "Note inserted successfully!" , note: data});
+  }catch(error){
+    console.error("Error inserting note:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+
+  }
+
+}
+
+module.exports = { connectDB, findDB, insertDocument, updateProfileInfo, validateLogin, insertNote};
