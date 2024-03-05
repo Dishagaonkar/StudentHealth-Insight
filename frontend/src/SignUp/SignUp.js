@@ -5,13 +5,27 @@ import "../popup.css";
 import "../Login/Login.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Login from "../Login";
 
-const SignUp = ({ isOpen, handleClose }) => {
+const SignUp = ({ isOpen, handleClose, updateRes, updateInactive }) => {
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
+  const [isPopUpOpen, setPopUpOpen] = useState(false);
+  const [isInactive, setInactive] = useState(true);
+  const [res, setRes] = useState("empty");
+  const [isSignUpPopUpOpen, setSignUpPopUpOpen] = useState(false);
+  const handleOpenPopUp = () => {
+    console.log("clicked for login");
+    setPopUpOpen(true);
+  };
+
+  const handleSignUpClosePopUp = () => {
+    setSignUpPopUpOpen(false);
+  };
+
   // const [school, setSchool] = useState("");
 
   const SignUpClick = async (ev) => {
@@ -48,8 +62,10 @@ const SignUp = ({ isOpen, handleClose }) => {
         });
         //show message for valid login
         if (response.status === 200) {
+          updateInactive(false);
           setEmailError(response.data.message);
-          handleClose();
+          handleSignUpClosePopUp();
+          handleOpenPopUp();
         }
       } catch (error) {
         //show message for invalid login
@@ -116,6 +132,12 @@ const SignUp = ({ isOpen, handleClose }) => {
           </div>
         </form>
       </div>
+      <Login
+        isOpen={isPopUpOpen}
+        handleClose={handleClose}
+        updateRes={updateRes}
+        updateInactive={updateInactive}
+      />
     </div>
   );
 };
