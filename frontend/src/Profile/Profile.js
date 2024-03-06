@@ -255,6 +255,7 @@ function ProfileCard() {
     lastName = res.data.lastName;
     email = res.data.email;
     school = res.data.school;
+    phone = res.data.phone;
   } catch (error) {
     console.log(error);
   }
@@ -310,6 +311,7 @@ function NotesCard() {
     const location = useLocation();
     const res = location.state;
     email = res.data.email;
+    // notes = ;
   } catch (error) {
     console.log(error);
   }
