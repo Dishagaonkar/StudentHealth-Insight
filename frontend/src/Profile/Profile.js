@@ -40,10 +40,6 @@ const backgroundColor = {
   padding: "20px",
 };
 
-const editButton = {
-  float: "right",
-};
-
 const PastEvalCard = {
   margin: "10px",
   backgroundColor: "#3091B0",
@@ -55,7 +51,7 @@ const PastEvalCard = {
 function ProfileButton() {
   return (
     <>
-      <Button variant="secondary" style={editButton}>
+      <Button variant="secondary" style={{float: "right"}}>
         Logout
       </Button>{" "}
     </>
@@ -101,11 +97,13 @@ export const EditableTextProfile = ({
     } else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
       setError("Please enter a valid email");
       return;
-    } else if (
-      !/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/.test(phone)
-    ) {
-      setError("Please enter a valid phone number");
-      return;
+    } else if(phone !== "") {
+        if (
+          !/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/.test(phone)
+        ) {
+        setError("Invalid phone number");
+        return;
+      }
     } else if (email === "") {
       setError("Please enter an email");
     }
@@ -146,6 +144,7 @@ export const EditableTextProfile = ({
               type="text"
               onChange={(ev) => setFirst(ev.target.value)}
               className={"inputBox"}
+              value={first}
             />
             <br />
             <br />
@@ -160,6 +159,7 @@ export const EditableTextProfile = ({
               type="text"
               onChange={(ev) => setLast(ev.target.value)}
               className={"inputBox"}
+              value={last}
             />
             <br />
             <br />
@@ -174,6 +174,7 @@ export const EditableTextProfile = ({
               type="text"
               onChange={(ev) => setSchool(ev.target.value)}
               className={"inputBox"}
+              value={school}
             />
             <br />
             <br />
@@ -188,6 +189,7 @@ export const EditableTextProfile = ({
               type="text"
               onChange={(ev) => setEmail(ev.target.value)}
               className={"inputBox"}
+              value={email}
             />
             <br />
             <br />
@@ -202,15 +204,14 @@ export const EditableTextProfile = ({
               type="text"
               onChange={(ev) => setPhone(ev.target.value)}
               className={"inputBox"}
+              value={phone}
             />
             <br />
             <br />
-            <input
-              className={"inputButton"}
-              onClick={handleSaveClick}
-              type="submit"
-              value={"Save"}
-            />
+            <Button variant="secondary" onClick={handleClick} className={"inputButton"} type="submit"
+              value={"Save"}>
+            Save
+          </Button>
           </form>
           <label className="errorLabel">{error}</label>
         </div>
@@ -275,8 +276,7 @@ function ProfileCard() {
             initialPhone={phone}
           />
           <br />
-          Note:&nbsp;Editing your email will NOT change the email you use to
-          login.
+          Note:&nbsp;Editing your email WILL CHANGE the email you use to login!
         </Card.Text>
       </Card.Body>
     </Card>
