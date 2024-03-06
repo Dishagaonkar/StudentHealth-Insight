@@ -36,6 +36,7 @@
   display: block;
   margin-bottom: 10px; /* Add spacing between list items */
   cursor: pointer;
+  border-bottom: 1px solid black;
 }
 
 .scrollable-popup-content {

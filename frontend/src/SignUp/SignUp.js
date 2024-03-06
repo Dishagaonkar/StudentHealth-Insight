@@ -62,7 +62,6 @@ const SignUp = ({ isOpen, handleClose, updateRes, updateInactive }) => {
         });
         //show message for valid login
         if (response.status === 200) {
-          updateInactive(false);
           setEmailError(response.data.message);
           handleSignUpClosePopUp();
           handleOpenPopUp();
