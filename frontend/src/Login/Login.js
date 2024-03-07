@@ -46,7 +46,6 @@ export const Login = ({ isOpen, handleClose, updateRes, updateInactive }) => {
           res = response.data.content[0];
           updateRes(res);
           updateInactive(false);
-          console.log(res);
           handleClose();
         }
       } catch (error) {

@@ -305,18 +305,33 @@ function NotesCard() {
   const [notes, setNotes] = useState([]);
   const [newNoteText, setNewNoteText] = useState("");
 
-  let email = "";
+  const location = useLocation();
+  const res = location.state;
+  const email = res.data.email;
 
-  try {
-    const location = useLocation();
-    const res = location.state;
-    email = res.data.email;
-    // notes = ;
-  } catch (error) {
-    console.log(error);
-  }
+  useEffect(() => {
+    let changed = true;
+    const retrieveNotes = async () => {
+      try {
+        const notesRes = await axios.post("http://localhost:8000/userNotes", { email: email });
+
+        if (changed) { 
+          if (notesRes.status === 200) {
+            setNotes(notesRes.data.notes);
+          }
+        }
+      } catch (error) {
+        console.log("cant get notes");
+      }
+    };
+    retrieveNotes();
+    return () => {
+      changed = false; 
+    };
+  }, []); 
 
   const addNote = async (ev) => {
+
     if (newNoteText.trim() !== "" && email != "") {
       const newNote = {
         email: email,
