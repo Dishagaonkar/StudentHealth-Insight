@@ -110,6 +110,22 @@ async function validateLogin(data, res){
   }
 
 }
+async function userNotes(data, res){
+
+  if(data.email == ""){
+    res.status(400).json({ message: "This email is blank - ignore" });
+  }
+
+  try{
+    let notes = await Notes.find({email: data.email}).exec();
+    res.status(200).json({ message: "User's notes are successfully retrieved!", notes : notes});
+
+  }catch(error){
+    res.status(400).json({ message: "something wrong" });
+  }
+
+
+}
 async function insertNote(data, res){
 
   try{
@@ -123,4 +139,4 @@ async function insertNote(data, res){
 
 }
 
-module.exports = { connectDB, findDB, insertDocument, updateProfileInfo, validateLogin, insertNote};
+module.exports = { connectDB, findDB, insertDocument, updateProfileInfo, validateLogin, userNotes, insertNote};
