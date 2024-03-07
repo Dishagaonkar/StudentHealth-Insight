@@ -284,13 +284,20 @@ function ProfileCard() {
   );
 }
 
-const Note = ({ id, text, onDelete }) => {
+const Note = ({ id, val, text, onDelete }) => {
+
+  const handleDelete = () => {
+    if(onDelete && typeof onDelete === 'function'){
+      onDelete(id, val, text);
+    }
+  }
+
   return (
     <div>
       {text}
       <Button
         variant="secondary"
-        onClick={() => onDelete(id)}
+        onClick={handleDelete}
         style={{ float: "right" }}
       >
         Delete
@@ -314,7 +321,6 @@ function NotesCard() {
     const retrieveNotes = async () => {
       try {
         const notesRes = await axios.post("http://localhost:8000/userNotes", { email: email });
-
         if (changed) { 
           if (notesRes.status === 200) {
             setNotes(notesRes.data.notes);
@@ -335,8 +341,8 @@ function NotesCard() {
     if (newNoteText.trim() !== "" && email != "") {
       const newNote = {
         email: email,
-        time: new Date().getTime(),
-        text: newNoteText,
+        time: new Date().toISOString(),
+        text: newNoteText
       };
       try {
         let response = await axios.post(
@@ -356,9 +362,17 @@ function NotesCard() {
     }
   };
 
-  const deleteNote = (id) => {
-    const updateNotes = notes.filter((note) => note.id !== id);
-    setNotes(updateNotes);
+  const deleteNote = async(id, val, text) => {
+    try{
+      let response = await axios.post("http://localhost:8000/deleteNote", {email: id, time: val, text: text});
+
+      const updateNotes = notes.filter((note) => note.id !== id);
+      setNotes(updateNotes);
+
+    }catch(error){
+      console.log(error);
+    }
+  
   };
 
   return (
@@ -398,8 +412,8 @@ function NotesCard() {
             <br /> <br />
             {notes.map((note) => (
               <Note
-                key={note.id}
-                id={note.id}
+                val={note.time}
+                id={note.email}
                 text={note.text}
                 onDelete={deleteNote}
               />

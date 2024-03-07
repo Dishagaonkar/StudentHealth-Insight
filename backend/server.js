@@ -5,7 +5,7 @@
 
 const express = require('express');
 const cors = require('cors');
-const { connectDB, findDB, insertDocument, validateLogin, updateProfileInfo, userNotes, insertNote } = require("./mongoLogistics");
+const { connectDB, findDB, insertDocument, validateLogin, updateProfileInfo, userNotes, insertNote, deleteNote } = require("./mongoLogistics");
 
 const app = express();
 
@@ -74,6 +74,17 @@ app.post("/userNotes", async(req,res) => {
   }
 
   userNotes(data, res);
+});
+
+app.post("/deleteNote", async(req,res) => {
+  const data = {
+    email: req.body.email,
+    time: req.body.time, 
+    text: req.body.text
+  }
+
+  deleteNote(data, res);
+  
 })
 
 
