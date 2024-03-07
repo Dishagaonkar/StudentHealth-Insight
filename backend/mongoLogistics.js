@@ -146,7 +146,6 @@ async function deleteNote(data, res){
       time: data.time, 
       text: data.text
     }
-    console.log(dataFilter);
     await Notes.findOneAndDelete(dataFilter);
     res.status(200).json({ message: "Deleted note!"});
   }catch(error){
