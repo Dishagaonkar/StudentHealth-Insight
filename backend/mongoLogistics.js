@@ -9,7 +9,7 @@ const uri = "mongodb+srv://StudentHealth:Gators24!@studenthealthinsight.gbgld4q.
 const name = 'StudentHealthInsight';
 
 const User = mongoose.model('logins', {firstName: String, lastName: String, email: String, password: String, school: String, phone: String});
-const Notes = mongoose.model('notes', {email: String, time: { type : Date, default: Date.now }, text: String});
+const Notes = mongoose.model('notes', { email: String, time: { type : String, default: new Date().toISOString() }, text: String});
 
 
 async function connectDB() {
@@ -133,10 +133,26 @@ async function insertNote(data, res){
     res.status(200).json({ message: "Note inserted successfully!" , note: data});
   }catch(error){
     console.error("Error inserting note:", error);
-    res.status(500).json({ error: "Internal Server Error" });
+    res.status(400).json({ error: "Internal Server Error" });
+
+  }
+
+}
+async function deleteNote(data, res){
+
+  try{
+    const dataFilter = {
+      email: data.email,
+      time: data.time, 
+      text: data.text
+    }
+    await Notes.findOneAndDelete(dataFilter);
+    res.status(200).json({ message: "Deleted note!"});
+  }catch(error){
+    res.status(400).json({ message: "could not delete note" });
 
   }
 
 }
 
-module.exports = { connectDB, findDB, insertDocument, updateProfileInfo, validateLogin, userNotes, insertNote};
+module.exports = { connectDB, findDB, insertDocument, updateProfileInfo, validateLogin, userNotes, insertNote, deleteNote};
