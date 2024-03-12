@@ -140,15 +140,23 @@ async function insertNote(data, res){
 }
 async function deleteNote(data, res){
 
+  console.log('backend: ', data.email, ' ', data.time, ' ', data.text);
+
   try{
     const dataFilter = {
       email: data.email,
       time: data.time, 
       text: data.text
     }
-    await Notes.findOneAndDelete(dataFilter);
-    res.status(200).json({ message: "Deleted note!"});
+    const result = await Notes.findOneAndDelete(dataFilter);
+    
+    if(result) {
+      res.status(200).json({ message: "Deleted note!"});
+    } else {
+      res.status(404).json({ message: "Note not found"});
+    }
   }catch(error){
+    console.log(error);
     res.status(400).json({ message: "could not delete note" });
 
   }

@@ -363,14 +363,16 @@ function NotesCard() {
   };
 
   const deleteNote = async(id, val, text) => {
+    console.log('deleteNote: ', id, ' ', val, ' ', text);
+    const noteD = {email: id, time: val, text: text};
     try{
-      let response = await axios.post("http://localhost:8000/deleteNote", {email: id, time: val, text: text});
+      let response = await axios.post("http://localhost:8000/deleteNote", noteD);
 
-      const updateNotes = notes.filter((note) => note.id !== id);
+      const updateNotes = notes.filter((note) => note.time !== val && note.text !== text);
       setNotes(updateNotes);
 
     }catch(error){
-      console.log(error);
+      console.log("Error deleting note:", error);
     }
   
   };
