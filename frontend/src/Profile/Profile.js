@@ -97,15 +97,11 @@ export const EditableTextProfile = ({
     } else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
       setError("Please enter a valid email");
       return;
-    } else if(phone !== "") {
-        if (
-          !/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/.test(phone)
-        ) {
-        setError("Invalid phone number");
-        return;
-      }
     } else if (email === "") {
       setError("Please enter an email");
+    } else if (phone !== "" && !/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/.test(phone)) {
+      setError("Invalid phone number: must be in form (xxx) xxx-xxxx");
+      return;
     }
 
     try {
