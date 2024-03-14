@@ -99,7 +99,7 @@ export const EditableTextProfile = ({
       return;
     } else if (email === "") {
       setError("Please enter an email");
-    } else if (phone !== "" && !/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/.test(phone)) {
+    } else if (typeof myVariable === 'string' && phone !== "" && !/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/.test(phone)) {
       setError("Invalid phone number: must be in form (xxx) xxx-xxxx");
       return;
     }
@@ -241,7 +241,7 @@ function ProfileCard() {
   let firstName = "";
   let lastName = "";
   let school = "";
-  let email = ""; // does this change their user name
+  let email = "";
   let phone = "";
 
   try {
@@ -262,7 +262,11 @@ function ProfileCard() {
         Profile
         <ProfileButton />
       </Card.Header>
-      <Card.Body style={cardColor}>
+      <Card.Body style={{
+        textAlign: "left",
+        backgroundColor: "#A2D9CE",
+        height: "400px",
+        overflowY: 'auto'}}>
         <Card.Title></Card.Title>
         <Card.Text>
           <EditableTextProfile
@@ -272,7 +276,6 @@ function ProfileCard() {
             initialEmail={email}
             initialPhone={phone}
           />
-          <br />
           Note:&nbsp;Editing your email WILL CHANGE the email you use to login!
         </Card.Text>
       </Card.Body>
