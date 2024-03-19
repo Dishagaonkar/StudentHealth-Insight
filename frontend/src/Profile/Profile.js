@@ -10,6 +10,8 @@ import { useState, useEffect } from "react";
 import Login from "../Login";
 import { detectOverflow } from "@popperjs/core";
 import axios from "axios";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const cardContainerStyle = {
   display: "flex",
@@ -74,7 +76,7 @@ const ProfileButton = () => {
           {message}&nbsp;&nbsp;
           <Button onClick={onCancel} variant='secondary'>Cancel</Button>
           &nbsp;&nbsp;
-          <Button onClick={onConfirm} variant='secondary'>Yes, Logout</Button>
+          <Button onClick={onConfirm} variant='danger'>Yes, Logout</Button>
         </div>
       </div>
     </div>
@@ -340,7 +342,7 @@ const Note = ({ id, val, text, onDelete }) => {
         onClick={handleDelete}
         style={{ float: "right" }}
       >
-        Delete
+        <FontAwesomeIcon icon={faTrash} />
       </Button>
       <br />
       <br />
