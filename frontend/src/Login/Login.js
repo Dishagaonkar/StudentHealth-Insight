@@ -8,7 +8,7 @@ import axios from "axios";
 import { useUserState } from "../userState";
 
 // create res outside of component
-let res = "empty";
+//let res = "empty";
 
 export const Login = ({ isOpen, handleClose, updateInactive }) => {
   const [email, setEmail] = useState("");
@@ -45,8 +45,10 @@ export const Login = ({ isOpen, handleClose, updateInactive }) => {
         //show message for valid login
         if (response.status === 200) {
           setEmailError(response.data.message);
-          res = response.data.content[0];
-          setRes(res);
+          //res = response.data.content[0];
+          console.log("before", res);
+          setRes(response.data.content[0]);
+          console.log("after", res);
           updateInactive(false);
           handleClose();
         }
