@@ -10,6 +10,8 @@ import { useState, useEffect } from "react";
 import Login from "../Login";
 import { detectOverflow } from "@popperjs/core";
 import axios from "axios";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const cardContainerStyle = {
   display: "flex",
@@ -27,6 +29,7 @@ const cardHeader = {
   backgroundColor: "#FFFFFF",
   padding: "15px",
   fontSize: "20px",
+  height: "70px",
 };
 
 const cardColor = {
@@ -48,12 +51,51 @@ const PastEvalCard = {
   fontSize: "20px",
 };
 
-function ProfileButton() {
+const ProfileButton = () => {
+  const [showConfirmation, setShowConfirmation] = useState(false);
+
+  const handleLogoutClick = () => {
+    setShowConfirmation(true);
+  };
+
+  const handleCancelLogout = () => {
+    setShowConfirmation(false);
+  };
+
+  const handleConfirmLogout = () => {
+    console.log('Logged out');
+    // add logout logic here
+    setShowConfirmation(false);
+  };
+
+  const ConfirmationPopup = ({ message, onCancel, onConfirm }) => {
+    return (
+      <div className="confirmation-popup-overlay">
+      <div className="confirmation-popup">
+        <div className="confirmation-popup-content">
+          {message}&nbsp;&nbsp;
+          <Button onClick={onCancel} variant='secondary'>Cancel</Button>
+          &nbsp;&nbsp;
+          <Button onClick={onConfirm} variant='danger'>Yes, Logout</Button>
+        </div>
+      </div>
+    </div>
+    );
+  };
+
   return (
     <>
-      <Button variant="secondary" style={{float: "right"}}>
+      <Button variant="secondary" style={{float: "right"}} onClick={handleLogoutClick}>
         Logout
-      </Button>{" "}
+      </Button>
+      <br/> <br/>
+      {showConfirmation && (
+        <ConfirmationPopup
+          message="Are you sure?"
+          onCancel={handleCancelLogout}
+          onConfirm={handleConfirmLogout}
+        />
+      )}
     </>
   );
 }
@@ -260,7 +302,7 @@ function ProfileCard() {
     <Card className="text-center">
       <Card.Header style={cardHeader}>
         Profile
-        <ProfileButton />
+        
       </Card.Header>
       <Card.Body style={{
         textAlign: "left",
@@ -278,6 +320,7 @@ function ProfileCard() {
           />
           Note:&nbsp;Editing your email WILL CHANGE the email you use to login!
         </Card.Text>
+        <ProfileButton />
       </Card.Body>
     </Card>
   );
@@ -299,7 +342,7 @@ const Note = ({ id, val, text, onDelete }) => {
         onClick={handleDelete}
         style={{ float: "right" }}
       >
-        Delete
+        <FontAwesomeIcon icon={faTrash} />
       </Button>
       <br />
       <br />
