@@ -1,0 +1,15 @@
+.nearby-list {
+    list-style: none; 
+    padding: 0; 
+  }
+  
+  .nearby-list li {
+    border-bottom: 1px solid #ccc; 
+    padding: 10px;
+    display: block;
+  }
+  
+  .nearby-list li:last-child {
+    border-bottom: none;
+  }
+  

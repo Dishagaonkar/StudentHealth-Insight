@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import './Nearby.css'
 
 const Nearby = () => {
   const [zipCode, setZipCode] = useState("");
@@ -13,16 +14,13 @@ const Nearby = () => {
         if (!zipCode) return;
         console.log(zipCode);
 
-        const apiKey = "AIzaSyBf9qUyF04HrgQ9iX_TGV35nGxbb9omF1Y";
         const apiUrl = `http://localhost:5000/places?query=hospital+OR+doctor+OR+clinic+OR+pharmacy+in+${zipCode}`;
         const response = await axios.get(apiUrl);
         console.log(response);
-
-        //const response = await axios.get(apiUrl);
         setPlaces(response.data.results);
       } catch (error) {
         console.error("Error fetching data:", error);
-        setError("Error fetching data. Please try again later."); // Set error state if request fails
+        setError("Sorry! There was an error fetching data. Please try again later."); // Set error state if request fails
       }
     };
 
@@ -35,18 +33,32 @@ const Nearby = () => {
 
   return (
     <div>
-      <h2>Find Hospitals by Zip Code</h2>
+      <p style={{
+        backgroundColor: '#4fa5a0', 
+        padding: '20px', 
+        fontFamily: 'Arial', 
+        fontSize: '35px', 
+        textAlign: 'center', 
+        marginTop: '20px', 
+        color: '#FFFFFF', }}>
+          Find Medical Help Hear You!</p>
+      <div style={{backgroundColor: "#A2D9CE", minHeight: "500px",}}>
       <label>
-        Enter Zip Code:
-        <input type="text" value={zipCode} onChange={handleZipCodeChange} />
+        <br/>
+        <h3>&nbsp;&nbsp;Enter Zip Code: &nbsp;
+          <input type="text" value={zipCode} onChange={handleZipCodeChange}/>
+        </h3>
       </label>
       {error && <p>{error}</p>}{" "}
       {/* Display error message if there's an error */}
-      <ul>
+      <ul className="nearby-list">
         {places.map((place) => (
-          <li key={place.id}>{place.name}</li>
+          <li key={place.id}>
+            <p>{place.name}</p>
+            </li>
         ))}
       </ul>
+      </div>
     </div>
   );
 };
