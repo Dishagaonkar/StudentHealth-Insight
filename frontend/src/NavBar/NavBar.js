@@ -14,14 +14,14 @@ const NavBar = ({ setRes, res }) => {
   // const updateRes = (newRes) => {
   //   setRes(newRes);
   // };
-  const data = {
+  const data = res ? {
     id: res._id,
     firstName: res.firstName,
     lastName: res.lastName,
     email: res.email,
     password: res.password,
     school: res.school,
-  };
+  } : null;
 
   const updateInactive = (temp) => {
     setInactive(temp);
