@@ -10,8 +10,8 @@ import { useState, useEffect } from "react";
 import Login from "../Login";
 import { detectOverflow } from "@popperjs/core";
 import axios from "axios";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const cardContainerStyle = {
   display: "flex",
@@ -63,7 +63,7 @@ const ProfileButton = () => {
   };
 
   const handleConfirmLogout = () => {
-    console.log('Logged out');
+    console.log("Logged out");
     // add logout logic here
     setShowConfirmation(false);
   };
@@ -71,24 +71,32 @@ const ProfileButton = () => {
   const ConfirmationPopup = ({ message, onCancel, onConfirm }) => {
     return (
       <div className="confirmation-popup-overlay">
-      <div className="confirmation-popup">
-        <div className="confirmation-popup-content">
-          {message}&nbsp;&nbsp;
-          <Button onClick={onCancel} variant='secondary'>Cancel</Button>
-          &nbsp;&nbsp;
-          <Button onClick={onConfirm} variant='danger'>Yes, Logout</Button>
+        <div className="confirmation-popup">
+          <div className="confirmation-popup-content">
+            {message}&nbsp;&nbsp;
+            <Button onClick={onCancel} variant="secondary">
+              Cancel
+            </Button>
+            &nbsp;&nbsp;
+            <Button onClick={onConfirm} variant="danger">
+              Yes, Logout
+            </Button>
+          </div>
         </div>
       </div>
-    </div>
     );
   };
 
   return (
     <>
-      <Button variant="secondary" style={{float: "right"}} onClick={handleLogoutClick}>
+      <Button
+        variant="secondary"
+        style={{ float: "right" }}
+        onClick={handleLogoutClick}
+      >
         Logout
       </Button>
-      <br/> <br/>
+      <br /> <br />
       {showConfirmation && (
         <ConfirmationPopup
           message="Are you sure?"
@@ -98,7 +106,7 @@ const ProfileButton = () => {
       )}
     </>
   );
-}
+};
 
 function EvalsButton() {
   return (
@@ -141,7 +149,11 @@ export const EditableTextProfile = ({
       return;
     } else if (email === "") {
       setError("Please enter an email");
-    } else if (typeof myVariable === 'string' && phone !== "" && !/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/.test(phone)) {
+    } else if (
+      typeof myVariable === "string" &&
+      phone !== "" &&
+      !/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/.test(phone)
+    ) {
       setError("Invalid phone number: must be in form (xxx) xxx-xxxx");
       return;
     }
@@ -246,10 +258,15 @@ export const EditableTextProfile = ({
             />
             <br />
             <br />
-            <Button variant="secondary" onClick={handleClick} className={"inputButton"} type="submit"
-              value={"Save"}>
-            Save
-          </Button>
+            <Button
+              variant="secondary"
+              onClick={handleClick}
+              className={"inputButton"}
+              type="submit"
+              value={"Save"}
+            >
+              Save
+            </Button>
           </form>
           <label className="errorLabel">{error}</label>
         </div>
@@ -300,15 +317,15 @@ function ProfileCard() {
 
   return (
     <Card className="text-center">
-      <Card.Header style={cardHeader}>
-        Profile
-        
-      </Card.Header>
-      <Card.Body style={{
-        textAlign: "left",
-        backgroundColor: "#A2D9CE",
-        height: "400px",
-        overflowY: 'auto'}}>
+      <Card.Header style={cardHeader}>Profile</Card.Header>
+      <Card.Body
+        style={{
+          textAlign: "left",
+          backgroundColor: "#A2D9CE",
+          height: "400px",
+          overflowY: "auto",
+        }}
+      >
         <Card.Title></Card.Title>
         <Card.Text>
           <EditableTextProfile
@@ -327,12 +344,11 @@ function ProfileCard() {
 }
 
 const Note = ({ id, val, text, onDelete }) => {
-
   const handleDelete = () => {
-    if(onDelete && typeof onDelete === 'function'){
+    if (onDelete && typeof onDelete === "function") {
       onDelete(id, val, text);
     }
-  }
+  };
 
   return (
     <div>
@@ -362,8 +378,10 @@ function NotesCard() {
     let changed = true;
     const retrieveNotes = async () => {
       try {
-        const notesRes = await axios.post("http://localhost:8000/userNotes", { email: email });
-        if (changed) { 
+        const notesRes = await axios.post("http://localhost:8000/userNotes", {
+          email: email,
+        });
+        if (changed) {
           if (notesRes.status === 200) {
             setNotes(notesRes.data.notes);
           }
@@ -374,17 +392,16 @@ function NotesCard() {
     };
     retrieveNotes();
     return () => {
-      changed = false; 
+      changed = false;
     };
-  }, []); 
+  }, []);
 
   const addNote = async (ev) => {
-
     if (newNoteText.trim() !== "" && email != "") {
       const newNote = {
         email: email,
         time: new Date().toISOString(),
-        text: newNoteText
+        text: newNoteText,
       };
       try {
         let response = await axios.post(
@@ -404,19 +421,22 @@ function NotesCard() {
     }
   };
 
-  const deleteNote = async(id, val, text) => {
-    console.log('deleteNote: ', id, ' ', val, ' ', text);
-    const noteD = {email: id, time: val, text: text};
-    try{
-      let response = await axios.post("http://localhost:8000/deleteNote", noteD);
+  const deleteNote = async (id, val, text) => {
+    console.log("deleteNote: ", id, " ", val, " ", text);
+    const noteD = { email: id, time: val, text: text };
+    try {
+      let response = await axios.post(
+        "http://localhost:8000/deleteNote",
+        noteD
+      );
 
-      const updateNotes = notes.filter((note) => note.time !== val && note.text !== text);
+      const updateNotes = notes.filter(
+        (note) => note.time !== val && note.text !== text
+      );
       setNotes(updateNotes);
-
-    }catch(error){
+    } catch (error) {
       console.log("Error deleting note:", error);
     }
-  
   };
 
   return (
