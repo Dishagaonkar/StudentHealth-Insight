@@ -213,6 +213,21 @@ export const EditableTextProfile = ({
             />
             <br />
             <br />
+            Phone:&nbsp;
+            <input
+              style={{
+                height: "90%",
+                width: "80%",
+                resize: "both",
+                float: "right",
+              }}
+              type="text"
+              onChange={(ev) => setPhone(ev.target.value)}
+              className={"inputBox"}
+              value={phone}
+            />
+            <br />
+            <br />
             School:&nbsp;
             <input
               style={{
@@ -228,34 +243,7 @@ export const EditableTextProfile = ({
             />
             <br />
             <br />
-            Email:&nbsp;
-            <input
-              style={{
-                height: "90%",
-                width: "80%",
-                resize: "both",
-                float: "right",
-              }}
-              type="text"
-              onChange={(ev) => setEmail(ev.target.value)}
-              className={"inputBox"}
-              value={email}
-            />
-            <br />
-            <br />
-            Phone:&nbsp;
-            <input
-              style={{
-                height: "90%",
-                width: "80%",
-                resize: "both",
-                float: "right",
-              }}
-              type="text"
-              onChange={(ev) => setPhone(ev.target.value)}
-              className={"inputBox"}
-              value={phone}
-            />
+            Email:&nbsp; {email}
             <br />
             <br />
             <Button
@@ -279,13 +267,13 @@ export const EditableTextProfile = ({
             <strong>Last Name:</strong>&nbsp;{last}
           </p>
           <p>
+            <strong>Phone:</strong>&nbsp;{phone}
+          </p>
+          <p>
             <strong>School:</strong>&nbsp;{school}
           </p>
           <p>
             <strong>Email:</strong>&nbsp;{email}
-          </p>
-          <p>
-            <strong>Phone:</strong>&nbsp;{phone}
           </p>
           <Button variant="secondary" onClick={handleClick}>
             Edit
@@ -335,9 +323,11 @@ function ProfileCard() {
             initialEmail={email}
             initialPhone={phone}
           />
-          Note:&nbsp;Editing your email WILL CHANGE the email you use to login!
+          <br/>
+          Note:&nbsp;Email cannot be changed, because it is the login.&nbsp;&nbsp;
+          <ProfileButton />
         </Card.Text>
-        <ProfileButton />
+        
       </Card.Body>
     </Card>
   );
