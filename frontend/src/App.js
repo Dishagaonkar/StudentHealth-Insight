@@ -20,7 +20,7 @@ const App = () => {
       <NavBar />
       <Routes>
         <Route path="/" element={<Dashboard />} />
-        <Route path="profile" element={<Profile />} />
+        <Route path="profile" element={<Profile setRes={setRes} res={res} />} />
         <Route path="learn" element={<Learn />} />
         <Route path="nearby" element={<Nearby />} />
         <Route path="evaluate" element={<Evaluate />} />

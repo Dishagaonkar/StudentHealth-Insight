@@ -5,7 +5,7 @@ import Login from "../Login";
 import SignUp from "../SignUp";
 import Profile from "../Profile";
 
-const NavBar = ({ setRes }) => {
+const NavBar = ({ setRes, res }) => {
   const [isPopUpOpen, setPopUpOpen] = useState(false);
   const [isSignUpPopUpOpen, setSignUpPopUpOpen] = useState(false);
   //const [res, setRes] = useState("empty");
