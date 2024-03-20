@@ -483,7 +483,8 @@ function PastEvaluations() {
   );
 }
 
-const Profile = ({ setRes, res }) => {
+const Profile = (props) => {
+  const { setRes, res } = props;
   /*
   
   const [isPopUpOpen, setPopUpOpen] = useState(false);
