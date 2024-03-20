@@ -12,6 +12,7 @@ import { detectOverflow } from "@popperjs/core";
 import axios from "axios";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { useUserState } from "../userState";
 
 const cardContainerStyle = {
   display: "flex",
@@ -483,7 +484,8 @@ function PastEvaluations() {
   );
 }
 
-const Profile = ({ setRes, res }) => {
+const Profile = () => {
+  const { res, setRes } = useUserState();
   /*
   
   const [isPopUpOpen, setPopUpOpen] = useState(false);
