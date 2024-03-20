@@ -26,7 +26,7 @@ app.get("/places", async (req, res) => {
   try {
     const { query } = req.query;
     const apiKey = "AIzaSyBktPcrWFZ64akXJ8cfY0hHSdwibm4CxfY";
-    const apiUrl = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=hospital+OR+doctor+OR+clinic+OR+pharmacy+in+32603&key=AIzaSyBktPcrWFZ64akXJ8cfY0hHSdwibm4CxfY`;
+    const apiUrl = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${query}&key=${apiKey}`;
     const response = await axios.get(apiUrl); // Use Axios to make GET request
     console.log(response);
     res.json(response.data);
