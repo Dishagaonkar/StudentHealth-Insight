@@ -49,6 +49,7 @@ export const Login = ({ isOpen, handleClose, updateInactive }) => {
           console.log("before", res);
           setRes(response.data.content[0]);
           console.log("after", res);
+          console.log(typeof setRes);
           updateInactive(false);
           handleClose();
         }
