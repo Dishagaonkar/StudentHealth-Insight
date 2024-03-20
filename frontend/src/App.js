@@ -12,7 +12,7 @@ import Login from "./Login";
 const App = () => {
   //testing for disabling profile page
   const [res, setRes] = useState("empty");
-  const updateRes = (newRes) => { setRes(newRes); };
+  //const updateRes = (newRes) => { setRes(newRes); };
   console.log(res, "in app.js");
 
   return (

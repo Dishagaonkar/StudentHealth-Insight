@@ -5,15 +5,15 @@ import Login from "../Login";
 import SignUp from "../SignUp";
 import Profile from "../Profile";
 
-const NavBar = () => {
+const NavBar = ({ setRes }) => {
   const [isPopUpOpen, setPopUpOpen] = useState(false);
   const [isSignUpPopUpOpen, setSignUpPopUpOpen] = useState(false);
-  const [res, setRes] = useState("empty");
+  //const [res, setRes] = useState("empty");
   const [isInactive, setInactive] = useState(true);
 
-  const updateRes = (newRes) => {
-    setRes(newRes);
-  };
+  // const updateRes = (newRes) => {
+  //   setRes(newRes);
+  // };
   const data = {
     id: res._id,
     firstName: res.firstName,
@@ -119,13 +119,13 @@ const NavBar = () => {
       <Login
         isOpen={isPopUpOpen}
         handleClose={handleClosePopUp}
-        updateRes={updateRes}
+        setRes={setRes}
         updateInactive={updateInactive}
       />
       <SignUp
         isOpen={isSignUpPopUpOpen}
         handleClose={handleSignUpClosePopUp}
-        updateRes={updateRes}
+        setRes={setRes}
         updateInactive={updateInactive}
       />
     </div>

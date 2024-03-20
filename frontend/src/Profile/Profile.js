@@ -65,6 +65,9 @@ const ProfileButton = () => {
   const handleConfirmLogout = () => {
     console.log('Logged out');
     // add logout logic here
+    console.log('before res: ', res);
+    setRes("empty");
+    console.log('after res: ', res);
     setShowConfirmation(false);
   };
 
@@ -480,7 +483,7 @@ function PastEvaluations() {
   );
 }
 
-const Profile = () => {
+const Profile = ({ setRes }) => {
   /*
   
   const [isPopUpOpen, setPopUpOpen] = useState(false);

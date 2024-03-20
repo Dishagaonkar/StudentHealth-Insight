@@ -9,7 +9,7 @@ import axios from "axios";
 // create res outside of component
 let res = "empty";
 
-export const Login = ({ isOpen, handleClose, updateRes, updateInactive }) => {
+export const Login = ({ isOpen, handleClose, setRes, updateInactive }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -44,7 +44,7 @@ export const Login = ({ isOpen, handleClose, updateRes, updateInactive }) => {
         if (response.status === 200) {
           setEmailError(response.data.message);
           res = response.data.content[0];
-          updateRes(res);
+          setRes(res);
           updateInactive(false);
           handleClose();
         }
