@@ -67,7 +67,6 @@ const Nearby = () => {
           width: '100px'
         }}>
           <option value="">All Types</option>
-          <option value="clinic">Clinic</option>
           <option value="doctor">Doctor</option>
           <option value="hospital">Hospital</option>
           <option value="pharmacy">Pharmacy</option>
@@ -79,16 +78,22 @@ const Nearby = () => {
         {filteredPlaces.map((place) => (
           <li key={place.id}>
             <h3>{place.name}</h3>
-            <strong>Address:</strong> {place.formatted_address}
             <br/>
-            <strong>Phone Number:</strong> {place.phone}
-            <br/>
-            <strong>Website Link:</strong> {place.website}
-            <br/>
-            <strong>Rating:</strong> {place.rating} rated by {place.user_ratings_total} people
-            <br/>
-            <strong>Type:</strong> {place.types.join(', ')}
-            <br/>
+            {place.website && (
+              <a href={place.website} target="_blank" rel="noopener noreferrer">Visit Website</a>
+            )}
+            {place.formatted_address && (
+              <p><strong>Address: </strong>{place.formatted_address}</p>
+            )}
+            {place.formatted_phone_number && (
+              <p><strong>Phone Number: </strong>{place.formatted_phone_number}</p>
+            )}
+            {place.rating !== 0 && place.rating && (
+              <p><strong>Rating: </strong>{place.rating} rated by {place.user_ratings_total} people</p>
+            )}
+            {place.types && (
+              <p><strong>Type: </strong>{place.types.join(', ')}</p>
+            )}
             </li>
         ))}
       </ul>
