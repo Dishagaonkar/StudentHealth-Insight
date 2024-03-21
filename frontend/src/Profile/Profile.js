@@ -150,7 +150,6 @@ export const EditableTextProfile = ({
     } else if (email === "") {
       setError("Please enter an email");
     } else if (
-      typeof myVariable === "string" &&
       phone !== "" &&
       !/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/.test(phone)
     ) {
