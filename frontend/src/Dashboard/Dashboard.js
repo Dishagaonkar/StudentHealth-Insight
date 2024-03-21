@@ -129,6 +129,8 @@ function Info() {
           <br />
           <h3>Nearby Help</h3>
           &#8226; Easily locate medical professionals near you!
+          <br/>
+          &#8226; Use a zip code and the filter to find an establishment that benefits you the most!
           <br />
           <br />
           <h3>Evaluate</h3>
