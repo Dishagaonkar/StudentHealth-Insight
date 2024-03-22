@@ -11,7 +11,7 @@ const Nearby = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setError(null); // Reset error state before each request
+        setError(null);
         if (!zipCode) return;
 
         const apiUrl = `http://localhost:5000/places?query=hospital+OR+doctor+OR+clinic+OR+pharmacy+in+${zipCode}`;
@@ -35,7 +35,22 @@ const Nearby = () => {
     setSelectedType(event.target.value);
   };
 
-  // Filter places based on selected type
+  const sortByRating = (a, b) => {
+    if (a.rating < b.rating) {
+      return 1;
+    }
+    if (a.rating > b.rating) {
+      return -1;
+    }
+    if (a.user_ratings_total > b.user_ratings_total) {
+      return -1;
+    }
+    if (a.user_ratings_total < b.user_ratings_total) {
+      return 1;
+    }
+    return 0;
+  };
+
   const filteredPlaces = selectedType ? places.filter(place => place.types.includes(selectedType)) : places;
 
   return (
@@ -73,10 +88,10 @@ const Nearby = () => {
         </select>
       </label>
       {error && <p>{error}</p>}{" "}
-      {/* Display error message if there's an error */}
       <ul className="nearby-list">
-        {filteredPlaces.map((place) => (
+        {filteredPlaces.sort(sortByRating).map((place) => (
           <li key={place.id}>
+            {console.log("place:", place)}
             <h3>{place.name}</h3>
             <br/>
             {place.website && (
@@ -93,6 +108,9 @@ const Nearby = () => {
             )}
             {place.types && (
               <p><strong>Type: </strong>{place.types.join(', ')}</p>
+            )}
+            {place.open_now && (
+            <p><strong>Currently: </strong>{place.open_now ? 'Open' : 'Closed'}</p>
             )}
             </li>
         ))}
