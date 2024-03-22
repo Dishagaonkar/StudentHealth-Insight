@@ -94,12 +94,14 @@ const Nearby = () => {
             {console.log("place:", place)}
             <h3>{place.name}</h3>
             <br/>
+            {/* this one is not working */}
             {place.website && (
               <a href={place.website} target="_blank" rel="noopener noreferrer">Visit Website</a>
             )}
             {place.formatted_address && (
               <p><strong>Address: </strong>{place.formatted_address}</p>
             )}
+            {/* this one is not working */}
             {place.formatted_phone_number && (
               <p><strong>Phone Number: </strong>{place.formatted_phone_number}</p>
             )}
@@ -109,6 +111,7 @@ const Nearby = () => {
             {place.types && (
               <p><strong>Type: </strong>{place.types.join(', ')}</p>
             )}
+            {/* this one is not working */}
             {place.open_now && (
             <p><strong>Currently: </strong>{place.open_now ? 'Open' : 'Closed'}</p>
             )}

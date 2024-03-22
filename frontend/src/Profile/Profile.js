@@ -149,12 +149,17 @@ export const EditableTextProfile = ({
       return;
     } else if (email === "") {
       setError("Please enter an email");
-    } else if (
+    }
+    else if (
       phone !== "" &&
       !/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/.test(phone)
     ) {
-      setError("Invalid phone number: must be in form (xxx) xxx-xxxx");
-      return;
+      if(typeof phone !== 'string') {
+      }
+      else {
+        setError("Invalid phone number: must be in form (xxx) xxx-xxxx");
+        return;
+      }
     }
 
     try {
