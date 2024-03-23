@@ -16,9 +16,9 @@ In 2nd Terminal
 3. npm run start
 
 #make the google maps api work
-1.go to backend/server.js 
-2.on line 28, where the varible apiKey is 
-3.add the api key (quotes included ex apiKey = "123456678")
-4.profit 
+1. go to backend/server.js
+2. on line 28, where the varible apiKey is 
+3. add the api key (quotes included ex apiKey = "123456678")
+4. profit 
 
 
