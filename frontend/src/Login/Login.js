@@ -14,7 +14,7 @@ export const Login = ({ isOpen, handleClose, updateInactive }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
-  const [res, setRes] = useUserState();
+  const { res, setRes } = useUserState();
 
   const navigate = useNavigate();
 

@@ -10,7 +10,7 @@ const NavBar = () => {
   const [isPopUpOpen, setPopUpOpen] = useState(false);
   const [isSignUpPopUpOpen, setSignUpPopUpOpen] = useState(false);
   const [isInactive, setInactive] = useState(true);
-  const {res, setRes} = useUserState();
+  const { res, setRes } = useUserState();
 
   const updateRes = (newRes) => {
     setRes(newRes);
