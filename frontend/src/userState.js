@@ -4,8 +4,8 @@ import { useState } from 'react';
 export const useUserState = () => {
   const [res, setRes] = useState("empty");
 
-  return {
-    res,
-    setRes,
-  };
+  // return {
+  //   res,
+  //   setRes,
+  // };
 };
