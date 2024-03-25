@@ -12,7 +12,7 @@ import { detectOverflow } from "@popperjs/core";
 import axios from "axios";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import { useUserState, updateRes } from "../userState";
+import { updateRes } from "../userState";
 
 const cardContainerStyle = {
   display: "flex",
@@ -64,7 +64,6 @@ const ProfileButton = () => {
   };
 
   const handleConfirmLogout = () => {
-    //const { res, setRes } = useUserState();
     console.log('Logged out');
     // add logout logic here
     console.log('before res: ', res);
@@ -487,7 +486,6 @@ function PastEvaluations() {
 
 const Profile = () => {
   // eslint-disable-next-line no-unused-vars
-  const { res, setRes } = useUserState();
   /*
   
   const [isPopUpOpen, setPopUpOpen] = useState(false);

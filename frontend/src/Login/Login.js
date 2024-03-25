@@ -5,7 +5,7 @@ import "../popup.css";
 import "../Login/Login.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useUserState, updateRes } from "../userState";
+import { updateRes } from "../userState";
 
 // create res outside of component
 //let res = "empty";
@@ -14,7 +14,6 @@ export const Login = ({ isOpen, handleClose, updateInactive }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
-  const { res, setRes } = useUserState();
 
   const navigate = useNavigate();
 
