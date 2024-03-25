@@ -21,11 +21,6 @@ export const Login = ({ isOpen, handleClose, updateInactive }) => {
   const LoginClick = async (ev) => {
     ev.preventDefault();
 
-    const updateRes = (newRes) => {
-      console.log("updating res" + newRes);
-      setRes(newRes);
-    };
-
     // Set initial error values to empty
     setEmailError("");
     //console.log(validEmail); //FIXME

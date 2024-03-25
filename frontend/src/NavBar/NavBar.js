@@ -12,10 +12,6 @@ const NavBar = () => {
   const [isInactive, setInactive] = useState(true);
   const { res, setRes } = useUserState();
 
-  const updateRes = (newRes) => {
-    setRes(newRes);
-  };
-
   const data = {
     id: res._id,
     firstName: res.firstName,
