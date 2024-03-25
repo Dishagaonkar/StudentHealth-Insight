@@ -64,7 +64,7 @@ const ProfileButton = () => {
   };
 
   const handleConfirmLogout = () => {
-    const { res, setRes } = useUserState();
+    //const { res, setRes } = useUserState();
     console.log('Logged out');
     // add logout logic here
     console.log('before res: ', res);
