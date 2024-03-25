@@ -12,7 +12,7 @@ import { detectOverflow } from "@popperjs/core";
 import axios from "axios";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import { updateRes } from "../userState";
+//import { useUserState } from "../userState";
 
 const cardContainerStyle = {
   display: "flex",
@@ -64,12 +64,12 @@ const ProfileButton = () => {
   };
 
   const handleConfirmLogout = () => {
-    console.log('Logged out');
-    // add logout logic here
-    console.log('before res: ', res);
-    updateRes("empty");
-    console.log('after res: ', res);
-    setShowConfirmation(false);
+    // console.log('Logged out');
+    // // add logout logic here
+    // console.log('before res: ', res);
+    // updateRes("empty");
+    // console.log('after res: ', res);
+    // setShowConfirmation(false);
   };
 
   const ConfirmationPopup = ({ message, onCancel, onConfirm }) => {

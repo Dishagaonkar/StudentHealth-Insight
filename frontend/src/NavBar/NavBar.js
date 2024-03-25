@@ -4,12 +4,17 @@ import Button from "react-bootstrap/Button";
 import Login from "../Login";
 import SignUp from "../SignUp";
 import Profile from "../Profile";
-import { updateRes } from "../userState";
+import { useUserState } from "../userState";
 
 const NavBar = () => {
   const [isPopUpOpen, setPopUpOpen] = useState(false);
   const [isSignUpPopUpOpen, setSignUpPopUpOpen] = useState(false);
   const [isInactive, setInactive] = useState(true);
+  const [res, setRes] = useUserState();
+
+  const updateRes = (newRes) => {
+    setRes(newRes);
+  };
 
   const data = {
     id: res._id,
@@ -116,13 +121,11 @@ const NavBar = () => {
       <Login
         isOpen={isPopUpOpen}
         handleClose={handleClosePopUp}
-        setRes={setRes}
         updateInactive={updateInactive}
       />
       <SignUp
         isOpen={isSignUpPopUpOpen}
         handleClose={handleSignUpClosePopUp}
-        setRes={setRes}
         updateInactive={updateInactive}
       />
     </div>
