@@ -19,6 +19,7 @@ export const Login = ({ isOpen, handleClose, updateInactive }) => {
   const navigate = useNavigate();
 
   const updateRes = (newRes) => {
+    console.log("updating res" + newRes);
     setRes(newRes);
   };
 
