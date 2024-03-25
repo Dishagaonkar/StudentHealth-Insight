@@ -5,7 +5,7 @@ import "../popup.css";
 import "../Login/Login.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useUserState } from "../userState";
+import { useUserState, updateRes } from "../userState";
 
 // create res outside of component
 //let res = "empty";
@@ -47,7 +47,7 @@ export const Login = ({ isOpen, handleClose, updateInactive }) => {
           setEmailError(response.data.message);
           //res = response.data.content[0];
           console.log("before", res);
-          setRes(response.data.content[0]);
+          updateRes(response.data.content[0]);
           console.log("after", res);
           console.log(typeof setRes);
           updateInactive(false);
