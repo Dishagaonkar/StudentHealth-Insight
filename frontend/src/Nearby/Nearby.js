@@ -106,7 +106,7 @@ const Nearby = () => {
               <p><strong>Phone Number: </strong>{place.formatted_phone_number}</p>
             )}
             {place.rating !== 0 && place.rating && (
-              <p><strong>Rating: </strong>{place.rating} rated by {place.user_ratings_total} people</p>
+              <p><strong>Rating: </strong>{place.rating}/5 rated by {place.user_ratings_total} people</p>
             )}
             {place.types && (
               <p><strong>Type: </strong>{place.types.join(', ')}</p>
