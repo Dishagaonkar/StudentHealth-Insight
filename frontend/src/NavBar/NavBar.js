@@ -12,19 +12,27 @@ const NavBar = () => {
   const [isInactive, setInactive] = useState(true);
   const { res, setRes, updateRes } = useUserState();
 
+  const data = {
+    id: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    school: "",
+  };
+
   useEffect(() => {
-    setRes((prevRes) => ({
-      ...prevRes,
-      data: {
-        id: res._id,
-        firstName: res.firstName,
-        lastName: res.lastName,
-        email: res.email,
-        password: res.password,
-        school: res.school,
-      },
-    }));
-  }, [res, setRes]);
+    const updatedData = {
+      id: res._id,
+      firstName: res.firstName,
+      lastName: res.lastName,
+      email: res.email,
+      password: res.password,
+      school: res.school,
+    };
+
+    setRes(updatedData);
+  }, [res]);
 
   const updateInactive = (temp) => {
     setInactive(temp);
