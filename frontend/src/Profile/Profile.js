@@ -298,13 +298,14 @@ function ProfileCard() {
     const getProfileInfo = async () => {
       try {
         const res = location.state;
-        const setProfileInfo = {
-          firstName: res.data.firstName,
-          lastName: res.data.lastName,
-          email: res.data.email,
-          school: res.data.school,
-          phone: res.data.phone,
-        };
+        const { firstName, lastName, school, email, phone } = res.data;
+        setProfileInfo({
+          firstName,
+          lastName,
+          school,
+          email,
+          phone,
+        });
       } catch (error) {
         console.log(error);
       }
