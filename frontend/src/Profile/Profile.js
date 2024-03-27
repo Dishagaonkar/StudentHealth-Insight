@@ -1,7 +1,6 @@
 // Source for clicking:
 // https://medium.com/@zahidbashirkhan/implementing-double-click-to-edit-text-in-react-2e1d4bcb2493#:~:text=Inside%20the%20EditableText%20component%2C%20create,the%20text%20to%20be%20edited.
 
-import React from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Nav from "react-bootstrap/Nav";
@@ -290,44 +289,51 @@ function ProfileCard() {
   let email = "";
   let phone = "";
 
-  try {
-    const location = useLocation();
-    const res = location.state;
-    firstName = res.data.firstName;
-    lastName = res.data.lastName;
-    email = res.data.email;
-    school = res.data.school;
-    phone = res.data.phone;
-  } catch (error) {
-    console.log(error);
-  }
+  useEffect(() => {
 
-  return (
-    <Card className="text-center">
-      <Card.Header style={cardHeader}>
-        Profile
-        
-      </Card.Header>
-      <Card.Body style={{
-        textAlign: "left",
-        backgroundColor: "#A2D9CE",
-        height: "400px",
-        overflowY: 'auto'}}>
-        <Card.Title></Card.Title>
-        <Card.Text>
-          <EditableTextProfile
-            initialFirst={firstName}
-            initialLast={lastName}
-            initialSchool={school}
-            initialEmail={email}
-            initialPhone={phone}
-          />
-          Note:&nbsp;Editing your email WILL CHANGE the email you use to login!
-        </Card.Text>
-        <ProfileButton />
-      </Card.Body>
-    </Card>
-  );
+    const getProfileInfo = async () => {
+      try {
+        const location = useLocation();
+        const res = location.state;
+        firstName = res.data.firstName;
+        lastName = res.data.lastName;
+        email = res.data.email;
+        school = res.data.school;
+        phone = res.data.phone;
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getProfileInfo();
+  }, []);
+
+    return () => (
+      <Card className="text-center">
+        <Card.Header style={cardHeader}>
+          Profile
+          
+        </Card.Header>
+        <Card.Body style={{
+          textAlign: "left",
+          backgroundColor: "#A2D9CE",
+          height: "400px",
+          overflowY: 'auto'}}>
+          <Card.Title></Card.Title>
+          <Card.Text>
+            <EditableTextProfile
+              initialFirst={firstName}
+              initialLast={lastName}
+              initialSchool={school}
+              initialEmail={email}
+              initialPhone={phone}
+            />
+            Note:&nbsp;Editing your email WILL CHANGE the email you use to login!
+          </Card.Text>
+          <ProfileButton />
+        </Card.Body>
+      </Card>
+    );
 }
 
 const Note = ({ id, val, text, onDelete }) => {
@@ -516,6 +522,8 @@ const Profile = () => {
   */
 
   //<Login isOpen={isPopUpOpen} handleClose={handleClose} updateRes={updateRes} updateInactive={updateInactive} />
+
+
 
   return (
     <div style={backgroundColor}>
