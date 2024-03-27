@@ -283,32 +283,38 @@ export const EditableTextProfile = ({
 };
 
 function ProfileCard() {
-  let firstName = "";
-  let lastName = "";
-  let school = "";
-  let email = "";
-  let phone = "";
+  const [profileInfo, setProfileInfo] = useState({
+    firstName: "",
+    lastName: "",
+    school: "",
+    email: "",
+    phone: "",
+  });
+
+  const location = useLocation();
 
   useEffect(() => {
 
     const getProfileInfo = async () => {
       try {
-        const location = useLocation();
         const res = location.state;
-        firstName = res.data.firstName;
-        lastName = res.data.lastName;
-        email = res.data.email;
-        school = res.data.school;
-        phone = res.data.phone;
+        const profileData = {
+          firstName: res.data.firstName,
+          lastName: res.data.lastName,
+          email: res.data.email,
+          school: res.data.school,
+          phone: res.data.phone,
+        };
+        setProfileInfo(profileData);
       } catch (error) {
         console.log(error);
       }
     };
 
     getProfileInfo();
-  }, []);
+  }, [location]);
 
-    return () => (
+    return (
       <Card className="text-center">
         <Card.Header style={cardHeader}>
           Profile
