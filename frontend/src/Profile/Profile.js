@@ -1,11 +1,11 @@
 // Source for clicking:
 // https://medium.com/@zahidbashirkhan/implementing-double-click-to-edit-text-in-react-2e1d4bcb2493#:~:text=Inside%20the%20EditableText%20component%2C%20create,the%20text%20to%20be%20edited.
 
+import { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Nav from "react-bootstrap/Nav";
 import { useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
 import Login from "../Login";
 import { detectOverflow } from "@popperjs/core";
 import axios from "axios";
