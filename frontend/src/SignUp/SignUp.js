@@ -6,6 +6,7 @@ import "../Login/Login.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Login from "../Login";
+import { useUserState } from "../userState";
 
 const SignUp = ({ isOpen, handleClose, updateRes, updateInactive }) => {
   const [email, setEmail] = useState("");
@@ -15,7 +16,7 @@ const SignUp = ({ isOpen, handleClose, updateRes, updateInactive }) => {
   const [emailError, setEmailError] = useState("");
   const [isPopUpOpen, setPopUpOpen] = useState(false);
   const [isInactive, setInactive] = useState(true);
-  const [res, setRes] = useState("empty");
+  //const [res, setRes] = useState("empty");
   const [isSignUpPopUpOpen, setSignUpPopUpOpen] = useState(false);
   const handleOpenPopUp = () => {
     console.log("clicked for login");
