@@ -79,7 +79,6 @@ app.post("/editprofile", async (req, res) => {
     phone: req.body.phone,
   };
 
-  console.log("in app.post");
 
   updateProfileInfo(data, res);
 });
