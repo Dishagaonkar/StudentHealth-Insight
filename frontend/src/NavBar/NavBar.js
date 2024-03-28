@@ -24,6 +24,7 @@ const NavBar = () => {
     email: res.email,
     password: res.password,
     school: res.school,
+    phone: res.phone
   };
 
   const updateInactive = (temp) => {
