@@ -109,7 +109,7 @@ const NavBar = () => {
         isOpen={isLogout}
         handleClose={handleCloseLogout}
         updateRes={updateRes}
-        updateInactive={updateInactive(true)}
+        updateInactive={updateInactive}
         />
     </Navbar>
   );
