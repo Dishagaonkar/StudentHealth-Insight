@@ -13,6 +13,7 @@ const NavBar = () => {
   const [isSignUpPopUpOpen, setSignUpPopUpOpen] = useState(false);
   const [res, setRes] = useState("empty");
   const [isInactive, setInactive] = useState(true);
+  const [isLogout, setLogout] = useState(false);
 
   const updateRes = (newRes) => {
     setRes(newRes);
@@ -48,6 +49,14 @@ const NavBar = () => {
     setSignUpPopUpOpen(false);
   };
 
+  const handleOpenLogout = () => { 
+    setLogout(true);
+  }
+
+  const handleCloseLogout = () => {
+    setLogout(false);
+  }
+
   return (
     <Navbar variant="light" expand="lg" style={{backgroundColor:'#9ec8d6', minHeight:'50px'}}>
       <Navbar.Brand style={{marginLeft:'10px'}} as={Link} to="/">StudentHealth Insight</Navbar.Brand>
@@ -77,6 +86,9 @@ const NavBar = () => {
             }
           }}>Sign Up</Button>
           <Button variant="secondary" style={{marginRight:'10px', float:'right', marginBottom:'5px', marginTop: '5px'}} onClick={(e) => {
+            if(!isInactive){
+              handleOpenLogout();
+            }
           }}>Log Out</Button>
         </Nav>
       </Navbar.Collapse>
@@ -92,6 +104,12 @@ const NavBar = () => {
         updateRes={updateRes}
         updateInactive={updateInactive}
       />
+      <Logout
+        isOpen={isLogout}
+        handleClose={handleCloseLogout}
+        updateRes={updateRes}
+        updateInactive={updateInactive(true)}
+        />
     </Navbar>
   );
 };
