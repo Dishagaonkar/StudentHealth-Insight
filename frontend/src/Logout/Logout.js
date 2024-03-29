@@ -40,4 +40,4 @@ export const Logout = ({ isOpen, handleClose, updateRes, updateInactive }) => {
   );
 };
 
-export default Login;
+export default Logout;
