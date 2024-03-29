@@ -5,6 +5,11 @@
 
 const express = require("express");
 const cors = require("cors");
+// add
+const bodyParser = require("body-parser");
+const {OpenAI} = require('openai');
+// add
+
 const {
   connectDB,
   findDB,
@@ -17,11 +22,13 @@ const {
 } = require("./mongoLogistics");
 const app = express();
 const axios = require("axios");
+const { red } = require("@mui/material/colors");
 
 const PORT = 5000;
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 app.get("/places", async (req, res) => {
   try {
     const { query } = req.query;
@@ -45,6 +52,24 @@ app.listen(PORT, () => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
+
+app.use(bodyParser.json());
+app.post("/evaluate", async (req, res) => {
+  const openAi = new OpenAI({
+    apiKey: "API KEY HERE" 
+  });
+  const openai = new OpenAI(openAi);
+  
+  const completion = await openai.chat.completions.create({
+    messages: [{ role: "system", content: req.body.prompt}],
+    model: "gpt-3.5-turbo",
+  });
+
+  console.log(completion.choices[0].message.content);
+  res.status(200).json({ content: completion.choices[0].message.content});
+});
+
+// end evaluate code
 
 app.post("/signup", async (req, res) => {
   console.log("hello");
@@ -79,7 +104,6 @@ app.post("/editprofile", async (req, res) => {
     phone: req.body.phone,
   };
 
-  console.log("in app.post");
 
   updateProfileInfo(data, res);
 });
@@ -115,3 +139,5 @@ app.post("/deleteNote", async (req, res) => {
 app.listen(8000, () => {
   console.log(`Server is running on port 8000.`);
 });
+
+

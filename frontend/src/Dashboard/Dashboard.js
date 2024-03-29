@@ -187,7 +187,7 @@ const TopAlert = () => {
         </>
       );
     }
-    return <Button onClick={() => setShow(true)}>Show Alert</Button>;
+    return <Button variant='secondary' onClick={() => setShow(true)}>Show Alert</Button>;
     
 };
 

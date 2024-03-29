@@ -4,6 +4,9 @@ import Button from "react-bootstrap/Button";
 import Login from "../Login";
 import SignUp from "../SignUp";
 import Profile from "../Profile";
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
+
 
 const NavBar = () => {
   const [isPopUpOpen, setPopUpOpen] = useState(false);
@@ -21,6 +24,7 @@ const NavBar = () => {
     email: res.email,
     password: res.password,
     school: res.school,
+    phone: res.phone
   };
 
   const updateInactive = (temp) => {
@@ -45,77 +49,35 @@ const NavBar = () => {
   };
 
   return (
-    <div>
-      <nav>
-        <ul>
-          <li>
-            <Link
-              to={"profile"}
-              state={{ data }}
-              onClick={(e) => {
-                if (isInactive) {
-                  e.preventDefault();
-                  console.log(data);
-                  console.log("is inactive profile");
-                }
-              }}
-              style={{ color: "white", textDecoration: "none" }}
-            >
-              Profile
-            </Link>
-          </li>
-          <li>
-            <Link to="/" style={{ color: "white", textDecoration: "none" }}>
-              Dashboard
-            </Link>
-          </li>
-          <li>
-            <Link to="learn" style={{ color: "white", textDecoration: "none" }}>
-              Learn
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="nearby"
-              style={{ color: "white", textDecoration: "none" }}
-            >
-              Nearby Help
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="evaluate"
-              style={{ color: "white", textDecoration: "none" }}
-            >
-              Evaluate
-            </Link>
-          </li>
-          <li>
-            <Button
-              variant="secondary"
-              onClick={(e) => {
-                if (isInactive) {
-                  handleOpenPopUp();
-                }
-              }}
-            >
-              Login
-            </Button>
-          </li>
-          <li>
-            <Button
-              variant="secondary"
-              onClick={(e) => {
-                if (isInactive) {
-                  handleSignUpOpenPopUp();
-                }
-              }}
-            >
-              Sign Up
-            </Button>
-          </li>
-        </ul>
-      </nav>
+    <Navbar variant="light" expand="lg" style={{backgroundColor:'#9ec8d6', minHeight:'50px'}}>
+      <Navbar.Brand style={{marginLeft:'10px'}} as={Link} to="/">StudentHealth Insight</Navbar.Brand>
+      <Navbar.Toggle style={{marginRight:'10px'}}aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="mr-auto" style={{marginLeft:'10px'}}>
+          <Nav.Link as={Link} to={"profile"} state={{ data }} onClick={(e) => {
+            if (isInactive) {
+              e.preventDefault();
+              console.log(data);
+              console.log("is inactive profile");
+            }
+          }}>Profile</Nav.Link>
+          <Nav.Link as={Link} to="learn">Learn</Nav.Link>
+          <Nav.Link as={Link} to="nearby">Nearby Help</Nav.Link>
+          <Nav.Link as={Link} to="evaluate">Evaluate</Nav.Link>
+        </Nav>
+        <Nav style={{marginLeft:'10px', marginRight:'10px'}}>
+          <Button variant="secondary" style={{marginRight:'10px', float:'right', marginBottom:'5px', marginTop:'5px'}} onClick={(e) => {
+            if (isInactive) {
+              handleOpenPopUp();
+            }
+          }}>Login</Button>
+          <Button variant="secondary" style={{marginRight:'10px', float:'right', marginBottom:'5px', marginTop: '5px'}} onClick={(e) => {
+            if (isInactive) {
+              handleSignUpOpenPopUp();
+            }
+          }}>Sign Up</Button>
+        </Nav>
+      </Navbar.Collapse>
       <Login
         isOpen={isPopUpOpen}
         handleClose={handleClosePopUp}
@@ -128,7 +90,7 @@ const NavBar = () => {
         updateRes={updateRes}
         updateInactive={updateInactive}
       />
-    </div>
+    </Navbar>
   );
 };
 
