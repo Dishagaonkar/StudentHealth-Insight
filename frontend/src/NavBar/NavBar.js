@@ -6,6 +6,7 @@ import SignUp from "../SignUp";
 import Profile from "../Profile";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
+import Logout from "../Logout";
 
 
 const NavBar = () => {
