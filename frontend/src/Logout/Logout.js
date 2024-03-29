@@ -26,7 +26,7 @@ export const Logout = ({ isOpen, handleClose, updateRes, updateInactive }) => {
           X
         </button>
         <p className="wording">Logout</p>
-            Do you want to logout?
+        <p>Are you sure you want to logout?</p>
           <br />
           <div className={"buttonContainer"}>
             <input

@@ -90,7 +90,7 @@ export const Login = ({ isOpen, handleClose, updateRes, updateInactive }) => {
               type="submit"
               value={"Login"}
             />
-            <label className="errorLabel">{emailError}</label>
+          {/*<label className="errorLabel">{emailError}</label>*/}
           </div>
         </form>
       </div>
