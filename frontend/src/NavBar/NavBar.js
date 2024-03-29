@@ -76,6 +76,8 @@ const NavBar = () => {
               handleSignUpOpenPopUp();
             }
           }}>Sign Up</Button>
+          <Button variant="secondary" style={{marginRight:'10px', float:'right', marginBottom:'5px', marginTop: '5px'}} onClick={(e) => {
+          }}>Log Out</Button>
         </Nav>
       </Navbar.Collapse>
       <Login
