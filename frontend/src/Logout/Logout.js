@@ -26,13 +26,14 @@ export const Logout = ({ isOpen, handleClose, updateRes, updateInactive }) => {
           X
         </button>
         <p className="wording">Logout</p>
+            Do you want to logout?
           <br />
           <div className={"buttonContainer"}>
             <input
               className={"inputButton"}
               onClick={LogoutClick}
               type="submit"
-              value={"Logout"}
+              value={"Yes, logout."}
             />
           </div>
       </div>
