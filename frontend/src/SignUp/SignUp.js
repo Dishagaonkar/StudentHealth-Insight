@@ -58,7 +58,6 @@ const SignUp = ({ isOpen, handleClose, updateRes, updateInactive }) => {
           lastName: lastName,
           email: email,
           password: password,
-          // school: school,
         });
         //show message for valid login
         if (response.status === 200) {

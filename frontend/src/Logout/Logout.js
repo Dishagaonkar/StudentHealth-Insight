@@ -14,7 +14,7 @@ export const Logout = ({ isOpen, handleClose, updateRes, updateInactive }) => {
     updateRes("empty");
     updateInactive(true);
     handleClose();
-
+    window.location.href = "/";
   };
 
   return (
