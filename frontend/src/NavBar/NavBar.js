@@ -14,7 +14,7 @@ const NavBar = () => {
   const [isSignUpPopUpOpen, setSignUpPopUpOpen] = useState(false);
   const [res, setRes] = useState("empty");
   const [isInactive, setInactive] = useState(true);
-  const [isLogout,setLogouot] = useState(false);
+  const [isLogout,setLogout] = useState(false);
 
   const updateRes = (newRes) => {
     setRes(newRes);
