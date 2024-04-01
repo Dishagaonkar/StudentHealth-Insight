@@ -29,7 +29,7 @@ function ChatGPT() {
       for (let i = 0; i < responseArr.length; i++) {
         result += responseArr[i];
       }
-      result = responseArr.join('\n');
+      result = responseArr.join('\n\n');
       setResponse(result);
       console.log(response.data.content);
 
@@ -70,6 +70,7 @@ function ChatGPT() {
           </div>
         )}
       </form>
+      <br/>
       <Button variant= 'secondary' style={{float: 'right'}} onClick={() => setShowPopup(true)}> Save </Button>
       <Modal show={showPopup} onHide={() => setShowPopup(false)}>
         <Modal.Header closeButton>
@@ -123,13 +124,15 @@ const Evaluate = () => {
     <div style={backgroundColor}>
       <Disclaimer3 />
       <p style={{
-        backgroundColor: '#4fa5a0', 
+        backgroundColor: '#A2D9CE', 
         padding: '20px', 
         fontFamily: 'Arial', 
         fontSize: '20px', 
         textAlign: 'left', 
-        marginTop: '20px', 
-        color: '#FFFFFF', }}>
+        marginTop: '20px',
+        paddingBottom: '50px', 
+        color: 'black',
+        minHeight: '500px'}}>
           Ask our chat bot anything! Here are some example prompts to get you started:
           <br/>
           &#8226; What are symptoms of [ insert illness ]?
@@ -137,8 +140,9 @@ const Evaluate = () => {
           &#8226; I am feeling [ insert symptoms ], what could it be?
           <br/>
           &#8226; I have been experiencing [ insert symptoms / illness ] for x amount of days, is this concerning?
-          </p>      
-      <ChatGPT />
+          <br/><br/>
+          <ChatGPT />
+          </p> 
     </div>
   );
 };
