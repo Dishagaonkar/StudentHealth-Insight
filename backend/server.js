@@ -52,7 +52,7 @@ app.use(cors());
 // add evaluate 
 app.post("/evaluate", async (req, res) => {
   const openAi = new OpenAI({
-    apiKey: "ADD API KEY" 
+    apiKey: "ADD API KEY HERE" 
   });
   const openai = new OpenAI(openAi);
   

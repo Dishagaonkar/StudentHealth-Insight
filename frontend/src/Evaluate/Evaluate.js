@@ -55,7 +55,10 @@ function ChatGPT() {
         </div>
         {response && (
           <div className="form-group">
-            <pre>{result}</pre>
+            <br/>
+            <Card body>
+              <pre>{result}</pre>
+              </Card>
           </div>
         )}
       </form>
