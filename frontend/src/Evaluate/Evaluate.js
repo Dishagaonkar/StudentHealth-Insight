@@ -7,22 +7,40 @@ const backgroundColor = {
   padding: "20px",
 };
 
+
+let responseArr = [];
+let result = [];
+
 function ChatGPT() {
   const [prompt, setPrompt] = useState("");
   const [response, setResponse] = useState("");
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    responseArr.push(prompt);
     try {
       const response = await axios.post("http://localhost:8000/evaluate", {
         prompt,
       });
-      setResponse(response.data.content);
+      responseArr.push(response.data.content);
+      for (let i = 0; i < responseArr.length; i++) {
+        result += responseArr[i];
+      }
+      result = responseArr.join('\n');
+      setResponse(result);
       console.log(response.data.content);
+
     } catch (error) {
       console.log(error);
     }
   };
+
+
+  //const handlePrompt = (e) => setPrompt(e.target.value);
   const handlePrompt = (e) => setPrompt(e.target.value);
+
+
   return (
     <div className="container container-sm p-1">
       <form className="form" onSubmit={handleSubmit}>
@@ -37,8 +55,7 @@ function ChatGPT() {
         </div>
         {response && (
           <div className="form-group">
-            <label>Response</label>
-            <p>{response}</p>
+            <pre>{result}</pre>
           </div>
         )}
       </form>
