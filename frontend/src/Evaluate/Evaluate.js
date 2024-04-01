@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card } from "react-bootstrap";
+import { Card, CardBody, CardText, Button, Form, Modal } from "react-bootstrap";
 import axios from "axios";
 
 const backgroundColor = {
@@ -14,6 +14,8 @@ let result = [];
 function ChatGPT() {
   const [prompt, setPrompt] = useState("");
   const [response, setResponse] = useState("");
+  const [showPopup, setShowPopup] = useState(false);
+  const [title, setTitle] = useState('');
 
 
   const handleSubmit = async (e) => {
@@ -34,6 +36,12 @@ function ChatGPT() {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const handleSave = () => {
+    // Handle save logic here
+    console.log('Title saved:', title);
+    setShowPopup(false);
   };
 
 
@@ -62,6 +70,25 @@ function ChatGPT() {
           </div>
         )}
       </form>
+      <Button variant= 'secondary' style={{float: 'right'}} onClick={() => setShowPopup(true)}> Save! </Button>
+      <Modal show={showPopup} onHide={() => setShowPopup(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Title Your Conversation</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form.Control
+            type="text"
+            placeholder="Enter title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleSave}>
+            Save
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
   // <div>ChatGPT</div>;
@@ -95,10 +122,16 @@ const Evaluate = () => {
   return (
     <div style={backgroundColor}>
       <Disclaimer3 />
-      <br />
-      <p className="title text-center text-darkGreen">
-        Ask a question to learn more about your symptoms
-      </p>
+      <p style={{
+        backgroundColor: '#4fa5a0', 
+        padding: '20px', 
+        fontFamily: 'Arial', 
+        fontSize: '20px', 
+        textAlign: 'left', 
+        marginTop: '20px', 
+        color: '#FFFFFF', }}>
+          Ask our chat bot anything! Here are some example prompts to get you started: (add examples)
+          </p>      
       <ChatGPT />
     </div>
   );
