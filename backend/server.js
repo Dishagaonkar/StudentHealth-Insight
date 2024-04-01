@@ -5,6 +5,9 @@
 
 const express = require("express");
 const cors = require("cors");
+// add
+const {OpenAI} = require('openai');
+// add
 const {
   connectDB,
   findDB,
@@ -45,6 +48,23 @@ app.listen(PORT, () => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
+
+// add evaluate 
+app.post("/evaluate", async (req, res) => {
+  const openAi = new OpenAI({
+    apiKey: "API KEY HERE" 
+  });
+  const openai = new OpenAI(openAi);
+  
+  const completion = await openai.chat.completions.create({
+    messages: [{ role: "system", content: req.body.prompt}],
+    model: "gpt-3.5-turbo",
+  });
+
+  console.log(completion.choices[0].message.content);
+  res.status(200).json({ content: completion.choices[0].message.content});
+});
+// end evaluate
 
 app.post("/signup", async (req, res) => {
   console.log("hello");
