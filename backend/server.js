@@ -29,7 +29,7 @@ app.use(express.urlencoded({ extended: true }));
 app.get("/places", async (req, res) => {
   try {
     const { query } = req.query;
-    const apiKey = "API KEY HERE";
+    const apiKey = "ADD API KEY";
     const apiUrl = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${query}&key=${apiKey}`;
     const response = await axios.get(apiUrl); // Use Axios to make GET request
     console.log(response);
@@ -53,7 +53,7 @@ app.use(cors());
 // add evaluate 
 app.post("/evaluate", async (req, res) => {
   const openAi = new OpenAI({
-    apiKey: "ADD API KEY HERE" 
+    apiKey: "ADD API KEY" 
   });
   const openai = new OpenAI(openAi);
   
@@ -146,3 +146,4 @@ app.post("/insertEval", async(req,res) => {
 app.listen(8000, () => {
   console.log(`Server is running on port 8000.`);
 });
+
