@@ -17,6 +17,7 @@ const {
   userNotes,
   insertNote,
   deleteNote,
+  insertEvals,
 } = require("./mongoLogistics");
 const app = express();
 const axios = require("axios");
@@ -130,6 +131,17 @@ app.post("/deleteNote", async (req, res) => {
 
   deleteNote(data, res);
 });
+
+app.post("/insertEval", async(req,res) => {
+  const data = {
+    email: req.body.email,
+    time: req.body.time, 
+    eval: req.body.eval
+  }
+
+  insertEval(data, res);
+
+})
 
 app.listen(8000, () => {
   console.log(`Server is running on port 8000.`);
