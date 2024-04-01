@@ -70,7 +70,7 @@ function ChatGPT() {
           </div>
         )}
       </form>
-      <Button variant= 'secondary' style={{float: 'right'}} onClick={() => setShowPopup(true)}> Save! </Button>
+      <Button variant= 'secondary' style={{float: 'right'}} onClick={() => setShowPopup(true)}> Save </Button>
       <Modal show={showPopup} onHide={() => setShowPopup(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Title Your Conversation</Modal.Title>
@@ -130,7 +130,13 @@ const Evaluate = () => {
         textAlign: 'left', 
         marginTop: '20px', 
         color: '#FFFFFF', }}>
-          Ask our chat bot anything! Here are some example prompts to get you started: (add examples)
+          Ask our chat bot anything! Here are some example prompts to get you started:
+          <br/>
+          &#8226; What are symptoms of [ insert illness ]?
+          <br/>
+          &#8226; I am feeling [ insert symptoms ], what could it be?
+          <br/>
+          &#8226; I have been experiencing [ insert symptoms / illness ] for x amount of days, is this concerning?
           </p>      
       <ChatGPT />
     </div>
