@@ -2,6 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Card } from 'react-bootstrap';
 import axios from "axios";
 
+const backgroundColor = {
+  backgroundColor: '#eeeeee',
+  padding: '20px', 
+}
+
 function ChatGPT() {
   const [prompt, setPrompt] = useState("");
   const [response, setResponse] = useState("");
@@ -18,13 +23,12 @@ function ChatGPT() {
   const handlePrompt = (e) => setPrompt(e.target.value);
   return (
     <div className="container container-sm p-1">
-      <h1 className="title text-center text-darkGreen"> ChatGPT API </h1>
       <form className="form" onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="">Ask questions</label>
           <input
             type = "text"
-            className="shadow-sm"
+            
+            style={{ width: '300px', height: '40px' }}
             placeholder="Enter text"
             value={prompt}
             onChange={handlePrompt}
@@ -66,7 +70,12 @@ function Disclaimer3() {
 
 const Evaluate = () => {
   return (
-  <div>
+  <div style={backgroundColor}>
+    <Disclaimer3/>
+    <br />
+    <p className="title text-center text-darkGreen">
+      Ask a question to learn more about your symptoms
+    </p>
     <ChatGPT/> 
   </div>
 
