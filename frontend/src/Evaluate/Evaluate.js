@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Card, CardBody, CardText, Button, Form, Modal } from "react-bootstrap";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 
 const backgroundColor = {
@@ -36,7 +37,11 @@ function ChatGPT() {
     }
   };
 
-  const handleSave = () => {
+  const location = useLocation();
+  const res = location.state;
+  const email = res.data.email;
+
+  const handleSave = async (ev) =>  {
     // Handle save logic here
     if (title.trim() === "") {
       setTitleError("Title is required");
@@ -46,6 +51,21 @@ function ChatGPT() {
       console.log("Title saved:", title);
       setShowPopup(false);
     }
+
+    console.log(responseArr);
+
+    try{
+      const response = await axios.post("http://localhost:8000/insertEval", {
+        email: email,
+        time: new Date().toISOString(),
+        title: title,
+        eval: responseArr
+      })
+    }catch(error){
+      console.log(error.response.data);
+    }
+    console.log('Title saved:', title);
+    setShowPopup(false);
   };
 
   //const handlePrompt = (e) => setPrompt(e.target.value);

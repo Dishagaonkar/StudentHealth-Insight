@@ -136,6 +136,7 @@ app.post("/insertEval", async(req,res) => {
   const data = {
     email: req.body.email,
     time: req.body.time, 
+    title: req.body.title,
     eval: req.body.eval
   }
 
