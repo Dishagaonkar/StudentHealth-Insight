@@ -7,7 +7,6 @@ const backgroundColor = {
   padding: "20px",
 };
 
-
 let responseArr = [];
 let result = [];
 
@@ -15,8 +14,8 @@ function ChatGPT() {
   const [prompt, setPrompt] = useState("");
   const [response, setResponse] = useState("");
   const [showPopup, setShowPopup] = useState(false);
-  const [title, setTitle] = useState('');
-
+  const [title, setTitle] = useState("");
+  const [titleError, setTitleError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,10 +28,9 @@ function ChatGPT() {
       for (let i = 0; i < responseArr.length; i++) {
         result += responseArr[i];
       }
-      result = responseArr.join('\n\n');
+      result = responseArr.join("\n\n");
       setResponse(result);
       console.log(response.data.content);
-
     } catch (error) {
       console.log(error);
     }
@@ -40,14 +38,18 @@ function ChatGPT() {
 
   const handleSave = () => {
     // Handle save logic here
-    console.log('Title saved:', title);
-    setShowPopup(false);
+    if (title.trim() === "") {
+      setTitleError("Title is required");
+    } else {
+      setTitleError("");
+      // Handle save logic here
+      console.log("Title saved:", title);
+      setShowPopup(false);
+    }
   };
-
 
   //const handlePrompt = (e) => setPrompt(e.target.value);
   const handlePrompt = (e) => setPrompt(e.target.value);
-
 
   return (
     <div className="container container-sm p-1">
@@ -63,15 +65,22 @@ function ChatGPT() {
         </div>
         {response && (
           <div className="form-group">
-            <br/>
+            <br />
             <Card body>
               <pre>{result}</pre>
-              </Card>
+            </Card>
           </div>
         )}
       </form>
-      <br/>
-      <Button variant= 'secondary' style={{float: 'right'}} onClick={() => setShowPopup(true)}> Save </Button>
+      <br />
+      <Button
+        variant="secondary"
+        style={{ float: "right" }}
+        onClick={() => setShowPopup(true)}
+      >
+        {" "}
+        Save{" "}
+      </Button>
       <Modal show={showPopup} onHide={() => setShowPopup(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Title Your Conversation</Modal.Title>
@@ -82,7 +91,11 @@ function ChatGPT() {
             placeholder="Enter title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            isInvalid={titleError !== ""}
           />
+          <Form.Control.Feedback type="invalid">
+            {titleError}
+          </Form.Control.Feedback>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={handleSave}>
@@ -123,26 +136,32 @@ const Evaluate = () => {
   return (
     <div style={backgroundColor}>
       <Disclaimer3 />
-      <p style={{
-        backgroundColor: '#A2D9CE', 
-        padding: '20px', 
-        fontFamily: 'Arial', 
-        fontSize: '20px', 
-        textAlign: 'left', 
-        marginTop: '20px',
-        paddingBottom: '50px', 
-        color: 'black',
-        minHeight: '500px'}}>
-          Ask our chat bot anything! Here are some example prompts to get you started:
-          <br/>
-          &#8226; What are symptoms of [ insert illness ]?
-          <br/>
-          &#8226; I am feeling [ insert symptoms ], what could it be?
-          <br/>
-          &#8226; I have been experiencing [ insert symptoms / illness ] for x amount of days, is this concerning?
-          <br/><br/>
-          <ChatGPT />
-          </p> 
+      <p
+        style={{
+          backgroundColor: "#A2D9CE",
+          padding: "20px",
+          fontFamily: "Arial",
+          fontSize: "20px",
+          textAlign: "left",
+          marginTop: "20px",
+          paddingBottom: "50px",
+          color: "black",
+          minHeight: "500px",
+        }}
+      >
+        Ask our chat bot anything! Here are some example prompts to get you
+        started:
+        <br />
+        &#8226; What are symptoms of [ insert illness ]?
+        <br />
+        &#8226; I am feeling [ insert symptoms ], what could it be?
+        <br />
+        &#8226; I have been experiencing [ insert symptoms / illness ] for x
+        amount of days, is this concerning?
+        <br />
+        <br />
+        <ChatGPT />
+      </p>
     </div>
   );
 };
