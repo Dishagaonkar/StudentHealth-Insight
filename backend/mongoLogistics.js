@@ -10,7 +10,7 @@ const name = 'StudentHealthInsight';
 
 const User = mongoose.model('logins', {firstName: String, lastName: String, email: String, password: String, school: String, phone: String});
 const Notes = mongoose.model('notes', { email: String, time: { type : String, default: new Date().toISOString() }, text: String});
-const PastEvals = mongoose.model('pastEvals', {email: String, time: {type : String, default: new Date().toISOString() }, eval: [String]});
+const PastEvals = mongoose.model('pastEvals', {email: String, time: {type : String, default: new Date().toISOString() }, title: String, eval: []});
 
 async function connectDB() {
   mongoose.connect(uri , { useNewUrlParser: true, useUnifiedTopology: true });
