@@ -46,75 +46,9 @@ const backgroundColor = {
 const PastEvalCard = {
   margin: "10px",
   backgroundColor: "#3091B0",
-  textAlign: "center",
   color: "white",
   fontSize: "20px",
 };
-
-const ProfileButton = () => {
-  const [showConfirmation, setShowConfirmation] = useState(false);
-
-  const handleLogoutClick = () => {
-    setShowConfirmation(true);
-  };
-
-  const handleCancelLogout = () => {
-    setShowConfirmation(false);
-  };
-
-  const handleConfirmLogout = () => {
-    console.log("Logged out");
-    // add logout logic here
-    setShowConfirmation(false);
-  };
-
-  const ConfirmationPopup = ({ message, onCancel, onConfirm }) => {
-    return (
-      <div className="confirmation-popup-overlay">
-        <div className="confirmation-popup">
-          <div className="confirmation-popup-content">
-            {message}&nbsp;&nbsp;
-            <Button onClick={onCancel} variant="secondary">
-              Cancel
-            </Button>
-            &nbsp;&nbsp;
-            <Button onClick={onConfirm} variant="danger">
-              Yes, Logout
-            </Button>
-          </div>
-        </div>
-      </div>
-    );
-  };
-
-  return (
-    <>
-      <Button
-        variant="secondary"
-        style={{ float: "right" }}
-        onClick={handleLogoutClick}
-      >
-        Logout
-      </Button>
-      <br /> <br />
-      {showConfirmation && (
-        <ConfirmationPopup
-          message="Are you sure?"
-          onCancel={handleCancelLogout}
-          onConfirm={handleConfirmLogout}
-        />
-      )}
-    </>
-  );
-};
-
-function EvalsButton() {
-  return (
-    <>
-      <Button variant="secondary">Past Evaluations</Button>{" "}
-    </>
-  );
-}
 
 export const EditableTextProfile = ({
   initialFirst,
@@ -328,10 +262,8 @@ function ProfileCard() {
             initialPhone={phone}
           />
           <br/>
-          Note:&nbsp;Email cannot be changed, because it is the login.&nbsp;&nbsp;
-          <ProfileButton />
+          Note:&nbsp;Email cannot be changed, because it is the login.&nbsp;&nbsp;  
         </Card.Text>
-        
       </Card.Body>
     </Card>
   );
@@ -483,12 +415,58 @@ function NotesCard() {
   );
 }
 
+const EvalItem = ({ id, val, title, text }) => {
+  return (
+    <div>
+      {/* make text appear in popup when title is clicked */}
+      {title}
+      {'\t'}
+      {val}
+    </div>
+  );
+};
+
 function PastEvaluations() {
+  const [evals, setEvals] = useState([]);
+
+  const location = useLocation();
+  const res = location.state;
+  const email = res.data.email;
+
+  // useEffect(() => {
+  //   let changed = true;
+  //   const retrieveNotes = async () => {
+  //     try {
+  //       const evalsRes = await axios.post("http://localhost:8000/userNotes", {
+  //         email: email,
+  //       });
+  //       if (changed) {
+  //         if (evalsRes.status === 200) {
+  //           setEvals(evalsRes.data.notes);
+  //         }
+  //       }
+  //     } catch (error) {
+  //       console.log("cant get evals");
+  //     }
+  //   };
+  //   retrieveEvals();
+  //   return () => {
+  //     changed = false;
+  //   };
+  // }, []);
+
   return (
     <Card style={PastEvalCard}>
-      <Card.Header>Click below to see past evaluations</Card.Header>
+      <Card.Header style={{textAlign: "center"}}>Click below to see past evaluations</Card.Header>
       <Card.Body>
-        <EvalsButton />
+      {evals.map((item) => (
+              <EvalItem
+                val={item.time}
+                id={item.email}
+                title={item.title}
+                text={item.text}
+              />
+            ))}
       </Card.Body>
     </Card>
   );
