@@ -389,7 +389,7 @@ function NotesCard() {
                 borderRadius: "10px",
                 border: "1px solid #ccc",
                 marginRight: "10px",
-                width: "360px",
+                width: "70%",
               }}
             />
             <Button
@@ -415,7 +415,7 @@ function NotesCard() {
   );
 }
 
-const EvalItem = ({ id, val, title, text }) => {
+const EvalItem = ({ key, id, val, title, text }) => {
   return (
     <div>
       {/* make text appear in popup when title is clicked */}
@@ -460,7 +460,7 @@ function PastEvaluations() {
       <Card.Header style={{textAlign: "center"}}>Click below to see past evaluations</Card.Header>
       <Card.Body>
       {evals.length === 0 ? (
-        <p>No evaluations saved yet</p>
+        <p>no evaluations saved yet</p>
       ) : (
         evals.map((item) => (
         <EvalItem
