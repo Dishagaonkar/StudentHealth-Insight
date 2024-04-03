@@ -65,7 +65,9 @@ function ChatGPT() {
         console.log(error.response.data);
       }
       setShowPopup(false);
-   
+      responseArr = [];
+      result = [];
+      setResponse('');
     }
     else{
       setTitleError("Please login to save!");
@@ -89,7 +91,7 @@ function ChatGPT() {
             onChange={handlePrompt}
           />
         </div>
-        {response && (
+        {response && response !== "" && (
           <div className="form-group">
             <br />
             <Card body>
