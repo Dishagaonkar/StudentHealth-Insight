@@ -53,32 +53,26 @@ function ChatGPT() {
       setShowPopup(false);
     }
 
-    console.log(responseArr);
-
-    // or should a variation of this be in the return ? (so button doesn't even appear if the user is not logged in)
-    // try{
-    //   const response = await axios.post("http://localhost:8000/userNotes", {
-    //     email: email
-    //   })
-    // }catch(error) {
-    //   console.log('user not logged in');
-    // }
-
-    try{
-      const response = await axios.post("http://localhost:8000/insertEval", {
-        email: email,
-        time: new Date().toISOString(),
-        title: title,
-        eval: responseArr
-      })
-    }catch(error){
-      console.log(error.response.data);
+    if(email && email != ""){
+      try{
+        const response = await axios.post("http://localhost:8000/insertEval", {
+          email: email,
+          time: new Date().toISOString(),
+          title: title,
+          eval: responseArr
+        })
+      }catch(error){
+        console.log(error.response.data);
+      }
+      setShowPopup(false);
+   
     }
-    console.log('Title saved:', title);
-    setShowPopup(false);
-    // responseArr = [];
-    // setResponse("");
-  };
+    else{
+      setTitleError("Please login to save!");
+      setShowPopup(true);
+    }
+
+    }
 
   //const handlePrompt = (e) => setPrompt(e.target.value);
   const handlePrompt = (e) => setPrompt(e.target.value);
