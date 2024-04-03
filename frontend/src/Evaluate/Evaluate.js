@@ -35,6 +35,7 @@ function ChatGPT() {
     } catch (error) {
       console.log(error);
     }
+    setPrompt("");
   };
 
   const location = useLocation();
