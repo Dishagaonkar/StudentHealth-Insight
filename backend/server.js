@@ -17,7 +17,7 @@ const {
   userNotes,
   insertNote,
   deleteNote,
-  insertEvals,
+  insertEval,
 } = require("./mongoLogistics");
 const app = express();
 const axios = require("axios");
