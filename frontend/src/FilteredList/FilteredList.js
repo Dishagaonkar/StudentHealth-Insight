@@ -173,8 +173,10 @@ const FilteredList = ({ items }) => {
             ))}
             <h3>More Info:</h3>
             <p>{items.find((item) => item.id === popupVisible).description}</p>
-            <h1>Please seek medical care if any symptom is persistent, severe, or concerning.</h1>
           </Modal.Body>
+          <Modal.Footer>
+          <h1>Please seek medical care if any symptom is persistent, severe, or concerning.</h1>
+          </Modal.Footer>
         </Modal>
       )}
     </div>
