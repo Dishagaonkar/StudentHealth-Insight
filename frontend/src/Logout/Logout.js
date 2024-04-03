@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../popup.css";
 import "../Logout/Logout.css";
+import { Modal, Button } from "react-bootstrap";
 import axios from "axios";
 
 // create res outside of component
@@ -18,24 +19,22 @@ export const Logout = ({ isOpen, handleClose, updateRes, updateInactive }) => {
   };
 
   return (
-    <div className={`popup ${isOpen ? "open" : ""}`}>
-      <div className="popup-content">
-        <button className="close-btn" onClick={handleClose}>
-          X
-        </button>
-        <p className="wording">Logout</p>
-        <p className="question">Are you sure you want to logout?</p>
-          <br />
-          <div className={"buttonContainer"}>
-            <input
-              className={"inputButton"}
-              onClick={LogoutClick}
-              type="submit"
-              value={"Yes, logout."}
-            />
-          </div>
-      </div>
-    </div>
+    <Modal show={isOpen} onHide={handleClose}>
+      <Modal.Header closeButton>
+        <Modal.Title>Logout</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <p className="wording">Are you sure you want to logout?</p>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={handleClose}>
+          Cancel
+        </Button>
+        <Button variant="danger" onClick={LogoutClick}>
+          Yes, logout
+        </Button>
+      </Modal.Footer>
+    </Modal>
   );
 };
 
