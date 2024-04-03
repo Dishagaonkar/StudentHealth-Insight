@@ -27,9 +27,6 @@ export const Logout = ({ isOpen, handleClose, updateRes, updateInactive }) => {
         <p className="wording">Are you sure you want to logout?</p>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
-          Cancel
-        </Button>
         <Button variant="danger" onClick={LogoutClick}>
           Yes, logout
         </Button>
