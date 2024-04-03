@@ -435,9 +435,9 @@ function PastEvaluations() {
 
   // useEffect(() => {
   //   let changed = true;
-  //   const retrieveNotes = async () => {
+  //   const retrieveEvals = async () => {
   //     try {
-  //       const evalsRes = await axios.post("http://localhost:8000/userNotes", {
+  //       const evalsRes = await axios.post("http://localhost:8000/userEvals", {
   //         email: email,
   //       });
   //       if (changed) {
@@ -459,14 +459,14 @@ function PastEvaluations() {
     <Card style={PastEvalCard}>
       <Card.Header style={{textAlign: "center"}}>Click below to see past evaluations</Card.Header>
       <Card.Body>
-      {evals.map((item) => (
-              <EvalItem
-                val={item.time}
-                id={item.email}
-                title={item.title}
-                text={item.text}
-              />
-            ))}
+        {evals.map((item) => (
+            <EvalItem
+              val={item.time}
+              id={item.email}
+              title={item.title}
+              text={item.eval}
+            />
+        ))}
       </Card.Body>
     </Card>
   );

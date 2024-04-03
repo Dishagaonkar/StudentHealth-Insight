@@ -88,19 +88,20 @@ function ChatGPT() {
             <br />
             <Card body>
               <pre>{result}</pre>
+              <Button
+                variant="secondary"
+                style={{ float: "right" }}
+                onClick={() => setShowPopup(true)}
+              >
+              {" "}
+              Save{" "}
+              </Button>
             </Card>
           </div>
         )}
       </form>
       <br />
-      <Button
-        variant="secondary"
-        style={{ float: "right" }}
-        onClick={() => setShowPopup(true)}
-      >
-        {" "}
-        Save{" "}
-      </Button>
+      
       <Modal show={showPopup} onHide={() => setShowPopup(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Title Your Conversation</Modal.Title>
