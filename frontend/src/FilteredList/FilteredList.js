@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Modal } from 'react-bootstrap';
 import './FilteredList.css';
 
 const ScrollableDropdown = ({ options, selectedValue, onChange, updateSelectedFilter }) => {
@@ -157,27 +158,25 @@ const FilteredList = ({ items }) => {
       </ul>
 
       {popupVisible !== null && (
-  <div className={`popupFiltered ${popupVisible !== null ? 'visible' : ''}`}>
-    <div className="popup-content-Filtered">
-      <button onClick={hidePopup}>Go Back</button>
-      <br/><br/>
-      <div className="scrollable-popup-content">
-        <h1>{items.find((item) => item.id === popupVisible).name}</h1>
-        <h3>Type:</h3>
-        {items.find((item) => item.id === popupVisible).type.map((i, index) => (
-          <li key={index}>&#8226; {i}<br /></li>
-        ))}
-        <h3>Symptoms:</h3>
-        {items.find((item) => item.id === popupVisible).symptoms.map((i, index2) => (
-          <li key={index2}>&#8226; {i} <br /> </li>
-        ))}
-        <h3>More Info:</h3>
-        <p>{items.find((item) => item.id === popupVisible).description}</p>
-        <h1>Please seek medical care if any symptom is persistent, severe, or concerning.</h1>
-      </div>
-    </div>
-  </div>
-)}
+        <Modal show={true} onHide={hidePopup}>
+          <Modal.Header closeButton>
+            <Modal.Title><h2>{items.find((item) => item.id === popupVisible).name}</h2></Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <h3>Type:</h3>
+            {items.find((item) => item.id === popupVisible).type.map((i, index) => (
+              <li key={index}>&#8226; {i}<br /></li>
+            ))}
+            <h3>Symptoms:</h3>
+            {items.find((item) => item.id === popupVisible).symptoms.map((i, index2) => (
+              <li key={index2}>&#8226; {i} <br /> </li>
+            ))}
+            <h3>More Info:</h3>
+            <p>{items.find((item) => item.id === popupVisible).description}</p>
+            <h1>Please seek medical care if any symptom is persistent, severe, or concerning.</h1>
+          </Modal.Body>
+        </Modal>
+      )}
     </div>
 );
 };
