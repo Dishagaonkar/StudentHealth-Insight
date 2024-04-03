@@ -5,7 +5,6 @@ import axios from "axios";
 
 const backgroundColor = {
   backgroundColor: "#eeeeee",
-  padding: "20px",
 };
 
 let responseArr = [];
