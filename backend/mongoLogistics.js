@@ -126,6 +126,24 @@ async function userNotes(data, res){
 
 
 }
+
+async function pastEvals(data, res){
+
+  if(data.email == ""){
+    res.status(400).json({ message: "This email is blank - ignore" });
+  }
+
+  try{
+    let pastEvals = await PastEvals.find({email: data.email}).exec();
+    //may have to tweak the find parameters
+    res.status(200).json({ message: "User's evals are successfully retrieved!", pastEvals : pastEvals});
+
+  }catch(error){
+    res.status(400).json({ message: "something wrong" });
+  }
+
+
+}
 async function insertNote(data, res){
 
   try{
