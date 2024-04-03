@@ -459,14 +459,19 @@ function PastEvaluations() {
     <Card style={PastEvalCard}>
       <Card.Header style={{textAlign: "center"}}>Click below to see past evaluations</Card.Header>
       <Card.Body>
-        {evals.map((item) => (
-            <EvalItem
-              val={item.time}
-              id={item.email}
-              title={item.title}
-              text={item.eval}
-            />
-        ))}
+      {evals.length === 0 ? (
+        <p>No evaluations saved yet</p>
+      ) : (
+        evals.map((item) => (
+        <EvalItem
+            key={item.time}
+            val={item.time}
+            id={item.email}
+            title={item.title}
+            text={item.eval}
+        />
+    ))
+)}
       </Card.Body>
     </Card>
   );
