@@ -41,7 +41,6 @@ return userFound;
 }
 
 
-
 async function insertDocument(data, res) {
 
   let emailFound = await findDB(data.email);
@@ -129,10 +128,6 @@ async function userNotes(data, res){
 
 async function pastEvals(data, res){
 
-  if(data.email == ""){
-    res.status(400).json({ message: "This email is blank - ignore" });
-  }
-
   try{
     let pastEvals = await PastEvals.find({email: data.email}).exec();
     //may have to tweak the find parameters
@@ -191,4 +186,4 @@ async function insertEval(data, res){
   }
 }
 
-module.exports = { connectDB, findDB, insertDocument, updateProfileInfo, validateLogin, userNotes, insertNote, deleteNote, insertEval};
+module.exports = { connectDB, findDB, insertDocument, updateProfileInfo, validateLogin, userNotes, insertNote, deleteNote, insertEval, pastEvals};
