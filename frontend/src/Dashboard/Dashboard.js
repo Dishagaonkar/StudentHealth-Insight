@@ -1,3 +1,8 @@
+// sources for alert: 
+// - https://www.geeksforgeeks.org/how-to-select-a-random-element-from-array-in-javascript/
+// - https://www.sfcdcp.org/communicable-disease/healthy-habits/#1511206262300-f4204a92-9a95
+// - https://www.cdc.gov/chronicdisease/about/prevent/index.htm
+
 import React from "react";
 import { useState } from 'react';
 import Alert from 'react-bootstrap/Alert';
@@ -173,6 +178,14 @@ function Info() {
 const TopAlert = () => {
 
   const [show, setShow] = useState(true);
+  let factsArr = ["A balanced diet includes fruits, veggies, whole grains, lean protein, and low-fat dairy products.",
+  "At least 150 minutes of moderate physcial activity, with 2 days of muscle strengthening is recommended every week.",
+  "It's important to visit a doctor regularly!", 
+  "Reminder! Make sure to get 7 hours of sleep.", 
+  "Washing your hands is an important habit to prevent spreading germs.", 
+  "Remember to stay home if you are feeling sick!", 
+  "Reminder to clean commonly used surfaces around your living space!"
+];
 
   if (show) {
       return (
@@ -181,7 +194,9 @@ const TopAlert = () => {
             'dark',
           ].map((variant) => (
             <Alert key={variant} variant={variant} onClose={() => setShow(false)} dismissible>
-              Fun fact or alert that gets updated based on current medical events (i.e. flu season, disease outbreak, medical stats, etc.)
+            <strong>
+            {factsArr[(Math.floor(Math.random() * factsArr.length))]}
+              </strong>
             </Alert>
           ))}
         </>
