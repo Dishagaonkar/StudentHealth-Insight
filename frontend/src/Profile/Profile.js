@@ -415,17 +415,6 @@ function NotesCard() {
   );
 }
 
-const EvalItem = ({ key, id, val, title, text }) => {
-  return (
-    <div>
-      {/* make text appear in popup when title is clicked */}
-      {title}
-      {'\t'}
-      {val}
-    </div>
-  );
-};
-
 function PastEvaluations() {
   const [evals, setEvals] = useState([]);
 
@@ -437,16 +426,12 @@ function PastEvaluations() {
   //   let changed = true;
   //   const retrieveEvals = async () => {
   //     try {
-  //       const evalsRes = await axios.post("http://localhost:8000/userEvals", {
+  //       const evalsRes = await axios.post("http://localhost:8000/pastEvals", {
   //         email: email,
   //       });
-  //       if (changed) {
-  //         if (evalsRes.status === 200) {
-  //           setEvals(evalsRes.data.notes);
-  //         }
-  //       }
+  //       setEvals(res.data.pastEvals);
   //     } catch (error) {
-  //       console.log("cant get evals");
+  //       console.log("Error getting past evaluations");
   //     }
   //   };
   //   retrieveEvals();
@@ -459,19 +444,17 @@ function PastEvaluations() {
     <Card style={PastEvalCard}>
       <Card.Header style={{textAlign: "center"}}>Click below to see past evaluations</Card.Header>
       <Card.Body>
-      {evals.length === 0 ? (
+      {/* {evals.length === 0 ? (
         <p>no evaluations saved yet</p>
       ) : (
-        evals.map((item) => (
-        <EvalItem
-            key={item.time}
-            val={item.time}
-            id={item.email}
-            title={item.title}
-            text={item.eval}
-        />
-    ))
-)}
+        <ul>
+            {evals.map((evalItem) => (
+              <li key={evalItem.time}>
+                <strong>{evalItem.title}</strong>: {evalItem.time}
+              </li>
+            ))}
+          </ul>
+      )} */}
       </Card.Body>
     </Card>
   );
