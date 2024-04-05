@@ -472,7 +472,7 @@ function PastEvaluations() {
     
     <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>{selectedEval.title}</Modal.Title>
+          <Modal.Title>{selectedEval && selectedEval.title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {selectedEval && (
