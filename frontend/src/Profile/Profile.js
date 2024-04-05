@@ -4,6 +4,7 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import Modal from "react-bootstrap/Modal";
 import Nav from "react-bootstrap/Nav";
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -417,46 +418,79 @@ function NotesCard() {
 
 function PastEvaluations() {
   const [evals, setEvals] = useState([]);
+  const [selectedEval, setSelectedEval] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
   const location = useLocation();
   const res = location.state;
   const email = res.data.email;
 
-  // useEffect(() => {
-  //   let changed = true;
-  //   const retrieveEvals = async () => {
-  //     try {
-  //       const evalsRes = await axios.post("http://localhost:8000/pastEvals", {
-  //         email: email,
-  //       });
-  //       setEvals(res.data.pastEvals);
-  //     } catch (error) {
-  //       console.log("Error getting past evaluations");
-  //     }
-  //   };
-  //   retrieveEvals();
-  //   return () => {
-  //     changed = false;
-  //   };
-  // }, []);
+  const handleEvalClick = (evalItem) => {
+    setSelectedEval(evalItem);
+    setShowModal(true);
+  };
+
+  useEffect(() => {
+    const retrieveEvals = async () => {
+      try {
+        const evalsRes = await axios.post("http://localhost:8000/pastEvals", {
+          email: email,
+        });
+        setEvals(evalsRes.data.pastEvals);
+      } catch (error) {
+        console.log("Error getting past evaluations:", error);
+      }
+    };
+    retrieveEvals();
+  }, [email]);
 
   return (
+    <>
     <Card style={PastEvalCard}>
       <Card.Header style={{textAlign: "center"}}>Click below to see past evaluations</Card.Header>
       <Card.Body>
-      {/* {evals.length === 0 ? (
+      {!evals || (evals && evals.length === 0) ? (
         <p>no evaluations saved yet</p>
       ) : (
-        <ul>
-            {evals.map((evalItem) => (
-              <li key={evalItem.time}>
-                <strong>{evalItem.title}</strong>: {evalItem.time}
+        <ul style={{ listStyleType: "none", padding: 0, display: "block" }}>
+            {evals.map((evalItem, index) => (
+              <li key={evalItem.time} style={{ borderTop: "1px solid white", display: "block", clear: "both", cursor: "pointer" }} onClick={() => handleEvalClick(evalItem)}>
+                <br/>
+                <div style={{ float: "left" }}>
+                  <strong>{evalItem.title}</strong>
+                </div>
+                <div style={{ float: "right" }}>
+                  {evalItem.time}
+                </div>
+                <br/><br/>
               </li>
             ))}
           </ul>
-      )} */}
+      )}
       </Card.Body>
     </Card>
+    
+    <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>{selectedEval.title}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {selectedEval && (
+            <>
+              <ul style={{ listStyleType: "none", padding: 0, display: "block" }}>
+              {selectedEval.eval && selectedEval.eval.map((convoPart, index) => (
+                <li key={index} style={{ borderTop: "1px solid white", display: "block", clear: "both"}}>
+                  {convoPart}
+                  <br/><br/>
+                </li>
+              ))}
+            </ul>
+            </>
+          )}
+        </Modal.Body>
+      </Modal>
+
+    </>
   );
 }
 
