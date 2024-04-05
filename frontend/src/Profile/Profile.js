@@ -447,7 +447,7 @@ function PastEvaluations() {
   return (
     <>
     <Card style={PastEvalCard}>
-      <Card.Header style={{textAlign: "center"}}>Click below to see past evaluations</Card.Header>
+      <Card.Header style={{textAlign: "center"}}><h3>Click below to see past evaluations</h3></Card.Header>
       <Card.Body>
       {!evals || (evals && evals.length === 0) ? (
         <p>no evaluations saved yet</p>
