@@ -15,10 +15,10 @@ In 2nd Terminal
 2. npm install
 3. npm run start
 
-#make the google maps api work
+Make the google maps api work:
 1. go to backend/server.js
-2. on line 28, where the variable apiKey is 
-3. add the api key (quotes included ex apiKey = "123456678")
-4. profit 
+2. on line 33, where the variable apiKey is add the api key in quotes
 
-
+Make the open ai api work:
+1. go to backend/server.js
+2. on line 57, where the variable apiKey is add the api key in quotes
