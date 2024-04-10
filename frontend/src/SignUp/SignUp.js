@@ -6,6 +6,8 @@ import "../Login/Login.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Login from "../Login";
+import { Modal, Button } from "react-bootstrap";
+
 
 const SignUp = ({ isOpen, handleClose, updateRes, updateInactive }) => {
   const [email, setEmail] = useState("");
@@ -17,13 +19,23 @@ const SignUp = ({ isOpen, handleClose, updateRes, updateInactive }) => {
   const [isInactive, setInactive] = useState(true);
   const [res, setRes] = useState("empty");
   const [isSignUpPopUpOpen, setSignUpPopUpOpen] = useState(false);
+
+  const resetFields = () => {
+    setEmail("");
+    setFirstName("");
+    setLastName("");
+    setPassword("");
+    setEmailError("");
+  };
+
   const handleOpenPopUp = () => {
     console.log("clicked for login");
     setPopUpOpen(true);
   };
 
   const handleSignUpClosePopUp = () => {
-    setSignUpPopUpOpen(false);
+    resetFields();
+    handleClose();
   };
 
   // const [school, setSchool] = useState("");
@@ -58,13 +70,10 @@ const SignUp = ({ isOpen, handleClose, updateRes, updateInactive }) => {
           lastName: lastName,
           email: email,
           password: password,
-          // school: school,
         });
         //show message for valid login
         if (response.status === 200) {
-          setEmailError(response.data.message);
-          handleSignUpClosePopUp();
-          handleOpenPopUp();
+          setEmailError("Profile added successfully! Go login!");
         }
       } catch (error) {
         //show message for invalid login
@@ -75,12 +84,11 @@ const SignUp = ({ isOpen, handleClose, updateRes, updateInactive }) => {
   };
 
   return (
-    <div className={`popup ${isOpen ? "open" : ""}`}>
-      <div className="popup-content">
-        <button className="close-btn" onClick={handleClose}>
-          X
-        </button>
-        <p className="wording">Sign Up</p>
+    <Modal show={isOpen} onHide={handleSignUpClosePopUp}>
+      <Modal.Header closeButton>
+        <Modal.Title>Sign Up</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
         <form onSubmit={SignUpClick}>
           <div className={"inputContainer"}>
             <input
@@ -121,23 +129,13 @@ const SignUp = ({ isOpen, handleClose, updateRes, updateInactive }) => {
           <br />
 
           <div className={"buttonContainer"}>
-            <input
-              className={"inputButton"}
-              onClick={SignUpClick}
-              type="submit"
-              value={"Sign Up"}
-            />
+            <Button variant='secondary' onClick={SignUpClick}>Sign Up</Button>
             <label className="errorLabel">{emailError}</label>
           </div>
         </form>
-      </div>
-      <Login
-        isOpen={isPopUpOpen}
-        handleClose={handleClose}
-        updateRes={updateRes}
-        updateInactive={updateInactive}
-      />
-    </div>
+      </Modal.Body>
+      {/* <Login isOpen={isPopUpOpen} handleClose={handleSignUpClosePopUp} updateRes={updateRes} updateInactive={updateInactive} /> */}
+    </Modal>
   );
 };
 

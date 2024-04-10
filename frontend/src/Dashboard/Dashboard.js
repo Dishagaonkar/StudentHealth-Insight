@@ -1,3 +1,8 @@
+// sources for alert: 
+// - https://www.geeksforgeeks.org/how-to-select-a-random-element-from-array-in-javascript/
+// - https://www.sfcdcp.org/communicable-disease/healthy-habits/#1511206262300-f4204a92-9a95
+// - https://www.cdc.gov/chronicdisease/about/prevent/index.htm
+
 import React from "react";
 import { useState } from 'react';
 import Alert from 'react-bootstrap/Alert';
@@ -104,15 +109,15 @@ function Info() {
         <Accordion.Header>How to Get Started</Accordion.Header>
         <Accordion.Body>
           <h3>Login or Signup:</h3> 
-          &#8226; If you are a new user, click the sign up button and enter your information!
+          &#8226; If you are a new user, click the sign up button and enter your information
           <br />
-          &#8226; Already signed up? Click the login button and Log in into your account!
+          &#8226; Already signed up? Click the login button and Log in into your account
           <br />
           <br />
           <h3>Why create an account?</h3>
-          &#8226; Write notes to help manage your health!
+          &#8226; Write notes to help manage your health
           <br />
-          &#8226; Save past evaluations for access to them later!
+          &#8226; Save past evaluations for access to them later
           <br />
           <br />
           Explore each tab to see how you can take care of your health!
@@ -122,19 +127,21 @@ function Info() {
         <Accordion.Header>Our Features</Accordion.Header>
         <Accordion.Body>
           <h3>Learn</h3> 
-          &#8226; Learn about the most common illness that affect college students!
+          &#8226; Learn about the most common illness that affect college students
           <br />
-          &#8226; Filter the information by illness types or symptoms, or just search by the illness's name!
+          &#8226; Filter the information by illness types or symptoms, or just search by the illness's name
           <br />
           <br />
           <h3>Nearby Help</h3>
-          &#8226; Easily locate medical professionals near you!
+          &#8226; Find information about medical professionals near you
           <br/>
-          &#8226; Use a zip code and the filter to find an establishment that benefits you the most!
+          &#8226; Use a zip code and the filter to find an establishment that benefits you the most
           <br />
           <br />
           <h3>Evaluate</h3>
-          &#8226; Take a survey to see what illness you MIGHT have!
+          &#8226; Speak with our chatbot to find out more about how you may be feeling
+          <br/>
+          &#8226; Ask about anything you want, but know that if any symptoms are severe you should seek medical advise from a medical professional
         </Accordion.Body>
       </Accordion.Item>
       <Accordion.Item eventKey="3">
@@ -171,6 +178,14 @@ function Info() {
 const TopAlert = () => {
 
   const [show, setShow] = useState(true);
+  let factsArr = ["A balanced diet includes fruits, veggies, whole grains, lean protein, and low-fat dairy products.",
+  "At least 150 minutes of moderate physcial activity, with 2 days of muscle strengthening is recommended every week.",
+  "It's important to visit a doctor regularly!", 
+  "Reminder! Make sure to get 7 hours of sleep.", 
+  "Washing your hands is an important habit to prevent spreading germs.", 
+  "Remember to stay home if you are feeling sick!", 
+  "Reminder to clean commonly used surfaces around your living space!"
+];
 
   if (show) {
       return (
@@ -179,9 +194,9 @@ const TopAlert = () => {
             'dark',
           ].map((variant) => (
             <Alert key={variant} variant={variant} onClose={() => setShow(false)} dismissible>
-              Fun fact or alert that gets updated with{' '}
-              <Alert.Link href="#">an example link</Alert.Link>. Give it a click if
-              you like.
+            <strong>
+            {factsArr[(Math.floor(Math.random() * factsArr.length))]}
+              </strong>
             </Alert>
           ))}
         </>
@@ -190,45 +205,6 @@ const TopAlert = () => {
     return <Button variant='secondary' onClick={() => setShow(true)}>Show Alert</Button>;
     
 };
-
-function Card1() {
-  return (
-    <Card className="text-center" style={cardColor}>
-      <Card.Body>
-        <Card.Title style={{color: 'white'}}>LEARN</Card.Title>
-        <Card.Text style={{color: 'white'}}>
-          Learn about different common illness
-        </Card.Text>
-      </Card.Body>
-    </Card>
-  );
-}
-
-function Card2() {
-  return (
-    <Card className="text-center" style={cardColor}>
-      <Card.Body>
-        <Card.Title style={{color: 'white'}}>NEARBY HELP</Card.Title>
-        <Card.Text style={{color: 'white'}}>
-          Easy locate medical establishments near you
-        </Card.Text>
-      </Card.Body>
-    </Card>
-  );
-}
-
-function Card3() {
-  return (
-    <Card className="text-center" style={cardColor}>
-      <Card.Body>
-        <Card.Title style={{color: 'white'}}>EVALUATE</Card.Title>
-        <Card.Text style={{color: 'white'}}>
-          Take a survey to see what illness you may have
-        </Card.Text>
-      </Card.Body>
-    </Card>
-  );
-}
 
 function Disclaimer() {
   return (
@@ -259,11 +235,6 @@ const Dashboard = () => {
         A web application to help college students maintain their health!
       </p>
       <Info />
-      {/* <div className="side">
-      <Card1 />
-      <Card2 />
-      <Card3 />
-    </div> */}
     <p >
     <Disclaimer/>
     </p>

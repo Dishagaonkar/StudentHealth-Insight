@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import "../popup.css";
 import "../Login/Login.css";
 import { useNavigate } from "react-router-dom";
+import { Modal, Button } from "react-bootstrap";
 import axios from "axios";
 
 // create res outside of component
@@ -57,12 +58,11 @@ export const Login = ({ isOpen, handleClose, updateRes, updateInactive }) => {
   };
 
   return (
-    <div className={`popup ${isOpen ? "open" : ""}`}>
-      <div className="popup-content">
-        <button className="close-btn" onClick={handleClose}>
-          X
-        </button>
-        <p className="wording">Login</p>
+    <Modal show={isOpen} onHide={handleClose}>
+      <Modal.Header closeButton>
+        <Modal.Title>Login</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
         <form onSubmit={LoginClick}>
           <div className={"inputContainer"}>
             <input
@@ -84,17 +84,12 @@ export const Login = ({ isOpen, handleClose, updateRes, updateInactive }) => {
           </div>
           <br />
           <div className={"buttonContainer"}>
-            <input
-              className={"inputButton"}
-              onClick={LoginClick}
-              type="submit"
-              value={"Login"}
-            />
-           {/* <label className="errorLabel">{emailError}</label> */}
+            <Button variant='secondary' onClick={LoginClick}>Login</Button>
+            <label className="errorLabel">{emailError}</label>
           </div>
         </form>
-      </div>
-    </div>
+      </Modal.Body>
+    </Modal>
   );
 };
 

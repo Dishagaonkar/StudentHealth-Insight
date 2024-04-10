@@ -4,6 +4,7 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import Modal from "react-bootstrap/Modal";
 import Nav from "react-bootstrap/Nav";
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -46,75 +47,9 @@ const backgroundColor = {
 const PastEvalCard = {
   margin: "10px",
   backgroundColor: "#3091B0",
-  textAlign: "center",
   color: "white",
   fontSize: "20px",
 };
-
-const ProfileButton = () => {
-  const [showConfirmation, setShowConfirmation] = useState(false);
-
-  const handleLogoutClick = () => {
-    setShowConfirmation(true);
-  };
-
-  const handleCancelLogout = () => {
-    setShowConfirmation(false);
-  };
-
-  const handleConfirmLogout = () => {
-    console.log("Logged out");
-    // add logout logic here
-    setShowConfirmation(false);
-  };
-
-  const ConfirmationPopup = ({ message, onCancel, onConfirm }) => {
-    return (
-      <div className="confirmation-popup-overlay">
-        <div className="confirmation-popup">
-          <div className="confirmation-popup-content">
-            {message}&nbsp;&nbsp;
-            <Button onClick={onCancel} variant="secondary">
-              Cancel
-            </Button>
-            &nbsp;&nbsp;
-            <Button onClick={onConfirm} variant="danger">
-              Yes, Logout
-            </Button>
-          </div>
-        </div>
-      </div>
-    );
-  };
-
-  return (
-    <>
-      <Button
-        variant="secondary"
-        style={{ float: "right" }}
-        onClick={handleLogoutClick}
-      >
-        Logout
-      </Button>
-      <br /> <br />
-      {showConfirmation && (
-        <ConfirmationPopup
-          message="Are you sure?"
-          onCancel={handleCancelLogout}
-          onConfirm={handleConfirmLogout}
-        />
-      )}
-    </>
-  );
-};
-
-function EvalsButton() {
-  return (
-    <>
-      <Button variant="secondary">Past Evaluations</Button>{" "}
-    </>
-  );
-}
 
 export const EditableTextProfile = ({
   initialFirst,
@@ -328,10 +263,8 @@ function ProfileCard() {
             initialPhone={phone}
           />
           <br/>
-          Note:&nbsp;Email cannot be changed, because it is the login.&nbsp;&nbsp;
-          <ProfileButton />
+          Note:&nbsp;Email cannot be changed, because it is the login.&nbsp;&nbsp;  
         </Card.Text>
-        
       </Card.Body>
     </Card>
   );
@@ -457,7 +390,7 @@ function NotesCard() {
                 borderRadius: "10px",
                 border: "1px solid #ccc",
                 marginRight: "10px",
-                width: "360px",
+                width: "70%",
               }}
             />
             <Button
@@ -484,13 +417,80 @@ function NotesCard() {
 }
 
 function PastEvaluations() {
+  const [evals, setEvals] = useState([]);
+  const [selectedEval, setSelectedEval] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+
+  const location = useLocation();
+  const res = location.state;
+  const email = res.data.email;
+
+  const handleEvalClick = (evalItem) => {
+    setSelectedEval(evalItem);
+    setShowModal(true);
+  };
+
+  useEffect(() => {
+    const retrieveEvals = async () => {
+      try {
+        const evalsRes = await axios.post("http://localhost:8000/pastEvals", {
+          email: email,
+        });
+        setEvals(evalsRes.data.pastEvals);
+      } catch (error) {
+        console.log("Error getting past evaluations:", error);
+      }
+    };
+    retrieveEvals();
+  }, [email]);
+
   return (
+    <>
     <Card style={PastEvalCard}>
-      <Card.Header>Click below to see past evaluations</Card.Header>
+      <Card.Header style={{textAlign: "center"}}><h3>Click below to see past evaluations</h3></Card.Header>
       <Card.Body>
-        <EvalsButton />
+      {!evals || (evals && evals.length === 0) ? (
+        <p>no evaluations saved yet</p>
+      ) : (
+        <ul style={{ listStyleType: "none", padding: 0, display: "block" }}>
+            {evals.map((evalItem, index) => (
+              <li key={evalItem.time} style={{ borderTop: "1px solid white", display: "block", clear: "both", cursor: "pointer" }} onClick={() => handleEvalClick(evalItem)}>
+                <br/>
+                <div style={{ float: "left" }}>
+                  <strong>{evalItem.title}</strong>
+                </div>
+                <div style={{ float: "right" }}>
+                  {evalItem.time}
+                </div>
+                <br/><br/>
+              </li>
+            ))}
+          </ul>
+      )}
       </Card.Body>
     </Card>
+    
+    <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>{selectedEval && selectedEval.title}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {selectedEval && (
+            <>
+              <ul style={{ listStyleType: "none", padding: 0, display: "block" }}>
+              {selectedEval.eval && selectedEval.eval.map((convoPart, index) => (
+                <li key={index} style={{ borderTop: "1px solid white", display: "block", clear: "both"}}>
+                  {convoPart}
+                  <br/><br/>
+                </li>
+              ))}
+            </ul>
+            </>
+          )}
+        </Modal.Body>
+      </Modal>
+
+    </>
   );
 }
 

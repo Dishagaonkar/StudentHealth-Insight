@@ -73,7 +73,7 @@ const NavBar = () => {
           }}>Profile</Nav.Link>
           <Nav.Link as={Link} to="learn">Learn</Nav.Link>
           <Nav.Link as={Link} to="nearby">Nearby Help</Nav.Link>
-          <Nav.Link as={Link} to="evaluate">Evaluate</Nav.Link>
+          <Nav.Link as={Link} to={"evaluate"} state={{ data }}>Evaluate</Nav.Link>
         </Nav>
         <Nav style={{marginLeft:'10px', marginRight:'10px'}}>
           <Button variant="secondary" style={{marginRight:'10px', float:'right', marginBottom:'5px', marginTop:'5px'}} onClick={(e) => {

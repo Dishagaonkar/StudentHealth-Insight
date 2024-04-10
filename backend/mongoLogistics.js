@@ -10,7 +10,7 @@ const name = 'StudentHealthInsight';
 
 const User = mongoose.model('logins', {firstName: String, lastName: String, email: String, password: String, school: String, phone: String});
 const Notes = mongoose.model('notes', { email: String, time: { type : String, default: new Date().toISOString() }, text: String});
-
+const PastEvals = mongoose.model('pastEvals', {email: String, time: {type : String, default: new Date().toISOString() }, title: String, eval: []});
 
 async function connectDB() {
   mongoose.connect(uri , { useNewUrlParser: true, useUnifiedTopology: true });
@@ -39,7 +39,6 @@ return userFound;
 
 
 }
-
 
 
 async function insertDocument(data, res) {
@@ -126,6 +125,20 @@ async function userNotes(data, res){
 
 
 }
+
+async function pastEvals(data, res){
+
+  try{
+    let pastEvals = await PastEvals.find({email: data.email}).exec();
+    //may have to tweak the find parameters
+    res.status(200).json({ message: "User's evals are successfully retrieved!", pastEvals : pastEvals});
+
+  }catch(error){
+    res.status(400).json({ message: "something wrong" });
+  }
+
+
+}
 async function insertNote(data, res){
 
   try{
@@ -133,7 +146,7 @@ async function insertNote(data, res){
     res.status(200).json({ message: "Note inserted successfully!" , note: data});
   }catch(error){
     console.error("Error inserting note:", error);
-    res.status(400).json({ error: "Internal Server Error" });
+    res.status(400).json({ error: "Error inserting note" });
 
   }
 
@@ -163,4 +176,14 @@ async function deleteNote(data, res){
 
 }
 
-module.exports = { connectDB, findDB, insertDocument, updateProfileInfo, validateLogin, userNotes, insertNote, deleteNote};
+async function insertEval(data, res){
+  try{
+    PastEvals.create(data);
+    res.status(200).json({ message: "Eval inserted successfully!" , eval: data});
+  }catch(error){
+    console.error("Error inserting eval:", error);
+    res.status(400).json({ error: "Error inserting eval" });
+  }
+}
+
+module.exports = { connectDB, findDB, insertDocument, updateProfileInfo, validateLogin, userNotes, insertNote, deleteNote, insertEval, pastEvals};
