@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Card, CardBody, CardText, Button, Form, Modal } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-import imageSrc from "../doctorImage.jpg";
+import imageSrc from "./doctorImage.jpg";
 
 const backgroundColor = {
   backgroundColor: "#eeeeee",
