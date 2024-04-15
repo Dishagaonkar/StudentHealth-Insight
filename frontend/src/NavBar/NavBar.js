@@ -76,7 +76,7 @@ const NavBar = () => {
           <Nav.Link as={Link} to={"evaluate"} state={{ data }}>Evaluate</Nav.Link>
         </Nav>
         <Nav style={{marginLeft:'10px', marginRight:'10px'}}>
-          <Button variant="secondary" style={{marginRight:'10px', float:'right', marginBottom:'5px', marginTop:'5px', backgroundColor: isInactive ? '#68afde' : '#92989c'}} onClick={(e) => {
+          <Button variant="secondary" style={{marginRight:'10px', float:'right', marginBottom:'5px', marginTop:'5px', backgroundColor: isInactive ? '#73acd1' : '#92989c'}} onClick={(e) => {
             if (isInactive) {
               handleOpenPopUp();
             }
