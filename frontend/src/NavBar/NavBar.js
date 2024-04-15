@@ -81,12 +81,12 @@ const NavBar = () => {
               handleOpenPopUp();
             }
           }}>Login</Button>
-          <Button variant="secondary" style={{marginRight:'10px', float:'right', marginBottom:'5px', marginTop: '5px', backgroundColor: isInactive ? '#68afde' : '#92989c'}} onClick={(e) => {
+          <Button variant="secondary" style={{marginRight:'10px', float:'right', marginBottom:'5px', marginTop: '5px', backgroundColor: isInactive ? '#73acd1' : '#92989c'}} onClick={(e) => {
             if (isInactive) {
               handleSignUpOpenPopUp();
             }
           }}>Sign Up</Button>
-          <Button variant="secondary" style={{marginRight:'10px', float:'right', marginBottom:'5px', marginTop: '5px', backgroundColor: isInactive ? '#92989c' : '#68afde'}} onClick={(e) => {
+          <Button variant="secondary" style={{marginRight:'10px', float:'right', marginBottom:'5px', marginTop: '5px', backgroundColor: isInactive ? '#92989c' : '#73acd1'}} onClick={(e) => {
             if(!isInactive){
               handleOpenLogout();
             }
